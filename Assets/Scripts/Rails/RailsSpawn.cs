@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class RailsSpawn : MonoBehaviour
 
     private List<Rail> rails;
 
-
+    [Button("Spawn")]
     public void Spawn()
     {
         Rail spawnObject;

@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
 public class BezierCurve : MonoBehaviour, IBezierCurve
 {
-    [SerializeField] private GameObject pointZero;
-    [SerializeField] private GameObject pointOne;
-    [SerializeField] private GameObject pointTwo;
-    [SerializeField] private GameObject pointThree;
+    [SerializeField] private Transform pointZero;
+    [SerializeField] private Transform pointOne;
+    [SerializeField] private Transform pointTwo;
+    [SerializeField] private Transform pointThree;
 
 
     [Range(0,1)][SerializeField] private float t;
@@ -21,28 +20,30 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
             Bezier.GetFirstDerivative(pointZero, pointOne, pointTwo, pointThree, t));
     }
 
-    public List<GameObject> GetAllPoints()
+    public List<Transform> GetAllPoints()
     {
-        var points = new List<GameObject>();
-        points.Add(pointZero);
-        points.Add(pointOne);
-        points.Add(pointTwo);
-        points.Add(pointThree);
+        var points = new List<Transform>
+        {
+            pointZero,
+            pointOne,
+            pointTwo,
+            pointThree
+        };
 
         return points;
     }
 
     private void OnDrawGizmos()
     {
-        var sigmentsNumber = 30;
-        var preveousPoint = pointOne.transform.position;
+        var segmentsNumber = 30;
+        var priveousPoint = pointOne.transform.position;
 
-        for (int i = 0; i < sigmentsNumber + 1; i++)
+        for (int i = 0; i < segmentsNumber + 1; i++)
         {
-            var parameter = (float)i / sigmentsNumber;
+            var parameter = (float)i / segmentsNumber;
             var point = Bezier.GetPoint(pointZero, pointOne, pointTwo, pointThree, parameter);
-            Gizmos.DrawLine(preveousPoint, point);
-            preveousPoint = point;
+            Gizmos.DrawLine(priveousPoint, point);
+            priveousPoint = point;
         }
     }
 }

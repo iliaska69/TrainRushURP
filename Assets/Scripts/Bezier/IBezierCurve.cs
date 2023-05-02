@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IBezierCurve
 {
-    List<GameObject> GetAllPoints();
+    List<Transform> GetAllPoints();
 }

@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 164489444810059121}
+  - component: {fileID: 4352539429465798174}
+  - component: {fileID: 6728732459276646436}
   m_Layer: 0
   m_Name: P3
   m_TagString: Untagged
@@ -31,6 +33,31 @@ Transform:
   m_Father: {fileID: 6089637456282962833}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4352539429465798174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798139643944521681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd476b5b8a478b48abd47bb297d29b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &6728732459276646436
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798139643944521681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.78
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2461581259923548273
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,11 +217,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8377981004012148399}
-  - {fileID: 616145736737828915}
   - {fileID: 7518275153782064073}
   - {fileID: 4140649524678585077}
   - {fileID: 6959437669759678127}
   - {fileID: 5992679558277823131}
+  - {fileID: 616145736737828915}
   m_Father: {fileID: 1611540043588852452}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -210,12 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c5adf958c4f27449ebd18778b109ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPointForDirection: {fileID: 0}
-  secondPointForDirection: {fileID: 0}
-  frontPoint: {fileID: 0}
-  joinablePoint: {fileID: 0}
+  firstPointForDirection: {fileID: 6959437669759678127}
+  secondPointForDirection: {fileID: 5992679558277823131}
+  frontPoint: {fileID: 7518275153782064073}
+  curve: {fileID: 616145736737828915}
   openedToMovement: 1
-  curve: {fileID: 9209413313953026847}
 --- !u!65 &8089374258995524715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -366,6 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5616987582956559654}
   - component: {fileID: 7342684067996440995}
+  - component: {fileID: 8263011804730574901}
   m_Layer: 0
   m_Name: Curve
   m_TagString: Untagged
@@ -380,8 +407,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5024074239356515173}
-  m_LocalRotation: {x: -0, y: -0.038151335, z: -0, w: 0.999272}
-  m_LocalPosition: {x: 0.023970798, y: 0, z: 3.3296578}
+  m_LocalRotation: {x: -0, y: -0.042746034, z: -0, w: 0.99908596}
+  m_LocalPosition: {x: 0.042496, y: 0, z: 3.103648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -400,11 +427,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4b7a8b80d846542ab1065842e9a8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointZero: {fileID: 8126032978574214279}
-  pointOne: {fileID: 4985127691125046598}
-  pointTwo: {fileID: 6738752120560447089}
-  pointThree: {fileID: 798139643944521681}
-  t: 0.339
+  pointZero: {fileID: 2373490229059120686}
+  pointOne: {fileID: 4249887391356823583}
+  pointTwo: {fileID: 8852100256235996692}
+  pointThree: {fileID: 164489444810059121}
+  t: 0.2
+--- !u!65 &8263011804730574901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024074239356515173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.67, z: 1.1}
+  m_Center: {x: 0, y: 0.26, z: 0.37}
 --- !u!1 &5597812368236793641
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,12 +641,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c5adf958c4f27449ebd18778b109ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPointForDirection: {fileID: 0}
-  secondPointForDirection: {fileID: 0}
-  frontPoint: {fileID: 0}
-  joinablePoint: {fileID: 0}
+  firstPointForDirection: {fileID: 5471827684109270254}
+  secondPointForDirection: {fileID: 6007040034251551886}
+  frontPoint: {fileID: 5481196625322036724}
+  curve: {fileID: 6114762254416840489}
   openedToMovement: 1
-  curve: {fileID: 6974375074073028902}
 --- !u!65 &136922596732549547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -684,12 +723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c5adf958c4f27449ebd18778b109ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPointForDirection: {fileID: 0}
-  secondPointForDirection: {fileID: 0}
-  frontPoint: {fileID: 0}
-  joinablePoint: {fileID: 0}
+  firstPointForDirection: {fileID: 8852100256235996692}
+  secondPointForDirection: {fileID: 164489444810059121}
+  frontPoint: {fileID: 2373490229059120686}
+  curve: {fileID: 5616987582956559654}
   openedToMovement: 1
-  curve: {fileID: 5024074239356515173}
 --- !u!1 &5834507935906610836
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6114762254416840489}
   - component: {fileID: 6860849338454128546}
+  - component: {fileID: 1632859847080005013}
   m_Layer: 0
   m_Name: Curve
   m_TagString: Untagged
@@ -859,8 +898,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6974375074073028902}
-  m_LocalRotation: {x: -0, y: 0.25949842, z: -0, w: 0.96574354}
-  m_LocalPosition: {x: -0.5339675, y: 0, z: 1.5835519}
+  m_LocalRotation: {x: -0, y: 0.2673567, z: -0, w: 0.96359766}
+  m_LocalPosition: {x: -1.642, y: 0, z: -0.288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -879,11 +918,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4b7a8b80d846542ab1065842e9a8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointZero: {fileID: 4469723140295870185}
-  pointOne: {fileID: 7278367138923613742}
-  pointTwo: {fileID: 5669267265457545328}
-  pointThree: {fileID: 6820592007167544928}
-  t: 0.708
+  pointZero: {fileID: 5481196625322036724}
+  pointOne: {fileID: 5212423120960472700}
+  pointTwo: {fileID: 5471827684109270254}
+  pointThree: {fileID: 6007040034251551886}
+  t: 0
+--- !u!65 &1632859847080005013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974375074073028902}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.82, y: 0.57, z: 2.57}
+  m_Center: {x: 0, y: 0.28, z: 1.36}
 --- !u!1 &7278367138923613742
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +976,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2780978244780310105}
-  - component: {fileID: 219437485564829770}
   - component: {fileID: 9107288364865323736}
   m_Layer: 0
   m_Name: Unbranching Rail
@@ -949,19 +1000,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &219437485564829770
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7732802639702982072}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.77
-  m_Center: {x: 0, y: 0, z: 4.33}
 --- !u!114 &9107288364865323736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,12 +1012,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671d58c2cdb4f0c4d8977617cdf9dc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPointForDirection: {fileID: 0}
-  secondPointForDirection: {fileID: 0}
+  firstPointForDirection: {fileID: 8852100256235996692}
+  secondPointForDirection: {fileID: 164489444810059121}
   frontPoint: {fileID: 0}
-  joinablePoint: {fileID: 0}
+  curve: {fileID: 5616987582956559654}
   openedToMovement: 0
-  curve: {fileID: 6974375074073028902}
+  leftRail: {fileID: 157886193938029313}
+  rightRail: {fileID: 8320255785637750188}
 --- !u!1 &8126032978574214279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 616145736737828915}
   - component: {fileID: 9019871869555018694}
+  - component: {fileID: 7651587976427695549}
   m_Layer: 0
   m_Name: Curve
   m_TagString: Untagged
@@ -1066,8 +1106,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9209413313953026847}
-  m_LocalRotation: {x: -0, y: -0.19729406, z: -0, w: 0.98034436}
-  m_LocalPosition: {x: 0.09720048, y: 0, z: 2.6085317}
+  m_LocalRotation: {x: -0, y: -0.25338435, z: -0, w: 0.9673657}
+  m_LocalPosition: {x: 1.478, y: 0, z: -0.222}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1086,8 +1126,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4b7a8b80d846542ab1065842e9a8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointZero: {fileID: 5597812368236793641}
-  pointOne: {fileID: 8329005728011468259}
-  pointTwo: {fileID: 4420824579048399371}
-  pointThree: {fileID: 2461581259923548273}
-  t: 0.993
+  pointZero: {fileID: 7518275153782064073}
+  pointOne: {fileID: 4140649524678585077}
+  pointTwo: {fileID: 6959437669759678127}
+  pointThree: {fileID: 5992679558277823131}
+  t: 0
+--- !u!65 &7651587976427695549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209413313953026847}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57, y: 0.5, z: 2.39}
+  m_Center: {x: 0, y: 0.18, z: 1.27}

@@ -4,53 +4,68 @@ using UnityEngine;
 [ExecuteAlways]
 public class Rail : MonoBehaviour, IJoinable
 {
-    [SerializeField] protected GameObject firstPointForDirection;
-    [SerializeField] protected GameObject secondPointForDirection;
-    [SerializeField] protected GameObject frontPoint;
-    [SerializeField] protected GameObject joinablePoint;
+    [SerializeField] protected Transform firstPointForDirection;
+    [SerializeField] protected Transform secondPointForDirection;
+    [SerializeField] protected Transform frontPoint;
+    [SerializeField] protected Transform curve;
     [SerializeField] protected bool openedToMovement;
-    [SerializeField] protected GameObject curve;
+
+    public GameObject GameObject => gameObject;
+
 
     public virtual Vector3 GetDirection()
     {
-        var direction = secondPointForDirection.transform.position - firstPointForDirection.transform.position;
+        var direction = secondPointForDirection.position - firstPointForDirection.position;
 
         return Vector3.Normalize(direction);
     }
 
     public virtual Vector3 GetSpawnPostionForNextRail()
     {
-        return secondPointForDirection.transform.position;
+        return secondPointForDirection.position;
     }
 
-    public virtual GameObject GetJoinablePoint()
-    {
-        return joinablePoint;
-    }
-
-    public virtual bool GetLicenseToMove()
+    public bool GetLicenseToMove()
     {
         return openedToMovement;
     }
 
-    public virtual IBezierCurve GetCurve()
+    public void SetLicenseToMove(bool license)
     {
-        return curve.GetComponent<IBezierCurve>();
+        openedToMovement = license;
+    }
+
+    public virtual BezierCurve GetCurve()
+    {
+        return curve.GetComponent<BezierCurve>();
     }
 
     [Button("Join")]
     public virtual void JoinToPoint()
     {
         var hitColliders = Physics.OverlapSphere(frontPoint.transform.position, 0.5f);
-
         foreach (var hit in hitColliders)
         {
-            var rail = hit.gameObject.GetComponent<IJoinable>();
-            if (rail != null)
-            {
-                transform.position = rail.GetJoinablePoint().transform.position;
-                transform.rotation = Quaternion.LookRotation(rail.GetDirection());
-            }
+            var point = hit.gameObject.GetComponent<IJoinablePoint>();
+            if (point == null) continue;
+
+            var rail = point.GameObject.GetComponentInParent<IJoinable>();
+            if (rail == null) continue;
+
+            var joinablePoint = point.GetJoinablePoint();
+            transform.position = joinablePoint;
+            frontPoint.position = joinablePoint;
+            transform.rotation = Quaternion.LookRotation(rail.GetDirection());
         }
+    }
+
+    public Vector3 GetFrontPoint()
+    {
+        return frontPoint.position;
+    }
+
+    public void SetFrontPoint(Vector3 point)
+    {
+        frontPoint.position = point;
     }
 }

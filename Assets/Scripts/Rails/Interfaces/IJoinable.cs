@@ -6,5 +6,9 @@ public interface IJoinable
 
     Vector3 GetDirection();
 
-    GameObject GetJoinablePoint();
+    Vector3 GetFrontPoint();
+
+    void SetFrontPoint(Vector3 point);
+
+    GameObject GameObject { get; }
 }

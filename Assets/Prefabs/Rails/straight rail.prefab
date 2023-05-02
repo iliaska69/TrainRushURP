@@ -46,11 +46,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166769894847825654}
-  - component: {fileID: 5023624880092447569}
   - component: {fileID: 3597023272025711709}
   - component: {fileID: 4810502962463191479}
   m_Layer: 0
-  m_Name: straight rail
+  m_Name: Straight Rail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +63,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6464251730179015800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0.08109665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -72,19 +71,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &5023624880092447569
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6464251730179015800}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.9
-  m_Center: {x: 0, y: 0, z: 3.6}
 --- !u!114 &3597023272025711709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,12 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c5adf958c4f27449ebd18778b109ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPointForDirection: {fileID: 8667722648286745085}
-  secondPointForDirection: {fileID: 8667722648784847314}
-  frontPoint: {fileID: 8667722648905524971}
-  joinablePoint: {fileID: 8667722648784847314}
+  firstPointForDirection: {fileID: 8667722648286745084}
+  secondPointForDirection: {fileID: 8667722648784847313}
+  frontPoint: {fileID: 8667722648905524970}
+  curve: {fileID: 8667722648562431418}
   openedToMovement: 1
-  curve: {fileID: 8667722648562431399}
 --- !u!65 &4810502962463191479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -242,6 +227,7 @@ GameObject:
   - component: {fileID: 8667722648562431419}
   - component: {fileID: 8667722648562431396}
   - component: {fileID: 8667722648562431398}
+  - component: {fileID: 1218364711569469646}
   m_Layer: 0
   m_Name: Curve
   m_TagString: Untagged
@@ -326,11 +312,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4b7a8b80d846542ab1065842e9a8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointZero: {fileID: 8667722648905524971}
-  pointOne: {fileID: 8667722648779782512}
-  pointTwo: {fileID: 8667722648286745085}
-  pointThree: {fileID: 8667722648784847314}
+  pointZero: {fileID: 8667722648905524970}
+  pointOne: {fileID: 8667722648779782519}
+  pointTwo: {fileID: 8667722648286745084}
+  pointThree: {fileID: 8667722648784847313}
   t: 0
+--- !u!65 &1218364711569469646
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667722648562431399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9, y: 7.85, z: 11.91}
+  m_Center: {x: 0, y: 0, z: 6.68}
 --- !u!1 &8667722648779782512
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +370,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8667722648784847313}
+  - component: {fileID: 8041285262244859502}
+  - component: {fileID: 2167890438389806866}
   m_Layer: 0
   m_Name: P3
   m_TagString: Untagged
@@ -393,6 +394,31 @@ Transform:
   m_Father: {fileID: 8584600395446166239}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8041285262244859502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667722648784847314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd476b5b8a478b48abd47bb297d29b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &2167890438389806866
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667722648784847314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8667722648905524971
 GameObject:
   m_ObjectHideFlags: 0

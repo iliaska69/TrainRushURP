@@ -1,36 +1,49 @@
-using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UnbranchingRail : Rail
 {
+    [SerializeField] private Rail leftRail;
+    [SerializeField] private Rail rightRail;
+
+
     public override void JoinToPoint()
     {
-        var hitColliders = Physics.OverlapSphere(transform.position, 1f);
+        var leftFronPoint = leftRail.GetFrontPoint();
+        var rightFronPoint = rightRail.GetFrontPoint();
+
+        var hitLeftColliders = Physics.OverlapSphere(leftFronPoint, 0.5f);
+        var hitRightColliders = Physics.OverlapSphere(rightFronPoint, 0.5f);
+
         var joinablePoints = new List<Vector3>();
         var sum = Vector3.zero;
 
-        foreach (var hit in hitColliders)
+        foreach (var hit in hitLeftColliders)
         {
-            if (hitColliders.Length != 2) { return; }
+            if (!hit.gameObject.TryGetComponent<IJoinablePoint>(out var point)) continue;
 
-            var rail = hit.gameObject.GetComponent<IJoinable>();
-            if (rail != null)
-            {
-                joinablePoints.Add(rail.GetJoinablePoint().transform.position);
-                
-            }
+            joinablePoints.Add(point.GetJoinablePoint());
         }
 
-        if(joinablePoints.Count != 2) { return; }
-
-        foreach (var vec in joinablePoints)
+        foreach (var hit in hitRightColliders)
         {
-            sum += vec;
+            if (!hit.gameObject.TryGetComponent<IJoinablePoint>(out var point)) continue;
+
+            joinablePoints.Add(point.GetJoinablePoint());
+        }
+
+        if (joinablePoints.Count != 2)
+            return;
+
+        foreach (var vector in joinablePoints)
+        {
+            sum += vector;
         }
 
         var center = sum / joinablePoints.Count;
+
         transform.position = center;
-        //transform.rotation = Quaternion.LookRotation(rail.GetDirection());
+        leftRail.SetFrontPoint(joinablePoints[0]);
+        rightRail.SetFrontPoint(joinablePoints[1]);
     }
 }
