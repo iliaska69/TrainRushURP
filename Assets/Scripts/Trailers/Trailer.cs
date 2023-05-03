@@ -1,6 +1,4 @@
-using NaughtyAttributes;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class Trailer : MonoBehaviour
 {
@@ -8,6 +6,7 @@ public class Trailer : MonoBehaviour
     [SerializeField] private GameObject joinablePoint;
     [SerializeField] private LayerMask joinableMask;
     [SerializeField] private bool isMainTrailer;
+    [SerializeField] private TrailerEventChanelSO changedMainTrailer;
 
     private Trailer _nextTrailer;
     private Trailer _previousTrailer;
@@ -96,6 +95,7 @@ public class Trailer : MonoBehaviour
 
         _myTrailerMovement.SetIsMainTrailer(false);
         _nextTrailerMovement.SetIsMainTrailer(true);
+        changedMainTrailer.RaiseEvent(trailer);
     }
 
     public void CrushTrailer()

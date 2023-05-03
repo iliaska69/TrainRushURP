@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TrailerMovement : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class TrailerMovement : MonoBehaviour
     private float _distanceBetweenTrailers;
     private Vector3 _firstDistancePoint;
     private Vector3 _lastDistancePoint;
-    
+
 
 
     private void Start()
@@ -122,14 +123,11 @@ public class TrailerMovement : MonoBehaviour
     void NotMainTrailerMovement()
     {
         SetDistancesBetweenPoints(_firstDistancePoint, _lastDistancePoint);
-        Debug.Log(gameObject.GetInstanceID() +"  " +_distanceBetweenTrailers);
         float step;
-        step = speed * _distanceBetweenTrailers * Time.deltaTime;
+        const float trspeed = 6;
+        step = trspeed * _distanceBetweenTrailers * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, _target, step);
-
-        if (Input.GetKey(KeyCode.F)) SlowDown();
-        else Acceleration();
 
         if (Vector3.Distance(transform.position, _target) < 0.001f)
         {
@@ -146,36 +144,6 @@ public class TrailerMovement : MonoBehaviour
         _t = 0f;
         _target = GetNextPointToMove(_currentCurve, _t);
     }
-
-    //void Movement()
-    //{
-    //    float step;
-    //    if (_nextTrailer != null)
-    //        step = speed * _distanceBetweenTrailers * Time.deltaTime;
-    //    else
-    //        step = speed * Time.deltaTime;
-
-    //    transform.position = Vector3.MoveTowards(transform.position, _target, step);
-
-    //    if (Input.GetKey(KeyCode.F)) SlowDown();
-    //    else Acceleration();
-
-    //    if (Vector3.Distance(transform.position, _target) < 0.001f)
-    //    {
-    //        _t += 0.05f;
-    //        _target = GetNextPointToMove(_currentCurve, _t);
-    //        Rotation();
-    //    }
-
-    //    if (_t < 1) return;
-
-    //    _currentCurve = GetNextCurve();
-    //    if (_currentCurve is null) return;
-
-    //    _t = 0f;
-    //    _target = GetNextPointToMove(_currentCurve, _t);
-    //}
-
     private Vector3 GetNextPointToMove(BezierCurve curve, float t)
     {
         _points = GetCurvePoints(curve);
