@@ -19,8 +19,7 @@ public class Trailer : MonoBehaviour
         if (_myTrailerMovement != null && _nextTrailer != null)
         {
             _myTrailerMovement.SetDistancesPoints(
-            catchGameObject.transform.position,
-                    _nextTrailer.GetJoinablePoint().transform.position);
+                transform.position, _nextTrailer.transform.position);
         }
 
         var hits = Physics.OverlapSphere(catchGameObject.transform.position, 0.1f, joinableMask);

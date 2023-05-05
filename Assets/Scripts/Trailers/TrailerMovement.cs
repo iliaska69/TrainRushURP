@@ -8,7 +8,7 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float startTParameter = 0f;
     [SerializeField] private float speed = 0f;
     [SerializeField] private float maxSpeed = 3f;
-    [SerializeField] private float minSpeed = 0.3f;
+    [SerializeField] private float minSpeed = 0f;
     [SerializeField] private float speedAmplitude = 0.01f;
     [SerializeField] private bool isGoing;
     [SerializeField] private bool _isMainTrailer;
@@ -21,6 +21,7 @@ public class TrailerMovement : MonoBehaviour
     private float _distanceBetweenTrailers;
     private Vector3 _firstDistancePoint;
     private Vector3 _lastDistancePoint;
+    private float _notMainTrailerSpeed = 5f;
 
 
 
@@ -111,7 +112,7 @@ public class TrailerMovement : MonoBehaviour
             Rotation();
         }
 
-        if (_t < 1) return;
+        if (_t < 1f) return;
 
         _currentCurve = GetNextCurve();
         if (_currentCurve is null) return;
@@ -124,8 +125,7 @@ public class TrailerMovement : MonoBehaviour
     {
         SetDistancesBetweenPoints(_firstDistancePoint, _lastDistancePoint);
         float step;
-        const float trspeed = 6;
-        step = trspeed * _distanceBetweenTrailers * Time.deltaTime;
+        step = _notMainTrailerSpeed * (_distanceBetweenTrailers - 0.6f) * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, _target, step);
 
@@ -135,15 +135,16 @@ public class TrailerMovement : MonoBehaviour
             _target = GetNextPointToMove(_currentCurve, _t);
             Rotation();
         }
-
-        if (_t < 1) return;
-
+        
+        if (_t < 1f) return;
+        
         _currentCurve = GetNextCurve();
         if (_currentCurve is null) return;
 
         _t = 0f;
         _target = GetNextPointToMove(_currentCurve, _t);
     }
+
     private Vector3 GetNextPointToMove(BezierCurve curve, float t)
     {
         _points = GetCurvePoints(curve);
@@ -177,9 +178,8 @@ public class TrailerMovement : MonoBehaviour
     private void SlowDown()
     {
         if (speed <= minSpeed) return;
-
-        //Debug.Log(speed);
         speed -= speedAmplitude;
+        speed = Mathf.Abs(speed);
     }
 
     private void Acceleration()
