@@ -1,12 +1,16 @@
+using System.Net;
+using TMPro;
 using UnityEngine;
 
-public class Trailer : MonoBehaviour
+public class Trailer : MonoBehaviour, IDestroyable
 {
     [SerializeField] private GameObject catchGameObject;
     [SerializeField] private GameObject joinablePoint;
     [SerializeField] private LayerMask joinableMask;
     [SerializeField] private bool isMainTrailer;
     [SerializeField] private TrailerEventChanelSO changedMainTrailer;
+    [SerializeField] private Animator animator;
+    [SerializeField] private BoxCollider boxCollider;
 
     private Trailer _nextTrailer;
     private Trailer _previousTrailer;
@@ -14,6 +18,10 @@ public class Trailer : MonoBehaviour
     private TrailerMovement _myTrailerMovement;
 
 
+    void Start()
+    {
+        _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
+    }
     private void Update()
     {
         if (_myTrailerMovement != null && _nextTrailer != null)
@@ -87,8 +95,6 @@ public class Trailer : MonoBehaviour
         _nextTrailerMovement = trailer.gameObject.GetComponent<TrailerMovement>();
         _nextTrailerMovement.SetIsGoing(true);
         
-        _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
-        
         var mySpeed = _myTrailerMovement.GetSpeed();
         _nextTrailerMovement.SetSpeed(mySpeed);
 
@@ -97,14 +103,24 @@ public class Trailer : MonoBehaviour
         changedMainTrailer.RaiseEvent(trailer);
     }
 
-    public void CrushTrailer()
+    public void Destroy()
     {
+        if (isMainTrailer)
+        {
+            _previousTrailer.SetMainTrailer(true);
+        }
+        if(_nextTrailer != null)
+        {
+            _nextTrailer.SetPreviousTrailer(_previousTrailer);
+        }
+        if (_previousTrailer != null)
+        {
+            _previousTrailer.SetNextTrailer(_nextTrailer);
+        }
 
-        Destroy(gameObject);
-    }
-
-    void GetNewNextTrailer()
-    {
-
+        _myTrailerMovement.enabled = false;
+        boxCollider.enabled = false;
+        animator.SetTrigger("Death");
+        Destroy(gameObject,3);
     }
 }

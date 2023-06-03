@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class TrailerMovement : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float minSpeed = 0f;
     [SerializeField] private float speedAmplitude = 0.01f;
     [SerializeField] private bool isGoing;
-    [SerializeField] private bool _isMainTrailer;
+    [SerializeField] private bool isMainTrailer;
 
     private BezierCurve _currentCurve;
     private List<Transform> _points;
@@ -22,11 +23,13 @@ public class TrailerMovement : MonoBehaviour
     private Vector3 _firstDistancePoint;
     private Vector3 _lastDistancePoint;
     private float _notMainTrailerSpeed = 5f;
+    private Transform _transform;
 
 
 
     private void Start()
     {
+        _transform = transform;
         _t = startTParameter;
         _currentCurve = startCurve;
         speed = minSpeed;
@@ -37,7 +40,7 @@ public class TrailerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_isMainTrailer)
+        if (isMainTrailer)
         {
             MainTrailerMovement();
         }
@@ -76,7 +79,7 @@ public class TrailerMovement : MonoBehaviour
 
     public void SetIsMainTrailer(bool set)
     {
-        _isMainTrailer = set;
+        isMainTrailer = set;
     }
 
     float GetDistanceBetweenPoints()
@@ -92,20 +95,32 @@ public class TrailerMovement : MonoBehaviour
     void Rotation()
     {
         _rotation = Bezier.GetFirstDerivative(_points[0], _points[1], _points[2], _points[3], _t);
-        transform.rotation = Quaternion.LookRotation(_rotation);
+        _transform.rotation = Quaternion.LookRotation(_rotation);
     }
 
     void MainTrailerMovement()
     {
         float step;
         step = speed * Time.deltaTime;
+        step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
+        Debug.Log(step);
 
-        transform.position = Vector3.MoveTowards(transform.position, _target, step);
+        if (Vector3.Distance(_transform.position, _target) < step)
+        {
+            Debug.Log("pizda");
+           // step = Vector3.Distance(_transform.position, _target);
+        }
+        else
+        {
+
+        }
+
+        _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
         if (Input.GetKey(KeyCode.F)) SlowDown();
         else Acceleration();
 
-        if (Vector3.Distance(transform.position, _target) < 0.001f)
+        if (Vector3.Distance(_transform.position, _target) < 0.1f)
         {
             _t += 0.05f;
             _target = GetNextPointToMove(_currentCurve, _t);
@@ -126,12 +141,19 @@ public class TrailerMovement : MonoBehaviour
         SetDistancesBetweenPoints(_firstDistancePoint, _lastDistancePoint);
         float step;
         step = _notMainTrailerSpeed * (_distanceBetweenTrailers - 0.6f) * Time.deltaTime;
-
-        transform.position = Vector3.MoveTowards(transform.position, _target, step);
-
-        if (Vector3.Distance(transform.position, _target) < 0.001f)
+        step = Mathf.Clamp(step, 0, _distanceBetweenTrailers - 0.6f);
+        //Debug.Log(_distanceBetweenTrailers);
+        if (Vector3.Distance(_transform.position, _target) < step)
         {
-            _t += 0.05f;
+            Debug.Log(" volosataia pizda");
+            //step = Vector3.Distance(_transform.position, _target) * Time.deltaTime;
+        }
+
+        _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
+
+        if (Vector3.Distance(_transform.position, _target) < 0.1f)
+        {
+            _t += 0.1f;
             _target = GetNextPointToMove(_currentCurve, _t);
             Rotation();
         }
@@ -158,7 +180,7 @@ public class TrailerMovement : MonoBehaviour
 
     private BezierCurve GetNextCurve()
     {
-        var hitColliders = Physics.OverlapSphere(transform.position, 0.2f);
+        var hitColliders = Physics.OverlapSphere(_transform.position, 0.2f);
         foreach (var hit in hitColliders)
         {
             var rail = hit.gameObject.GetComponent<Rail>();
