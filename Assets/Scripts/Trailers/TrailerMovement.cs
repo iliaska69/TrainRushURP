@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class TrailerMovement : MonoBehaviour
+public class TrailerMovement : MonoBehaviour, IImprovable
 {
     [SerializeField] private BezierCurve startCurve;
     [SerializeField] private float startTParameter = 0f;
@@ -24,7 +24,7 @@ public class TrailerMovement : MonoBehaviour
     private Vector3 _lastDistancePoint;
     private float _notMainTrailerSpeed = 5f;
     private Transform _transform;
-
+    private bool isFinish;
 
 
     private void Start()
@@ -40,7 +40,11 @@ public class TrailerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isMainTrailer)
+        if (isFinish)
+        {
+            FinishAnimation();
+        }
+        else if (isMainTrailer)
         {
             MainTrailerMovement();
         }
@@ -103,17 +107,6 @@ public class TrailerMovement : MonoBehaviour
         float step;
         step = speed * Time.deltaTime;
         step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
-        Debug.Log(step);
-
-        if (Vector3.Distance(_transform.position, _target) < step)
-        {
-            Debug.Log("pizda");
-           // step = Vector3.Distance(_transform.position, _target);
-        }
-        else
-        {
-
-        }
 
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
@@ -142,12 +135,6 @@ public class TrailerMovement : MonoBehaviour
         float step;
         step = _notMainTrailerSpeed * (_distanceBetweenTrailers - 0.6f) * Time.deltaTime;
         step = Mathf.Clamp(step, 0, _distanceBetweenTrailers - 0.6f);
-        //Debug.Log(_distanceBetweenTrailers);
-        if (Vector3.Distance(_transform.position, _target) < step)
-        {
-            Debug.Log(" volosataia pizda");
-            //step = Vector3.Distance(_transform.position, _target) * Time.deltaTime;
-        }
 
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
@@ -157,9 +144,9 @@ public class TrailerMovement : MonoBehaviour
             _target = GetNextPointToMove(_currentCurve, _t);
             Rotation();
         }
-        
+
         if (_t < 1f) return;
-        
+
         _currentCurve = GetNextCurve();
         if (_currentCurve is null) return;
 
@@ -186,6 +173,13 @@ public class TrailerMovement : MonoBehaviour
             var rail = hit.gameObject.GetComponent<Rail>();
             if (rail is not null)
             {
+                var finishRail = rail.GetComponentInChildren<FinishRail>();
+                if (finishRail is not null && isMainTrailer)
+                {
+                    isMainTrailer= false;
+                    isFinish = true;
+                }
+
                 var nextCurve = rail.GetCurve();
                 if (nextCurve != null && _currentCurve != nextCurve && rail.GetLicenseToMove())
                 {
@@ -197,6 +191,24 @@ public class TrailerMovement : MonoBehaviour
         return null;
     }
 
+    private void FinishAnimation()
+    {
+        speed = 5f;
+        float step;
+        step = speed * Time.deltaTime;
+        step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
+
+        _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
+
+        if (Vector3.Distance(_transform.position, _target) < 0.1f)
+        {
+            _t += 0.05f;
+            _target = GetNextPointToMove(_currentCurve, _t);
+            Rotation();
+        }
+
+        if (_t >= 1f) return;
+    }
     private void SlowDown()
     {
         if (speed <= minSpeed) return;
@@ -208,5 +220,15 @@ public class TrailerMovement : MonoBehaviour
     {
         if (speed > maxSpeed) return;
         speed += speedAmplitude;
+    }
+
+    public void AccelerateSpeed()
+    {
+        speed = 10f;
+    }
+
+    public void SlowDownSpeed()
+    {
+        speed = 1f;
     }
 }

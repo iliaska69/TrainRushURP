@@ -5,7 +5,7 @@ public class FollowCamera : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private Transform camTransform;
     [SerializeField] private Vector3 offset;
-    [SerializeField] private float smoothTime = 1f;
+    [SerializeField] private float smoothTime = 5f;
 
     private Vector3 velocity;
     private Transform _transform; 
