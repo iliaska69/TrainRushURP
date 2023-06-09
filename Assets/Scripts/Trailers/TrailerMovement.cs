@@ -77,8 +77,11 @@ public class TrailerMovement : MonoBehaviour
 
     public void AddSpeed(float newSpeed)
     {
-        Debug.Log(newSpeed);
+        Debug.Log("=============");
+        Debug.Log("Enter speed: " + newSpeed);
+        Debug.Log("Old trailer speed: " + speed);
         speed += newSpeed;
+        Debug.Log("New trailer speed: " + speed);
     }
 
     public void SetDistancesPoints(Vector3 firstpoint, Vector3 secondPoint)
