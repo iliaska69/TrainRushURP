@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-public class BonusEditor : MonoBehaviour
+public class BonusBoxEditor : MonoBehaviour
 {
     [Range(0, 1)][SerializeField] private float tParameter;
 

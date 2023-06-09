@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class TrailerMovement : MonoBehaviour, IImprovable
+public class TrailerMovement : MonoBehaviour
 {
     [SerializeField] private BezierCurve startCurve;
     [SerializeField] private float startTParameter = 0f;
@@ -75,6 +75,12 @@ public class TrailerMovement : MonoBehaviour, IImprovable
         speed = newSpeed;
     }
 
+    public void AddSpeed(float newSpeed)
+    {
+        Debug.Log(newSpeed);
+        speed += newSpeed;
+    }
+
     public void SetDistancesPoints(Vector3 firstpoint, Vector3 secondPoint)
     {
         _firstDistancePoint = firstpoint;
@@ -106,6 +112,7 @@ public class TrailerMovement : MonoBehaviour, IImprovable
     {
         float step;
         step = speed * Time.deltaTime;
+        //Debug.Log(speed);
         step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
 
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
@@ -135,7 +142,6 @@ public class TrailerMovement : MonoBehaviour, IImprovable
         float step;
         step = _notMainTrailerSpeed * (_distanceBetweenTrailers - 0.6f) * Time.deltaTime;
         step = Mathf.Clamp(step, 0, _distanceBetweenTrailers - 0.6f);
-
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
         if (Vector3.Distance(_transform.position, _target) < 0.1f)
@@ -220,15 +226,5 @@ public class TrailerMovement : MonoBehaviour, IImprovable
     {
         if (speed > maxSpeed) return;
         speed += speedAmplitude;
-    }
-
-    public void AccelerateSpeed()
-    {
-        speed = 10f;
-    }
-
-    public void SlowDownSpeed()
-    {
-        speed = 1f;
     }
 }

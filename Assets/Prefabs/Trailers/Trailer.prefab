@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 3322356772629908940}
   - component: {fileID: 2886558175707233064}
   - component: {fileID: 4651525550698154842}
+  - component: {fileID: 3252022175929197142}
   - component: {fileID: 2779430515031499346}
   - component: {fileID: 2293842298539123729}
   m_Layer: 0
@@ -208,7 +209,7 @@ MonoBehaviour:
   minSpeed: 0.3
   speedAmplitude: 0.01
   isGoing: 0
-  _isMainTrailer: 0
+  isMainTrailer: 0
 --- !u!114 &2886558175707233064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tParameter: 0
+--- !u!114 &3252022175929197142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389881075722535052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509f8e28d271f0a498d2548f1fd75972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 4435f7efad52f0a49a164a79957b4bb8, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3322356772629908940}
+        m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
+        m_MethodName: AddSpeed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &2779430515031499346
 BoxCollider:
   m_ObjectHideFlags: 0

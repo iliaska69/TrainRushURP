@@ -107,7 +107,10 @@ public class Trailer : MonoBehaviour, IDestroyable
     {
         if (isMainTrailer)
         {
-            _previousTrailer.SetMainTrailer(true);
+            if (_previousTrailer != null)
+            {
+                _previousTrailer.SetMainTrailer(true);
+            }
         }
         if(_nextTrailer != null)
         {
@@ -122,5 +125,10 @@ public class Trailer : MonoBehaviour, IDestroyable
         boxCollider.enabled = false;
         animator.SetTrigger("Death");
         Destroy(gameObject,3);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.GetComponent<IActivatable>()?.ActivateBonus();
     }
 }
