@@ -760,6 +760,17 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 615750253673143684, guid: bbc79b46caf29284890826d92cff05a5,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615750253673143684, guid: bbc79b46caf29284890826d92cff05a5,
+        type: 3}
+      propertyPath: addSpeedBonus
+      value: 
+      objectReference: {fileID: 11400000, guid: 4435f7efad52f0a49a164a79957b4bb8,
+        type: 2}
     - target: {fileID: 3469654307464783348, guid: bbc79b46caf29284890826d92cff05a5,
         type: 3}
       propertyPath: bonus
@@ -829,6 +840,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpeedBonusBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469654307464783353, guid: bbc79b46caf29284890826d92cff05a5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -3252,6 +3268,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: First
       objectReference: {fileID: 0}
+    - target: {fileID: 4389881075722535052, guid: 84ce7aee4f6891b48bf451b26954dbca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4651525550698154842, guid: 84ce7aee4f6891b48bf451b26954dbca,
         type: 3}
       propertyPath: tParameter
@@ -4409,6 +4430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trailer (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389881075722535052, guid: 84ce7aee4f6891b48bf451b26954dbca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4651525550698154842, guid: 84ce7aee4f6891b48bf451b26954dbca,
         type: 3}

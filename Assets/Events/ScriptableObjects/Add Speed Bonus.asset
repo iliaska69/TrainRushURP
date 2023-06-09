@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b19723005b9644a91356707ee27cda, type: 3}
   m_Name: Add Speed Bonus
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: 4435f7efad52f0a49a164a79957b4bb8
+  description: Adding speed when the trailer pick up bonus
