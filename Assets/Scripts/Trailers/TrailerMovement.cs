@@ -54,6 +54,12 @@ public class TrailerMovement : MonoBehaviour
         }
     }
 
+    public void SetIsFinish(bool set)
+    {
+        Debug.Log("true");
+        isFinish = set;
+    }
+
     public void SetIsGoing(bool set)
     {
         gameObject.GetComponent<TrailerMovement>().enabled = set;
@@ -77,11 +83,9 @@ public class TrailerMovement : MonoBehaviour
 
     public void AddSpeed(float newSpeed)
     {
-        Debug.Log("=============");
-        Debug.Log("Enter speed: " + newSpeed);
-        Debug.Log("Old trailer speed: " + speed);
+        Debug.Log("new speed"+newSpeed);
+        Debug.Log("speed" + speed);
         speed += newSpeed;
-        Debug.Log("New trailer speed: " + speed);
     }
 
     public void SetDistancesPoints(Vector3 firstpoint, Vector3 secondPoint)
@@ -115,7 +119,6 @@ public class TrailerMovement : MonoBehaviour
     {
         float step;
         step = speed * Time.deltaTime;
-        //Debug.Log(speed);
         step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
 
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
@@ -182,13 +185,6 @@ public class TrailerMovement : MonoBehaviour
             var rail = hit.gameObject.GetComponent<Rail>();
             if (rail is not null)
             {
-                var finishRail = rail.GetComponentInChildren<FinishRail>();
-                if (finishRail is not null && isMainTrailer)
-                {
-                    isMainTrailer= false;
-                    isFinish = true;
-                }
-
                 var nextCurve = rail.GetCurve();
                 if (nextCurve != null && _currentCurve != nextCurve && rail.GetLicenseToMove())
                 {
@@ -202,6 +198,7 @@ public class TrailerMovement : MonoBehaviour
 
     private void FinishAnimation()
     {
+        Debug.Log("FinishAN");
         speed = 5f;
         float step;
         step = speed * Time.deltaTime;
@@ -218,6 +215,7 @@ public class TrailerMovement : MonoBehaviour
 
         if (_t >= 1f) return;
     }
+
     private void SlowDown()
     {
         if (speed <= minSpeed) return;

@@ -11,6 +11,8 @@ public class Trailer : MonoBehaviour, IDestroyable
     [SerializeField] private TrailerEventChanelSO changedMainTrailer;
     [SerializeField] private Animator animator;
     [SerializeField] private BoxCollider boxCollider;
+    [SerializeField] private int finishLayer;
+    [SerializeField] private int catchingBonusLayer;
 
     private Trailer _nextTrailer;
     private Trailer _previousTrailer;
@@ -129,6 +131,13 @@ public class Trailer : MonoBehaviour, IDestroyable
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<IActivatable>()?.ActivateBonus();
+        if (other.gameObject.layer == catchingBonusLayer)
+        {
+            other.GetComponent<IActivatable>()?.ActivateBonus();
+        }
+        if (other.gameObject.layer != finishLayer)
+        {
+            _myTrailerMovement.SetIsFinish(true);
+        }
     }
 }

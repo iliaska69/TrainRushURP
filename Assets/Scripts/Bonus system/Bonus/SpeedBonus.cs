@@ -16,7 +16,6 @@ public class SpeedBonus : Bonus
     public override void Deactivate()
     {
         speed = -speed;
-        //Debug.Log(speed);
         addSpeedBonus.RaiseEvent(speed);
     }
 }

@@ -231,6 +231,8 @@ MonoBehaviour:
   changedMainTrailer: {fileID: 11400000, guid: 3c3f40d8471da074e8b763eefc96db8f, type: 2}
   animator: {fileID: 7436180791185154195}
   boxCollider: {fileID: 2779430515031499346}
+  finishLayer: 10
+  catchingBonusLayer: 9
 --- !u!114 &4651525550698154842
 MonoBehaviour:
   m_ObjectHideFlags: 0
