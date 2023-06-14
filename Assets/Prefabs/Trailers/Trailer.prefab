@@ -210,6 +210,7 @@ MonoBehaviour:
   speedAmplitude: 0.01
   isGoing: 0
   isMainTrailer: 0
+  rotationSmooth: 0.5
 --- !u!114 &2886558175707233064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,15 +225,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catchGameObject: {fileID: 8790324240897472339}
   joinablePoint: {fileID: 8867035833142687502}
+  boxCollider: {fileID: 2779430515031499346}
+  animator: {fileID: 7436180791185154195}
   joinableMask:
     serializedVersion: 2
     m_Bits: 256
   isMainTrailer: 0
-  changedMainTrailer: {fileID: 11400000, guid: 3c3f40d8471da074e8b763eefc96db8f, type: 2}
-  animator: {fileID: 7436180791185154195}
-  boxCollider: {fileID: 2779430515031499346}
   finishLayer: 10
   catchingBonusLayer: 9
+  changedMainTrailerEventChanelSO: {fileID: 11400000, guid: 3c3f40d8471da074e8b763eefc96db8f,
+    type: 2}
+  incrementVoidEvenChanelSO: {fileID: 11400000, guid: 5c4f58e1a0d783b49922e1c40e8bc823,
+    type: 2}
+  decrementVoidEvenChanelSO: {fileID: 11400000, guid: 136956d3a8b88a54193f84df1ed3b321,
+    type: 2}
 --- !u!114 &4651525550698154842
 MonoBehaviour:
   m_ObjectHideFlags: 0

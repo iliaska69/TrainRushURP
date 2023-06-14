@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -13,6 +15,7 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float speedAmplitude = 0.01f;
     [SerializeField] private bool isGoing;
     [SerializeField] private bool isMainTrailer;
+    [SerializeField] private float rotationSmooth = 0.1f;
 
     private BezierCurve _currentCurve;
     private List<Transform> _points;
@@ -24,7 +27,7 @@ public class TrailerMovement : MonoBehaviour
     private Vector3 _lastDistancePoint;
     private float _notMainTrailerSpeed = 5f;
     private Transform _transform;
-    private bool isFinish;
+    private bool _isFinish;
 
 
     private void Start()
@@ -34,17 +37,14 @@ public class TrailerMovement : MonoBehaviour
         _currentCurve = startCurve;
         speed = minSpeed;
         if (startCurve == null) return;
+        if (_currentCurve == null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
         SetIsGoing(isGoing);
     }
 
     private void Update()
     {
-        if (isFinish)
-        {
-            FinishAnimation();
-        }
-        else if (isMainTrailer)
+        if (isMainTrailer)
         {
             MainTrailerMovement();
         }
@@ -56,8 +56,7 @@ public class TrailerMovement : MonoBehaviour
 
     public void SetIsFinish(bool set)
     {
-        Debug.Log("true");
-        isFinish = set;
+        _isFinish = set;
     }
 
     public void SetIsGoing(bool set)
@@ -83,8 +82,6 @@ public class TrailerMovement : MonoBehaviour
 
     public void AddSpeed(float newSpeed)
     {
-        Debug.Log("new speed"+newSpeed);
-        Debug.Log("speed" + speed);
         speed += newSpeed;
     }
 
@@ -112,12 +109,17 @@ public class TrailerMovement : MonoBehaviour
     void Rotation()
     {
         _rotation = Bezier.GetFirstDerivative(_points[0], _points[1], _points[2], _points[3], _t);
-        _transform.rotation = Quaternion.LookRotation(_rotation);
+        _transform.rotation = Quaternion.Lerp(_transform.rotation, Quaternion.LookRotation(_rotation), rotationSmooth);
     }
 
     void MainTrailerMovement()
     {
         float step;
+        if (_isFinish)
+        {
+            speed = 5f;
+        }
+
         step = speed * Time.deltaTime;
         step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
 
@@ -129,6 +131,7 @@ public class TrailerMovement : MonoBehaviour
         if (Vector3.Distance(_transform.position, _target) < 0.1f)
         {
             _t += 0.05f;
+            if (_currentCurve == null) return;
             _target = GetNextPointToMove(_currentCurve, _t);
             Rotation();
         }
@@ -136,9 +139,16 @@ public class TrailerMovement : MonoBehaviour
         if (_t < 1f) return;
 
         _currentCurve = GetNextCurve();
-        if (_currentCurve is null) return;
+        if (_currentCurve == null && !_isFinish)
+        {
+            var trailer = GetComponent<Trailer>();
+            trailer.Destroy();
+            return;
+        }
+        //if (_currentCurve is null) return;
 
         _t = 0f;
+        if (_currentCurve is null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
     }
 
@@ -153,6 +163,7 @@ public class TrailerMovement : MonoBehaviour
         if (Vector3.Distance(_transform.position, _target) < 0.1f)
         {
             _t += 0.1f;
+            if (_currentCurve == null) return;
             _target = GetNextPointToMove(_currentCurve, _t);
             Rotation();
         }
@@ -160,21 +171,31 @@ public class TrailerMovement : MonoBehaviour
         if (_t < 1f) return;
 
         _currentCurve = GetNextCurve();
-        if (_currentCurve is null) return;
+        
+        if (_currentCurve == null && !_isFinish)
+        {
+            var trailer = GetComponent<Trailer>();
+            trailer.Destroy();
+            return;
+        }
 
         _t = 0f;
+        if (_currentCurve is null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
     }
 
     private Vector3 GetNextPointToMove(BezierCurve curve, float t)
     {
+        if(curve == null) Debug.Log("Pizda");
         _points = GetCurvePoints(curve);
         return Bezier.GetPoint(_points[0], _points[1], _points[2], _points[3], t);
     }
 
     private List<Transform> GetCurvePoints(BezierCurve curve)
     {
-        return curve.GetAllPoints();
+        if (curve == null) return null;
+        var points = curve.GetAllPoints();
+        return points;
     }
 
     private BezierCurve GetNextCurve()
@@ -196,25 +217,24 @@ public class TrailerMovement : MonoBehaviour
         return null;
     }
 
-    private void FinishAnimation()
-    {
-        Debug.Log("FinishAN");
-        speed = 5f;
-        float step;
-        step = speed * Time.deltaTime;
-        step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
+    //private void FinishAnimation()
+    //{
+    //    speed = 5f;
+    //    float step;
+    //    step = speed * Time.deltaTime;
+    //    step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
 
-        _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
+    //    _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
-        if (Vector3.Distance(_transform.position, _target) < 0.1f)
-        {
-            _t += 0.05f;
-            _target = GetNextPointToMove(_currentCurve, _t);
-            Rotation();
-        }
+    //    if (Vector3.Distance(_transform.position, _target) < 0.1f)
+    //    {
+    //        _t += 0.05f;
+    //        _target = GetNextPointToMove(_currentCurve, _t);
+    //        Rotation();
+    //    }
 
-        if (_t >= 1f) return;
-    }
+    //    if (_t >= 1f) return;
+    //}
 
     private void SlowDown()
     {

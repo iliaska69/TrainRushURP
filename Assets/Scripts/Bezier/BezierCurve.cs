@@ -29,7 +29,7 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
             pointTwo,
             pointThree
         };
-
+        
         return points;
     }
 
