@@ -123,6 +123,8 @@ public class TrailerMovement : MonoBehaviour
         step = speed * Time.deltaTime;
         step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
 
+        Rotation();
+
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
         if (Input.GetKey(KeyCode.F)) SlowDown();
@@ -133,7 +135,7 @@ public class TrailerMovement : MonoBehaviour
             _t += 0.05f;
             if (_currentCurve == null) return;
             _target = GetNextPointToMove(_currentCurve, _t);
-            Rotation();
+            
         }
 
         if (_t < 1f) return;
@@ -145,7 +147,6 @@ public class TrailerMovement : MonoBehaviour
             trailer.Destroy();
             return;
         }
-        //if (_currentCurve is null) return;
 
         _t = 0f;
         if (_currentCurve is null) return;
@@ -158,6 +159,8 @@ public class TrailerMovement : MonoBehaviour
         float step;
         step = _notMainTrailerSpeed * (_distanceBetweenTrailers - 0.6f) * Time.deltaTime;
         step = Mathf.Clamp(step, 0, _distanceBetweenTrailers - 0.6f);
+
+        Rotation();
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
         if (Vector3.Distance(_transform.position, _target) < 0.1f)
@@ -165,7 +168,7 @@ public class TrailerMovement : MonoBehaviour
             _t += 0.1f;
             if (_currentCurve == null) return;
             _target = GetNextPointToMove(_currentCurve, _t);
-            Rotation();
+            
         }
 
         if (_t < 1f) return;

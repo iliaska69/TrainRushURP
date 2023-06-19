@@ -210,7 +210,7 @@ MonoBehaviour:
   speedAmplitude: 0.01
   isGoing: 0
   isMainTrailer: 0
-  rotationSmooth: 0.5
+  rotationSmooth: 0.1
 --- !u!114 &2886558175707233064
 MonoBehaviour:
   m_ObjectHideFlags: 0
