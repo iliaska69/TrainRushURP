@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     public static UIController instance = null;
 
     private List<View> _views = new List<View>();
+    private int _numberOfCurrentView;
 
 
     private void Awake()
@@ -36,7 +37,6 @@ public class UIController : MonoBehaviour
     {
         _views.Add(view);
         CloseView();
-
         var slices = view.GetAllSlices();
         foreach (var slice in slices)
         {
@@ -55,6 +55,17 @@ public class UIController : MonoBehaviour
 
     public void OpenPreviousView()
     {
-        OpenView(_views[_views.Count - 1]);
+        if (_views.Count < 2)
+        {
+            Debug.Log(_views[_views.Count - 1]);
+            OpenView(_views[_views.Count - 1]);
+        }
+        else
+        {
+            var prevView = _views[_views.Count - 2];
+            _views.RemoveAt(_views.Count - 1);
+            _views.RemoveAt(_views.Count - 1);
+            OpenView(prevView);
+        }
     }
 }

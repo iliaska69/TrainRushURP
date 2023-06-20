@@ -19,7 +19,7 @@ public class Game : MonoBehaviour
         }
         if (timerForReload <= 0)
         {
-            levelManager.LoadScene();
+            levelManager.LoadLeveleScene();
         }
     }
 

@@ -16,6 +16,7 @@ public class Trailer : MonoBehaviour, IDestroyable
     [SerializeField] private TrailerEventChanelSO changedMainTrailerEventChanelSO;
     [SerializeField] private VoidEventChannelSO incrementVoidEvenChanelSO;
     [SerializeField] private VoidEventChannelSO decrementVoidEvenChanelSO;
+    [SerializeField] private VoidEventChannelSO finishVoidEvenChanelSO;
 
     private Trailer _nextTrailer;
     private Trailer _previousTrailer;
@@ -147,6 +148,7 @@ public class Trailer : MonoBehaviour, IDestroyable
         if (other.gameObject.layer == finishLayer)
         {
             _myTrailerMovement.SetIsFinish(true);
+            finishVoidEvenChanelSO.RaiseEvent();
         }
     }
 }

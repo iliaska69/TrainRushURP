@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: RestartView
   m_EditorClassIdentifier: 
-  slices: []
+  slices:
+  - {fileID: 6886899419836704668, guid: dc5bd5fd4e58189489e4c69d29683776, type: 3}

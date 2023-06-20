@@ -3,15 +3,19 @@ using UnityEngine;
 public class UINavigator : MonoBehaviour
 {
     [SerializeField] private View view;
+    [SerializeField] private bool openPrevious;
 
 
-    public void OpenView(View view)
+    public void OpenView()
     {
-        UIController.instance.OpenView(view);
-    }
-
-    public void OpenPreviousView()
-    {
-        UIController.instance.OpenPreviousView();
+        if (openPrevious)
+        {
+            UIController.instance.OpenPreviousView();
+        }
+        else
+        {
+            UIController.instance.OpenView(view);
+        }
+            
     }
 }
