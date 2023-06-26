@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("FirstLevelScene", LoadSceneMode.Additive);
         _currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        Debug.Log(_currentLevel);
     }
 
     public void ReloadLevelScene()

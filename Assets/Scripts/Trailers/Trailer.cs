@@ -16,12 +16,13 @@ public class Trailer : MonoBehaviour, IDestroyable
     [SerializeField] private TrailerEventChanelSO changedMainTrailerEventChanelSO;
     [SerializeField] private VoidEventChannelSO incrementVoidEvenChanelSO;
     [SerializeField] private VoidEventChannelSO decrementVoidEvenChanelSO;
-    [SerializeField] private VoidEventChannelSO finishVoidEvenChanelSO;
+    [SerializeField] private VoidEventChannelSO victoryVoidEvenChanelSO;
 
     private Trailer _nextTrailer;
     private Trailer _previousTrailer;
     private TrailerMovement _nextTrailerMovement;
     private TrailerMovement _myTrailerMovement;
+    private bool _victoryEventIsUsed;
 
 
     void Start()
@@ -139,6 +140,7 @@ public class Trailer : MonoBehaviour, IDestroyable
         Destroy(gameObject, 3);
     }
 
+    //_victoryEventIsUsed added bacause method call two times
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == catchingBonusLayer)
@@ -147,8 +149,13 @@ public class Trailer : MonoBehaviour, IDestroyable
         }
         if (other.gameObject.layer == finishLayer)
         {
+            Debug.Log(gameObject.name);
             _myTrailerMovement.SetIsFinish(true);
-            finishVoidEvenChanelSO.RaiseEvent();
+            if (isMainTrailer && !_victoryEventIsUsed)
+            {
+                victoryVoidEvenChanelSO.RaiseEvent();
+                _victoryEventIsUsed = true;
+            }
         }
     }
 }

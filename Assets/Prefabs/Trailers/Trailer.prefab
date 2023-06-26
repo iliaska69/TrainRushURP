@@ -239,7 +239,7 @@ MonoBehaviour:
     type: 2}
   decrementVoidEvenChanelSO: {fileID: 11400000, guid: 136956d3a8b88a54193f84df1ed3b321,
     type: 2}
-  finishVoidEvenChanelSO: {fileID: 11400000, guid: b3125ed192c1d13448dcd35c9db02cba,
+  victoryVoidEvenChanelSO: {fileID: 11400000, guid: b3125ed192c1d13448dcd35c9db02cba,
     type: 2}
 --- !u!114 &4651525550698154842
 MonoBehaviour:

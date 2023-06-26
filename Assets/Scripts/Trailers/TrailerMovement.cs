@@ -44,6 +44,19 @@ public class TrailerMovement : MonoBehaviour
 
     private void Update()
     {
+        //if (isMainTrailer && !_isFinish)
+        //{
+        //    MainTrailerMovement();
+        //}
+        //else if(!_isFinish)
+        //{
+        //    NotMainTrailerMovement();
+        //}
+        //if (_isFinish)
+        //{
+        //    FinishAnimation();
+        //}
+
         if (isMainTrailer)
         {
             MainTrailerMovement();
@@ -189,7 +202,6 @@ public class TrailerMovement : MonoBehaviour
 
     private Vector3 GetNextPointToMove(BezierCurve curve, float t)
     {
-        if(curve == null) Debug.Log("Pizda");
         _points = GetCurvePoints(curve);
         return Bezier.GetPoint(_points[0], _points[1], _points[2], _points[3], t);
     }

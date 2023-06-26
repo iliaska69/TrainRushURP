@@ -1,40 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private LevelManager levelManager;
-    [SerializeField] private float timerForReload;
-
-    private int _countOfTreilers = 1;
-    private bool isStartTimerForReload;
-
-
-    private void Update()
+    public void FreezeGame()
     {
-        if (isStartTimerForReload)
-        {
-            timerForReload -= Time.deltaTime;
-        }
-        if (timerForReload <= 0)
-        {
-            levelManager.LoadLeveleScene();
-        }
+        Time.timeScale = 0f;
+        Time.fixedDeltaTime= 0f;
     }
 
-    public void IncrementCountOfTrailers()
+    public void UnfreezeGame()
     {
-        _countOfTreilers++;
-    }
-
-    public void DecrementCountOfTrailers()
-    {
-        _countOfTreilers--;
-        
-        if (_countOfTreilers == 0)
-        {
-            isStartTimerForReload= true;
-        }
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 1f;
     }
 }
