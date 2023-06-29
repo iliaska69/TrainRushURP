@@ -7,9 +7,13 @@ public class LevelManager : MonoBehaviour
     private int _currentLevel;
 
 
+    private void Start()
+    {
+        SceneManager.LoadSceneAsync("GameScene", LoadSceneMode.Additive);
+    }
+
     public void LoadLeveleScene()
     {
-        
         SceneManager.LoadSceneAsync("FirstLevelScene", LoadSceneMode.Additive);
         _currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
         UICamera.gameObject.SetActive(false);
@@ -17,7 +21,6 @@ public class LevelManager : MonoBehaviour
 
     public void ReloadLevelScene()
     {
-        Debug.Log(_currentLevel);
         SceneManager.UnloadSceneAsync(_currentLevel);
         SceneManager.LoadScene(_currentLevel, LoadSceneMode.Additive);
     }
