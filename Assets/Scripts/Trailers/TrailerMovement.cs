@@ -44,19 +44,6 @@ public class TrailerMovement : MonoBehaviour
 
     private void Update()
     {
-        //if (isMainTrailer && !_isFinish)
-        //{
-        //    MainTrailerMovement();
-        //}
-        //else if(!_isFinish)
-        //{
-        //    NotMainTrailerMovement();
-        //}
-        //if (_isFinish)
-        //{
-        //    FinishAnimation();
-        //}
-
         if (isMainTrailer)
         {
             MainTrailerMovement();
@@ -140,15 +127,14 @@ public class TrailerMovement : MonoBehaviour
 
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
-        if (Input.GetKey(KeyCode.F)) SlowDown();
-        else Acceleration();
+        if (Input.GetKey(KeyCode.F) || Input.touchCount > 0) Acceleration();
+        else SlowDown();
 
         if (Vector3.Distance(_transform.position, _target) < 0.1f)
         {
             _t += 0.05f;
             if (_currentCurve == null) return;
             _target = GetNextPointToMove(_currentCurve, _t);
-            
         }
 
         if (_t < 1f) return;
@@ -263,4 +249,5 @@ public class TrailerMovement : MonoBehaviour
         if (speed > maxSpeed) return;
         speed += speedAmplitude;
     }
+
 }

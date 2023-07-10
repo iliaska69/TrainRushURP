@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 285596200}
   - component: {fileID: 285596201}
   - component: {fileID: 285596202}
+  - component: {fileID: 285596203}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -316,6 +317,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &285596203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285596194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 3db87e533f1a8f240b1f2a8e746dce0d, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 285596197}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: UnloadLevelSecene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &512704968
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +423,7 @@ GameObject:
   - component: {fileID: 1120611480}
   - component: {fileID: 1120611479}
   - component: {fileID: 1120611481}
+  - component: {fileID: 1120611482}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -453,6 +483,35 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: d6bdf3cc82239204cb55ede3b5206df4,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: View, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1120611482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120611478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 3db87e533f1a8f240b1f2a8e746dce0d, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1120611479}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: OpenView
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 1ccc9e31364c45c488dd891d2c91f352,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: View, Assembly-CSharp
           m_IntArgument: 0

@@ -7,6 +7,8 @@ public class RailButtonSwitcher : MonoBehaviour
     [SerializeField] private GameObject leftButton;
     [SerializeField] private UnityEvent isAllowRigthWay;
     [SerializeField] private UnityEvent isAllowLeftWay;
+    [SerializeField] private VoidEventChannelSO changeCameraFollowEvent;
+    [SerializeField] private VoidEventChannelSO setToDefaultRotationCameraEvent;
 
 
     public void RightButtonClicked()
@@ -21,20 +23,23 @@ public class RailButtonSwitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var train = other.gameObject.GetComponent<Trailer>();
-        if (train is Trailer)
-        {
-            SetActiveButtons();
-        }
+        var trailer = other.gameObject.GetComponent<Trailer>();
+        if (trailer is not Trailer) return;
+
+        var mainTrailer = trailer.IsMainTrailer();
+        if (!mainTrailer) return;
+
+        SetActiveButtons();
+        changeCameraFollowEvent.RaiseEvent();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var train = other.gameObject.GetComponent<Trailer>();
-        if (train is not null)
-        {
-            SetInactiveButtons();
-        }
+        var trailer = other.gameObject.GetComponent<Trailer>();
+        if (trailer is not Trailer) return;
+
+        SetInactiveButtons();
+        setToDefaultRotationCameraEvent.RaiseEvent();
     }
 
     private void SetActiveButtons()

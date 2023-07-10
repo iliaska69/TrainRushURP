@@ -29,6 +29,7 @@ public class Trailer : MonoBehaviour, IDestroyable
     {
         _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
     }
+
     private void Update()
     {
         if (_myTrailerMovement != null && _nextTrailer != null)
@@ -149,7 +150,6 @@ public class Trailer : MonoBehaviour, IDestroyable
         }
         if (other.gameObject.layer == finishLayer)
         {
-            Debug.Log(gameObject.name);
             _myTrailerMovement.SetIsFinish(true);
             if (isMainTrailer && !_victoryEventIsUsed)
             {

@@ -13,6 +13,7 @@ public class BranchingRail : Rail
     {
         rightWayRail.SetLicenseToMove(true);
         leftWayRail.SetLicenseToMove(false);
+
         leftDirection.SetActive(false);
         straightDirection.SetActive(false);
         rightDirection.SetActive(true);
@@ -22,6 +23,7 @@ public class BranchingRail : Rail
     {
         rightWayRail.SetLicenseToMove(false);
         leftWayRail.SetLicenseToMove(true);
+
         rightDirection.SetActive(false);
         straightDirection.SetActive(false);
         leftDirection.SetActive(true);

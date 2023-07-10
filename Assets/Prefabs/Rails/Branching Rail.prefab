@@ -1295,7 +1295,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7342261475941769274}
-  - component: {fileID: 8087687395595620102}
   m_Layer: 0
   m_Name: Direction
   m_TagString: Untagged
@@ -1324,25 +1323,6 @@ Transform:
   m_Father: {fileID: 319336081996237032}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8087687395595620102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2578516439076982185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50248350a459eb4c85800c8e12668c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrows:
-  - {fileID: 6428216229784562998}
-  - {fileID: 1339890928736616712}
-  - {fileID: 6550780299392861615}
-  - {fileID: 4436102068751270384}
-  - {fileID: 6944578883287731272}
-  - {fileID: 801115008548139789}
 --- !u!1 &2647517108606381086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,6 +1334,7 @@ GameObject:
   - component: {fileID: 8876955600883541397}
   - component: {fileID: 1438542867898143049}
   - component: {fileID: 4294886214293539217}
+  - component: {fileID: 8853216115276138026}
   m_Layer: 0
   m_Name: ButtonSwitcher
   m_TagString: Untagged
@@ -1389,8 +1370,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.27, z: 2.36}
-  m_Center: {x: 0, y: 0.18, z: 0}
+  m_Size: {x: 1, y: 0.27, z: 3.88}
+  m_Center: {x: 0, y: 0.18, z: -0.81}
 --- !u!114 &4294886214293539217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,16 +1401,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4265604185170903378}
-        m_TargetAssemblyTypeName: RailDirectionAnimation, Assembly-CSharp
-        m_MethodName: Animation
-        m_Mode: 1
+      - m_Target: {fileID: 8853216115276138026}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Right Button Click
           m_BoolArgument: 0
         m_CallState: 2
   isAllowLeftWay:
@@ -1447,18 +1428,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8087687395595620102}
-        m_TargetAssemblyTypeName: RailDirectionAnimation, Assembly-CSharp
-        m_MethodName: Animation
-        m_Mode: 1
+      - m_Target: {fileID: 8853216115276138026}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Left Button Click
           m_BoolArgument: 0
         m_CallState: 2
+  changeCameraFollowEvent: {fileID: 11400000, guid: f4c31fd5d9566cd438d430ec4e3aba93,
+    type: 2}
+  setToDefaultRotationCameraEvent: {fileID: 11400000, guid: 54cd8f4c59d6e9b498332144d7bd58a7,
+    type: 2}
+--- !u!95 &8853216115276138026
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647517108606381086}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb1bff5d9fae1c54ea35d2329fca50a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3059864221481896676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3027,7 +3032,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4170911202840246237}
-  - component: {fileID: 8841767785107501841}
   - component: {fileID: 5450385326579992278}
   m_Layer: 0
   m_Name: Direction
@@ -3052,23 +3056,6 @@ Transform:
   m_Father: {fileID: 3250886759878897191}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8841767785107501841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5843478617647153010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50248350a459eb4c85800c8e12668c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrows:
-  - {fileID: 1339974991714346255}
-  - {fileID: 344534386963243086}
-  - {fileID: 8201652315011580295}
-  - {fileID: 0}
 --- !u!95 &5450385326579992278
 Animator:
   serializedVersion: 4
@@ -3874,7 +3861,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3478688772679207226}
-  - component: {fileID: 4265604185170903378}
   - component: {fileID: 2754432658249984870}
   m_Layer: 0
   m_Name: Direction
@@ -3899,22 +3885,6 @@ Transform:
   m_Father: {fileID: 2485525262951453867}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4265604185170903378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7952858877128983657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50248350a459eb4c85800c8e12668c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrows:
-  - {fileID: 6248040995115974638}
-  - {fileID: 5597290521472871043}
-  - {fileID: 1419194822394055355}
 --- !u!95 &2754432658249984870
 Animator:
   serializedVersion: 4
@@ -4056,6 +4026,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RailButtonSwitcher, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
