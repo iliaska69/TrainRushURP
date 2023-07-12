@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: DefeatView
   m_EditorClassIdentifier: 
-  slices: []
+  slices:
+  - {fileID: 2689820755075616451, guid: 1aa8b98e41d5fef40b9736794536432a, type: 3}

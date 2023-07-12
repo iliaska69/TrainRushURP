@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: VictoryView
   m_EditorClassIdentifier: 
   slices:
-  - {fileID: 2689820755075616451, guid: 1aa8b98e41d5fef40b9736794536432a, type: 3}
+  - {fileID: 2689820755075616451, guid: f8b7a0955ca853b49bc24611989a0fd0, type: 3}

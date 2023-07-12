@@ -148,7 +148,7 @@ BoxCollider:
   m_GameObject: {fileID: 1591211405794414265}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -233,11 +233,12 @@ MonoBehaviour:
   isMainTrailer: 0
   finishLayer: 10
   catchingBonusLayer: 9
+  experiencePoints: 0
   changedMainTrailerEventChanelSO: {fileID: 11400000, guid: 3c3f40d8471da074e8b763eefc96db8f,
     type: 2}
-  incrementVoidEvenChanelSO: {fileID: 11400000, guid: 5c4f58e1a0d783b49922e1c40e8bc823,
+  incrementCountOfTrailersTrailerEvenChanelSO: {fileID: 11400000, guid: 448628889f9915948b327cdf7163afc7,
     type: 2}
-  decrementVoidEvenChanelSO: {fileID: 11400000, guid: 136956d3a8b88a54193f84df1ed3b321,
+  decrementCountOfTrailersTrailerEvenChanelSO: {fileID: 11400000, guid: 312840bb7d04fa645a73a80a71c0c101,
     type: 2}
   victoryVoidEvenChanelSO: {fileID: 11400000, guid: b3125ed192c1d13448dcd35c9db02cba,
     type: 2}

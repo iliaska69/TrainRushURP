@@ -132,12 +132,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1213994716}
-  - component: {fileID: 1213994715}
+  - component: {fileID: 1213994720}
   - component: {fileID: 1213994718}
   - component: {fileID: 1213994717}
   - component: {fileID: 1213994719}
+  - component: {fileID: 1213994722}
   - component: {fileID: 1213994721}
-  - component: {fileID: 1213994720}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -145,19 +145,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1213994715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213994714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c26331d358d03c498cef11c3af9b364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defeatEventChannel: {fileID: 11400000, guid: 3db87e533f1a8f240b1f2a8e746dce0d, type: 2}
 --- !u!4 &1213994716
 Transform:
   m_ObjectHideFlags: 0
@@ -189,7 +176,7 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1213994715}
+      - m_Target: {fileID: 1213994720}
         m_TargetAssemblyTypeName: Game, Assembly-CSharp
         m_MethodName: UnfreezeGame
         m_Mode: 1
@@ -217,7 +204,7 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1213994715}
+      - m_Target: {fileID: 1213994720}
         m_TargetAssemblyTypeName: Game, Assembly-CSharp
         m_MethodName: FreezeGame
         m_Mode: 1
@@ -245,7 +232,7 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1213994715}
+      - m_Target: {fileID: 1213994720}
         m_TargetAssemblyTypeName: Game, Assembly-CSharp
         m_MethodName: UnfreezeGame
         m_Mode: 1
@@ -266,14 +253,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1213994714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c26331d358d03c498cef11c3af9b364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 136956d3a8b88a54193f84df1ed3b321, type: 2}
+  defeatEventChannel: {fileID: 11400000, guid: 3db87e533f1a8f240b1f2a8e746dce0d, type: 2}
+--- !u!114 &1213994721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213994714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d08697a85f2b5438d30f9b646d86b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 312840bb7d04fa645a73a80a71c0c101, type: 2}
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1213994715}
+      - m_Target: {fileID: 1213994720}
         m_TargetAssemblyTypeName: Game, Assembly-CSharp
         m_MethodName: DecrementCountOfTrailers
         m_Mode: 1
@@ -285,7 +285,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1213994721
+      - m_Target: {fileID: 1213994720}
+        m_TargetAssemblyTypeName: Game, Assembly-CSharp
+        m_MethodName: DecrementExperiencePoints
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: Trailer, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1213994722
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,20 +306,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1213994714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Script: {fileID: 11500000, guid: b1d08697a85f2b5438d30f9b646d86b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 5c4f58e1a0d783b49922e1c40e8bc823, type: 2}
+  _channel: {fileID: 11400000, guid: 448628889f9915948b327cdf7163afc7, type: 2}
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1213994715}
+      - m_Target: {fileID: 1213994720}
         m_TargetAssemblyTypeName: Game, Assembly-CSharp
         m_MethodName: IncrementCountOfTrailers
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1213994720}
+        m_TargetAssemblyTypeName: Game, Assembly-CSharp
+        m_MethodName: IncrementExperiencePoints
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: Trailer, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class TrailerEvent : UnityEvent<Trailer>
+{
+
+}
+
 public class TrailerEventListener : MonoBehaviour
 {
     [SerializeField] private TrailerEventChanelSO _channel;
 
-    public UnityEvent<Trailer> OnEventRaised;
+    public TrailerEvent OnEventRaised;
 
     private void OnEnable()
     {

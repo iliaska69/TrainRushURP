@@ -24,7 +24,7 @@ public class VoidEventListener : MonoBehaviour
 
     private void Respond()
     {
-        if (OnEventRaised != null)
-            OnEventRaised.Invoke();
+        if (OnEventRaised == null) return;
+        OnEventRaised.Invoke();
     }
 }

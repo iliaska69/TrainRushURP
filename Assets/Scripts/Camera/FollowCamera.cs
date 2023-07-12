@@ -17,8 +17,8 @@ public class FollowCamera : MonoBehaviour
 
     private void Start()
     {
-        branchRotation = Quaternion.Euler(53f, -25f, 0);
-        defaultRotation = Quaternion.Euler(62f, -40f, 0);
+        branchRotation = Quaternion.Euler(53f, -16f, 0);
+        defaultRotation = Quaternion.Euler(53f, -25f, 0);
         offset = camTransform.position - target.position;
         _transform = transform;
     }

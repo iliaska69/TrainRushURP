@@ -12,10 +12,11 @@ public class Trailer : MonoBehaviour, IDestroyable
     [SerializeField] private bool isMainTrailer;
     [SerializeField] private int finishLayer;
     [SerializeField] private int catchingBonusLayer;
+    [SerializeField] private int experiencePoints;
 
     [SerializeField] private TrailerEventChanelSO changedMainTrailerEventChanelSO;
-    [SerializeField] private VoidEventChannelSO incrementVoidEvenChanelSO;
-    [SerializeField] private VoidEventChannelSO decrementVoidEvenChanelSO;
+    [SerializeField] private TrailerEventChanelSO incrementCountOfTrailersTrailerEvenChanelSO;
+    [SerializeField] private TrailerEventChanelSO decrementCountOfTrailersTrailerEvenChanelSO;
     [SerializeField] private VoidEventChannelSO victoryVoidEvenChanelSO;
 
     private Trailer _nextTrailer;
@@ -111,7 +112,7 @@ public class Trailer : MonoBehaviour, IDestroyable
         _nextTrailerMovement.SetIsMainTrailer(true);
 
         changedMainTrailerEventChanelSO.RaiseEvent(trailer);
-        incrementVoidEvenChanelSO.RaiseEvent();
+        incrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(trailer);
     }
 
     public void Destroy()
@@ -136,7 +137,7 @@ public class Trailer : MonoBehaviour, IDestroyable
         _myTrailerMovement.enabled = false;
         boxCollider.enabled = false;
         animator.SetTrigger("Death");
-        decrementVoidEvenChanelSO.RaiseEvent();
+        decrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
 
         Destroy(gameObject, 3);
     }
@@ -157,5 +158,10 @@ public class Trailer : MonoBehaviour, IDestroyable
                 _victoryEventIsUsed = true;
             }
         }
+    }
+
+    public int GetPointsExperience()
+    {
+        return experiencePoints;
     }
 }
