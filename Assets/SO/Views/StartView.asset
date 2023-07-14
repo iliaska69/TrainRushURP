@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StartView
   m_EditorClassIdentifier: 
   slices:
-  - {fileID: 2689820755075616451, guid: 2b6c994eb90924a4db53fadd092b98c3, type: 3}
+  - {fileID: 2689820755075616451, guid: 16206497fbc7df84fa367bfa185f5693, type: 3}
