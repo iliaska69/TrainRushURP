@@ -10,6 +10,7 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float minSpeed = 0f;
     [SerializeField] private float speedAmplitude = 0.01f;
     [SerializeField] private bool isReadyToGoing;
+    [SerializeField] private bool isMoving;
     [SerializeField] private bool isMainTrailer;
     [SerializeField] private float rotationSmooth = 0.1f;
 
@@ -40,14 +41,23 @@ public class TrailerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!isReadyToGoing) return;
+
         if (isMainTrailer)
         {
+            
             MainTrailerMovement();
         }
         else
         {
+            Debug.Log("her");
             NotMainTrailerMovement();
         }
+    }
+
+    public void SetIsMoving(bool set)
+    {
+        isMoving = set;      
     }
 
     public void SetIsFinish(bool set)
@@ -57,7 +67,7 @@ public class TrailerMovement : MonoBehaviour
 
     public void SetIsGoing(bool set)
     {
-        gameObject.GetComponent<TrailerMovement>().enabled = set;
+        isReadyToGoing = set;
     }
 
     public void SetStartPosition(BezierCurve curve, float tParam)

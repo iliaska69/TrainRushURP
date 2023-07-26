@@ -33,6 +33,8 @@ public class Trailer : MonoBehaviour, IDestroyable
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (_myTrailerMovement != null && _nextTrailer != null)
         {
             _myTrailerMovement.SetDistancesPoints(
@@ -95,6 +97,7 @@ public class Trailer : MonoBehaviour, IDestroyable
     //«аставл€ет двигатьс€ следующий поезд
     private void CollideWithTrailer(Trailer trailer)
     {
+        if (trailer == this) return;
         if (isMainTrailer)
         {
             trailer.SetMainTrailer(true);

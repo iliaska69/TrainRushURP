@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20f389e48cb72e54b9d90ff9317ecda7, type: 3}
-  m_Name: Change Camera Follow Void Event Channel SO
+  m_Name: Set Default Camera Mode Void Event Channel SO
   m_EditorClassIdentifier: 
   _guid: 
   description: 
