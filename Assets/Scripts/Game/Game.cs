@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
 
     private int countOfTrailers = 1;
     private int experiencePoints; 
-    private List<Trailer> trailers;
+    private List<Trailer> trailers = new List<Trailer>();
 
 
     public void FreezeGame()
@@ -48,4 +48,5 @@ public class Game : MonoBehaviour
         experiencePoints -= trailer.GetPointsExperience();
         trailers.Remove(trailer);
     }
+
 }

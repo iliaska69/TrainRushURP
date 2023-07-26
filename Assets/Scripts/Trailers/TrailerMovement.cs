@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class TrailerMovement : MonoBehaviour
 {
@@ -13,7 +9,7 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float maxSpeed = 3f;
     [SerializeField] private float minSpeed = 0f;
     [SerializeField] private float speedAmplitude = 0.01f;
-    [SerializeField] private bool isGoing;
+    [SerializeField] private bool isReadyToGoing;
     [SerializeField] private bool isMainTrailer;
     [SerializeField] private float rotationSmooth = 0.1f;
 
@@ -39,7 +35,7 @@ public class TrailerMovement : MonoBehaviour
         if (startCurve == null) return;
         if (_currentCurve == null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
-        SetIsGoing(isGoing);
+        SetIsGoing(isReadyToGoing);
     }
 
     private void Update()
@@ -127,7 +123,7 @@ public class TrailerMovement : MonoBehaviour
 
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
-        if (Input.GetKey(KeyCode.F) || Input.touchCount > 0) Acceleration();
+        if (Input.anyKey || Input.touchCount > 0) Acceleration();
         else SlowDown();
 
         if (Vector3.Distance(_transform.position, _target) < 0.1f)

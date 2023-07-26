@@ -165,8 +165,10 @@ GameObject:
   - component: {fileID: 2886558175707233064}
   - component: {fileID: 4651525550698154842}
   - component: {fileID: 3252022175929197142}
+  - component: {fileID: 783958296091590221}
   - component: {fileID: 2779430515031499346}
   - component: {fileID: 2293842298539123729}
+  - component: {fileID: 2562484577660574251}
   m_Layer: 0
   m_Name: Trailer
   m_TagString: Untagged
@@ -208,7 +210,7 @@ MonoBehaviour:
   maxSpeed: 3
   minSpeed: 0.3
   speedAmplitude: 0.01
-  isGoing: 0
+  isReadyToGoing: 0
   isMainTrailer: 0
   rotationSmooth: 0.1
 --- !u!114 &2886558175707233064
@@ -283,6 +285,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &783958296091590221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389881075722535052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 4a38b529039ecae4eb96ba462b6e184d, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3322356772629908940}
+        m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
+        m_MethodName: SetIsGoing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &2779430515031499346
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -312,6 +342,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2562484577660574251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389881075722535052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: b13654287afaed4459ddb025153c3d89, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3322356772629908940}
+        m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
+        m_MethodName: SetIsGoing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &8790324240897472339
 GameObject:
   m_ObjectHideFlags: 0
