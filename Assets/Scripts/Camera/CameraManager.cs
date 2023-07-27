@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] private Component defaultCameraMode;
-    [SerializeField] private Component zoomOutCameraMode;
-
-
-    public void ActivateCameraMode(BaseCameraMode cameraMode)
+    private void Start()
     {
-        var modes = GetComponent<BaseCameraMode>();
-        Debug.Log(modes);
-        cameraMode.gameObject.SetActive(true);
+        ActivateDefaultCameraMode();
+    }
+
+    public void ActivateZoomOutCameraMode()
+    {
+        gameObject.AddComponent<ZoomOutCameraMode>();
+    }
+
+    public void ActivateDefaultCameraMode()
+    {
+        gameObject.AddComponent<DefaultCameraMode>();
     }
 }

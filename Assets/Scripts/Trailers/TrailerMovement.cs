@@ -10,7 +10,6 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float minSpeed = 0f;
     [SerializeField] private float speedAmplitude = 0.01f;
     [SerializeField] private bool isReadyToGoing;
-    [SerializeField] private bool isMoving;
     [SerializeField] private bool isMainTrailer;
     [SerializeField] private float rotationSmooth = 0.1f;
 
@@ -36,13 +35,16 @@ public class TrailerMovement : MonoBehaviour
         if (startCurve == null) return;
         if (_currentCurve == null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
-        SetIsGoing(isReadyToGoing);
+        //SetIsGoing(isReadyToGoing);
     }
 
     private void Update()
     {
         if (!isReadyToGoing) return;
-
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
         if (isMainTrailer)
         {
             
@@ -50,14 +52,8 @@ public class TrailerMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("her");
             NotMainTrailerMovement();
         }
-    }
-
-    public void SetIsMoving(bool set)
-    {
-        isMoving = set;      
     }
 
     public void SetIsFinish(bool set)
@@ -68,6 +64,7 @@ public class TrailerMovement : MonoBehaviour
     public void SetIsGoing(bool set)
     {
         isReadyToGoing = set;
+        Debug.Log(isReadyToGoing);
     }
 
     public void SetStartPosition(BezierCurve curve, float tParam)
@@ -164,6 +161,7 @@ public class TrailerMovement : MonoBehaviour
         float step;
         step = _notMainTrailerSpeed * (_distanceBetweenTrailers - 0.6f) * Time.deltaTime;
         step = Mathf.Clamp(step, 0, _distanceBetweenTrailers - 0.6f);
+        if (step < 0) return;
 
         Rotation();
         _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
@@ -173,13 +171,13 @@ public class TrailerMovement : MonoBehaviour
             _t += 0.1f;
             if (_currentCurve == null) return;
             _target = GetNextPointToMove(_currentCurve, _t);
-            
+
         }
 
         if (_t < 1f) return;
 
         _currentCurve = GetNextCurve();
-        
+
         if (_currentCurve == null && !_isFinish)
         {
             var trailer = GetComponent<Trailer>();

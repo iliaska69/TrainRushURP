@@ -19,8 +19,8 @@ public class BaseCameraMode : MonoBehaviour
         target = newTraget.transform;
     }
 
-    protected virtual void ActivateCameraMode()
+    public void SetCamera()
     {
-
+        camTransform = gameObject.GetComponent<Camera>().gameObject.transform;
     }
 }
