@@ -206,7 +206,7 @@ PrefabInstance:
     - target: {fileID: 4875606470539945534, guid: dc158e1bb28e8424ca186b43cf096c54,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000000014901161
+      value: -0.000000037252903
       objectReference: {fileID: 0}
     - target: {fileID: 4875606470539945534, guid: dc158e1bb28e8424ca186b43cf096c54,
         type: 3}
@@ -216,7 +216,7 @@ PrefabInstance:
     - target: {fileID: 4875606470539945534, guid: dc158e1bb28e8424ca186b43cf096c54,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.757718
+      value: -2.7470145
       objectReference: {fileID: 0}
     - target: {fileID: 4875606470539945534, guid: dc158e1bb28e8424ca186b43cf096c54,
         type: 3}
@@ -2009,6 +2009,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 131410463}
     m_Modifications:
+    - target: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca,
+        type: 3}
+      propertyPath: isMainTrailer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322356772629908940, guid: 84ce7aee4f6891b48bf451b26954dbca,
         type: 3}
       propertyPath: startCurve
@@ -2017,7 +2022,7 @@ PrefabInstance:
     - target: {fileID: 3322356772629908940, guid: 84ce7aee4f6891b48bf451b26954dbca,
         type: 3}
       propertyPath: isMainTrailer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3322356772629908940, guid: 84ce7aee4f6891b48bf451b26954dbca,
         type: 3}

@@ -4,8 +4,8 @@ public class DefaultCameraMode : BaseCameraMode
 {
     private void Start()
     {
-
         SetCamera();
+        target = Game.instance.GetFirstTrailer().transform;
         camTransform.position = new Vector3(2.1f, 6.86f, -5f);
         defaultRotation = Quaternion.Euler(39f, -14f, 0);
         offset = camTransform.position - target.position;

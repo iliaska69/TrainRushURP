@@ -146,6 +146,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 86a2bf348d6a0d546bab6a5a59ca1494, type: 2}
+        m_TargetAssemblyTypeName: VoidEventChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6328279678904929317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e669efa9ab44b49bc1748828ef2ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 11400000, guid: d6bdf3cc82239204cb55ede3b5206df4, type: 2}
-  openPrevious: 1
+  view: {fileID: 11400000, guid: fd094592c328b0f469d3ce8f5b5fbc55, type: 2}
+  openPrevious: 0
 --- !u!1 &852491204538520824
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,7 +935,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 9d472444c4e6ebe448ea13fe676ad569, type: 2}
+      - m_Target: {fileID: 11400000, guid: f95dff2ac44fb2044bb5f5323c9fbaf0, type: 2}
         m_TargetAssemblyTypeName: VoidEventChannelSO, Assembly-CSharp
         m_MethodName: RaiseEvent
         m_Mode: 1

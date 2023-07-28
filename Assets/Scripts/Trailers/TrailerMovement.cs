@@ -10,7 +10,6 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float minSpeed = 0f;
     [SerializeField] private float speedAmplitude = 0.01f;
     [SerializeField] private bool isReadyToGoing;
-    [SerializeField] private bool isMainTrailer;
     [SerializeField] private float rotationSmooth = 0.1f;
 
     private BezierCurve _currentCurve;
@@ -24,6 +23,7 @@ public class TrailerMovement : MonoBehaviour
     private float _notMainTrailerSpeed = 5f;
     private Transform _transform;
     private bool _isFinish;
+    private bool _isMainTrailer;
 
 
     private void Start()
@@ -35,17 +35,15 @@ public class TrailerMovement : MonoBehaviour
         if (startCurve == null) return;
         if (_currentCurve == null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
-        //SetIsGoing(isReadyToGoing);
+        _isMainTrailer = gameObject.GetComponent<Trailer>().IsMainTrailer();
     }
 
     private void Update()
     {
         if (!isReadyToGoing) return;
-        if (Time.timeScale == 0f)
-        {
-            return;
-        }
-        if (isMainTrailer)
+        if (Time.timeScale == 0f) return;
+        
+        if (_isMainTrailer)
         {
             
             MainTrailerMovement();
@@ -64,7 +62,6 @@ public class TrailerMovement : MonoBehaviour
     public void SetIsGoing(bool set)
     {
         isReadyToGoing = set;
-        Debug.Log(isReadyToGoing);
     }
 
     public void SetStartPosition(BezierCurve curve, float tParam)
@@ -96,7 +93,12 @@ public class TrailerMovement : MonoBehaviour
 
     public void SetIsMainTrailer(bool set)
     {
-        isMainTrailer = set;
+        _isMainTrailer = set;
+    }
+
+    public bool GetIsMainTrailer()
+    {
+        return _isMainTrailer;
     }
 
     float GetDistanceBetweenPoints()

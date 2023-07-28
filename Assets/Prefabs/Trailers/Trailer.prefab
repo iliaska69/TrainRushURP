@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 2293842298539123729}
   - component: {fileID: 5082230499639850096}
   - component: {fileID: 6486491794917632435}
+  - component: {fileID: 5903968333211132398}
   m_Layer: 0
   m_Name: Trailer
   m_TagString: Untagged
@@ -211,7 +212,6 @@ MonoBehaviour:
   minSpeed: 0.3
   speedAmplitude: 0.01
   isReadyToGoing: 0
-  isMainTrailer: 0
   rotationSmooth: 0.1
 --- !u!114 &2886558175707233064
 MonoBehaviour:
@@ -243,6 +243,8 @@ MonoBehaviour:
   decrementCountOfTrailersTrailerEvenChanelSO: {fileID: 11400000, guid: 312840bb7d04fa645a73a80a71c0c101,
     type: 2}
   victoryVoidEvenChanelSO: {fileID: 11400000, guid: b3125ed192c1d13448dcd35c9db02cba,
+    type: 2}
+  finishVoidEvenChanelSO: {fileID: 11400000, guid: 7924f7bce70112b48bbeab15b7ebf0ab,
     type: 2}
 --- !u!114 &4651525550698154842
 MonoBehaviour:
@@ -354,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: b13654287afaed4459ddb025153c3d89, type: 2}
+  _channel: {fileID: 11400000, guid: eb01762232c9a4549ab5fa5f7caeca3a, type: 2}
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
@@ -369,6 +371,34 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &5903968333211132398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389881075722535052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: b13654287afaed4459ddb025153c3d89, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3322356772629908940}
+        m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
+        m_MethodName: SetIsGoing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8790324240897472339
 GameObject:

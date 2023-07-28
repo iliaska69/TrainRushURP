@@ -18,17 +18,22 @@ public class Trailer : MonoBehaviour, IDestroyable
     [SerializeField] private TrailerEventChanelSO incrementCountOfTrailersTrailerEvenChanelSO;
     [SerializeField] private TrailerEventChanelSO decrementCountOfTrailersTrailerEvenChanelSO;
     [SerializeField] private VoidEventChannelSO victoryVoidEvenChanelSO;
+    [SerializeField] private VoidEventChannelSO finishVoidEvenChanelSO;
 
     private Trailer _nextTrailer;
     private Trailer _previousTrailer;
     private TrailerMovement _nextTrailerMovement;
     private TrailerMovement _myTrailerMovement;
-    private bool _victoryEventIsUsed;
+    //private bool _victoryEventIsUsed;
 
 
     void Start()
     {
         _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
+        if (isMainTrailer)
+        {
+            incrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
+        }
     }
 
     private void Update()
@@ -106,7 +111,6 @@ public class Trailer : MonoBehaviour, IDestroyable
             SetNextTrailer(trailer);
         }
         _nextTrailerMovement = trailer.gameObject.GetComponent<TrailerMovement>();
-        _nextTrailerMovement.SetIsGoing(true);
 
         var mySpeed = _myTrailerMovement.GetSpeed();
         _nextTrailerMovement.SetSpeed(mySpeed);
@@ -155,10 +159,11 @@ public class Trailer : MonoBehaviour, IDestroyable
         if (other.gameObject.layer == finishLayer)
         {
             _myTrailerMovement.SetIsFinish(true);
-            if (isMainTrailer && !_victoryEventIsUsed)
+            if (isMainTrailer)
             {
                 victoryVoidEvenChanelSO.RaiseEvent();
-                _victoryEventIsUsed = true;
+                finishVoidEvenChanelSO.RaiseEvent();
+                //_victoryEventIsUsed = true;
             }
         }
     }

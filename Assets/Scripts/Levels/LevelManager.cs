@@ -2,13 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private UnityEvent onLevelLoaded;
+
     private const string GAME_IS_DONE = "Game is done";
     private const string LAST_INDEXES = "List of last level indexes";
     private int _currentLevel;
@@ -33,13 +38,6 @@ public class LevelManager : MonoBehaviour
         if(_lastLevels.Count > 0)
             _lastLoadLevel = _lastLevels[_lastLevels.Count - 1];
 
-        //if (_sceneCount == (_currentLevel + 1) || _gameIsDone)
-        //{
-        //    if(_sceneCount >= 3)
-        //        LoadRandomLevel();
-        //    else
-        //        SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
-        //}
         if (_lastLoadLevel <= 1)
         {
             SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
@@ -67,7 +65,18 @@ public class LevelManager : MonoBehaviour
     public void ReloadLevel()
     { 
         SceneManager.UnloadSceneAsync(_currentLevel);
-        SceneManager.LoadScene(_currentLevel, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
+        //StartCoroutine("LoadScene");
+    }
+
+    IEnumerator LoadScene()
+    {
+        var loadSceneAsync = SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
+        while (!loadSceneAsync.isDone)
+        {
+            yield return null;
+        }
+        //onLevelLoaded.Invoke();
     }
 
     public void LoadNextLevel()
