@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private View startView;
+    [SerializeField] private View emptyView;
     [SerializeField] private GameObject sliceWraper;
 
     public static UIController instance = null;
@@ -51,6 +52,11 @@ public class UIController : MonoBehaviour
         {
             Destroy(sliceWraper.transform.GetChild(i).gameObject);
         }
+        if (_views.Count > 3)
+        {
+        _views.Remove(_views[0]);
+        _views.Remove(_views[1]);
+        }
     }
 
     public void OpenPreviousView()
@@ -66,6 +72,17 @@ public class UIController : MonoBehaviour
             _views.RemoveAt(_views.Count - 1);
             _views.RemoveAt(_views.Count - 1);
             OpenView(prevView);
+        }
+    }
+
+    public void OpenEmptyView()
+    {
+        _views.Add(emptyView);
+        CloseView();
+        var slices = emptyView.GetAllSlices();
+        foreach (var slice in slices)
+        {
+            Instantiate(slice, sliceWraper.transform);
         }
     }
 }

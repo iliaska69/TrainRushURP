@@ -6,9 +6,12 @@ public class ZoomOutCameraMode : DefaultCameraMode
 {
     private void Start()
     {
-        defaultRotation = Quaternion.Euler(39f, -14f, 0);
+        Instantiate();
+        camTransform.position = new Vector3(1f, 18.4f, 27.5f);
+        defaultRotation = Quaternion.Euler(49.3f, -11.1f, 0);
         offset = camTransform.position - target.position;
         _transform = transform;
+        smoothTime = 0.2f;
     }
 
     private void LateUpdate()

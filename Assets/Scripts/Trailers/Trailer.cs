@@ -12,7 +12,6 @@ public class Trailer : MonoBehaviour, IDestroyable
     [SerializeField] private bool isMainTrailer;
     [SerializeField] private int finishLayer;
     [SerializeField] private int catchingBonusLayer;
-    [SerializeField] private int experiencePoints;
 
     [SerializeField] private TrailerEventChanelSO changedMainTrailerEventChanelSO;
     [SerializeField] private TrailerEventChanelSO incrementCountOfTrailersTrailerEvenChanelSO;
@@ -24,7 +23,6 @@ public class Trailer : MonoBehaviour, IDestroyable
     private Trailer _previousTrailer;
     private TrailerMovement _nextTrailerMovement;
     private TrailerMovement _myTrailerMovement;
-    //private bool _victoryEventIsUsed;
 
 
     void Start()
@@ -99,6 +97,11 @@ public class Trailer : MonoBehaviour, IDestroyable
         return _nextTrailer;
     }
 
+    public TrailerMovement GetTrailerMovementComponent()
+    {
+        return _myTrailerMovement;
+    }
+
     //«аставл€ет двигатьс€ следующий поезд
     private void CollideWithTrailer(Trailer trailer)
     {
@@ -122,7 +125,7 @@ public class Trailer : MonoBehaviour, IDestroyable
         incrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(trailer);
     }
 
-    public void Destroy()
+    public void DestroyWithAnimation()
     {
         if (isMainTrailer)
         {
@@ -149,7 +152,6 @@ public class Trailer : MonoBehaviour, IDestroyable
         Destroy(gameObject, 3);
     }
 
-    //_victoryEventIsUsed added bacause method call two times
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == catchingBonusLayer)
@@ -159,17 +161,8 @@ public class Trailer : MonoBehaviour, IDestroyable
         if (other.gameObject.layer == finishLayer)
         {
             _myTrailerMovement.SetIsFinish(true);
-            if (isMainTrailer)
-            {
-                victoryVoidEvenChanelSO.RaiseEvent();
-                finishVoidEvenChanelSO.RaiseEvent();
-                //_victoryEventIsUsed = true;
-            }
+            if (!isMainTrailer) return;
+            finishVoidEvenChanelSO.RaiseEvent();
         }
-    }
-
-    public int GetPointsExperience()
-    {
-        return experiencePoints;
     }
 }

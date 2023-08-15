@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -40,7 +41,8 @@ public class LevelManager : MonoBehaviour
 
         if (_lastLoadLevel <= 1)
         {
-            SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
+            StartCoroutine(LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive));
+            //SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
             _currentLevel = SceneManager.GetActiveScene().buildIndex + 2;
             _lastLoadLevel = _currentLevel;
             Save(_lastLoadLevel);
@@ -48,9 +50,30 @@ public class LevelManager : MonoBehaviour
         else
         {
             _currentLevel = _lastLoadLevel;
-            SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
+            StartCoroutine(LoadSceneAsync(_currentLevel, LoadSceneMode.Additive));
+            //SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
         }
+        
+    }
+    
+    IEnumerator LoadSceneAsync(int currentLevel, LoadSceneMode mode)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(currentLevel, mode);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        Game.instance.SetIsVictory(false);
+    }
 
+    IEnumerator LoadSceneAsync(string currentLevel, LoadSceneMode mode)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(currentLevel, mode);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        Game.instance.SetIsVictory(false);
     }
 
     private void Save(int level)
@@ -65,18 +88,9 @@ public class LevelManager : MonoBehaviour
     public void ReloadLevel()
     { 
         SceneManager.UnloadSceneAsync(_currentLevel);
-        SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
-        //StartCoroutine("LoadScene");
-    }
-
-    IEnumerator LoadScene()
-    {
-        var loadSceneAsync = SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
-        while (!loadSceneAsync.isDone)
-        {
-            yield return null;
-        }
-        //onLevelLoaded.Invoke();
+        StartCoroutine(LoadSceneAsync(_currentLevel, LoadSceneMode.Additive));
+        //SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
+        Game.instance.SetIsVictory(false);
     }
 
     public void LoadNextLevel()
@@ -84,18 +98,21 @@ public class LevelManager : MonoBehaviour
         SceneManager.UnloadSceneAsync(_currentLevel);
         if (_sceneCount == (_currentLevel + 1) || _gameIsDone)
         {
-            if (_sceneCount >= 3)
+            if (_sceneCount >= 4)
                 LoadRandomLevel();
             else
-                SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
+                StartCoroutine(LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive));
+            //SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
         }
         else
         {
-            SceneManager.LoadSceneAsync(_currentLevel + 1, LoadSceneMode.Additive);
+            StartCoroutine(LoadSceneAsync(_currentLevel + 1, LoadSceneMode.Additive));
+            //SceneManager.LoadSceneAsync(_currentLevel + 1, LoadSceneMode.Additive);
             _currentLevel++;
             _lastLoadLevel = _currentLevel;
             Save(_lastLoadLevel);
         }
+        Game.instance.SetIsVictory(false);
     }
 
     public void UnloadLevel()
@@ -141,7 +158,8 @@ public class LevelManager : MonoBehaviour
                 i = -1;
             }
         }
-        SceneManager.LoadSceneAsync(randomLevelScene, LoadSceneMode.Additive);
+        StartCoroutine(LoadSceneAsync(randomLevelScene, LoadSceneMode.Additive));
+        //SceneManager.LoadSceneAsync(randomLevelScene, LoadSceneMode.Additive);
         Save(randomLevelScene);
 
         _currentLevel = randomLevelScene;

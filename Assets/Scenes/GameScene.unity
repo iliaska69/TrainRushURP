@@ -137,8 +137,8 @@ GameObject:
   - component: {fileID: 1213994717}
   - component: {fileID: 1213994722}
   - component: {fileID: 1213994721}
-  - component: {fileID: 1213994723}
   - component: {fileID: 1213994724}
+  - component: {fileID: 1213994725}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -230,6 +230,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defeatEventChannel: {fileID: 11400000, guid: 3db87e533f1a8f240b1f2a8e746dce0d, type: 2}
+  victoryEventChannel: {fileID: 11400000, guid: b3125ed192c1d13448dcd35c9db02cba,
+    type: 2}
+  finishEventChannel: {fileID: 11400000, guid: 7924f7bce70112b48bbeab15b7ebf0ab, type: 2}
 --- !u!114 &1213994721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,34 +289,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1213994723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213994714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 7924f7bce70112b48bbeab15b7ebf0ab, type: 2}
-  OnEventRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1213994720}
-        m_TargetAssemblyTypeName: Game, Assembly-CSharp
-        m_MethodName: ClearTrailerList
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1213994724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +308,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1213994720}
         m_TargetAssemblyTypeName: Game, Assembly-CSharp
         m_MethodName: ClearTrailerList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1213994725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213994714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 321d34b125c79554e8c5a64ecf73e80d, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1213994720}
+        m_TargetAssemblyTypeName: Game, Assembly-CSharp
+        m_MethodName: IncrementFinishTrailer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

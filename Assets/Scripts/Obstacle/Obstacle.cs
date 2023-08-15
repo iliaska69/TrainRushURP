@@ -6,6 +6,6 @@ public class Obstacle : MonoBehaviour
     {
         var hit = other.GetComponent<IDestroyable>();
         if (hit == null) return;
-        hit.Destroy();
+        hit.DestroyWithAnimation();
     }
 }

@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 11400000, guid: e3555edbad0073144a4d194714f1a35e, type: 2}
-  openPrevious: 1
+  openPrevious: 0
 --- !u!1 &284871887250819826
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TrailerMovement : MonoBehaviour
 {
+    [Range(0, 1)] [SerializeField] private float startTParameter = 0f;
     [SerializeField] private BezierCurve startCurve;
-    [SerializeField] private float startTParameter = 0f;
     [SerializeField] private float speed = 0f;
     [SerializeField] private float maxSpeed = 3f;
     [SerializeField] private float minSpeed = 0f;
@@ -45,7 +46,6 @@ public class TrailerMovement : MonoBehaviour
         
         if (_isMainTrailer)
         {
-            
             MainTrailerMovement();
         }
         else
@@ -68,6 +68,16 @@ public class TrailerMovement : MonoBehaviour
     {
         startCurve = curve;
         startTParameter = tParam;
+    }
+
+    public BezierCurve GetBezierCurve()
+    {
+        return _currentCurve;
+    }
+
+    public float GetTParametr()
+    {
+        return _t;
     }
 
     public float GetSpeed()
@@ -122,7 +132,7 @@ public class TrailerMovement : MonoBehaviour
         float step;
         if (_isFinish)
         {
-            speed = 5f;
+            speed = 3f;
         }
 
         step = speed * Time.deltaTime;
@@ -148,7 +158,7 @@ public class TrailerMovement : MonoBehaviour
         if (_currentCurve == null && !_isFinish)
         {
             var trailer = GetComponent<Trailer>();
-            trailer.Destroy();
+            trailer.DestroyWithAnimation();
             return;
         }
 
@@ -183,7 +193,7 @@ public class TrailerMovement : MonoBehaviour
         if (_currentCurve == null && !_isFinish)
         {
             var trailer = GetComponent<Trailer>();
-            trailer.Destroy();
+            trailer.DestroyWithAnimation();
             return;
         }
 
@@ -224,25 +234,6 @@ public class TrailerMovement : MonoBehaviour
         return null;
     }
 
-    //private void FinishAnimation()
-    //{
-    //    speed = 5f;
-    //    float step;
-    //    step = speed * Time.deltaTime;
-    //    step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
-
-    //    _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
-
-    //    if (Vector3.Distance(_transform.position, _target) < 0.1f)
-    //    {
-    //        _t += 0.05f;
-    //        _target = GetNextPointToMove(_currentCurve, _t);
-    //        Rotation();
-    //    }
-
-    //    if (_t >= 1f) return;
-    //}
-
     private void SlowDown()
     {
         if (speed <= minSpeed) return;
@@ -256,4 +247,23 @@ public class TrailerMovement : MonoBehaviour
         speed += speedAmplitude;
     }
 
+    [Button("Join")]
+    public virtual void JoinToCurve()
+    {
+        var hitColliders = Physics.OverlapSphere(transform.position, 0.6f);
+        foreach (var hit in hitColliders)
+        {
+            var curve = hit.gameObject.GetComponent<BezierCurve>();
+            if (curve == null) continue;
+            var points = curve.GetAllPoints();
+
+            transform.position = Bezier.GetPoint(points[0], points[1], points[2], points[3], startTParameter);
+
+            transform.rotation = Quaternion.LookRotation(
+                Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startTParameter));
+
+            var trailerMovementComponent = transform.GetComponent<TrailerMovement>();
+            trailerMovementComponent.SetStartPosition(curve, startTParameter);
+        }
+    }
 }

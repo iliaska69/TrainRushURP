@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class BaseCameraMode : MonoBehaviour
 {
-    [SerializeField] protected Transform target;
-    [SerializeField] protected Transform camTransform;
-    [SerializeField] protected Vector3 offset;
-    [SerializeField] protected float smoothTime = 0.2f;
-
+    protected Transform target;
+    protected Transform camTransform;
+    protected Vector3 offset;
+    protected float smoothTime;
     protected Vector3 velocity;
     protected Transform _transform;
     protected Quaternion defaultRotation;
 
 
-    public void SetTargetToFollow(Trailer newTraget)
+    protected void Instantiate(Trailer newTrailer = null)
     {
-        target = newTraget.transform;
+        SetCamera();
+        SetTargetTrailer(newTrailer?.transform);
     }
+
+    public void SetTargetTrailer(Transform newTarget = null)
+    {
+        target = newTarget?.transform ?? Game.instance.GetFirstTrailer().transform;
+    }
+
 
     public void SetCamera()
     {
