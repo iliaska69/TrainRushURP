@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class SaveManager : MonoBehaviour
 {
@@ -11,10 +10,14 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
-        foreach (var trailer in savedTrailers)
+        if (Game.instance.GetTrailerList().Count != savedTrailers.Count)
         {
-            Destroy(trailer.gameObject);
+            foreach (var trailer in savedTrailers)
+            {
+                Destroy(trailer.gameObject);
+            }
         }
+        
         savedTrailers.Clear();
 
         var trailers = Game.instance.GetTrailerList();

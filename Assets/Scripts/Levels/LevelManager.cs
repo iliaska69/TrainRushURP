@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
 
     private const string GAME_IS_DONE = "Game is done";
     private const string LAST_INDEXES = "List of last level indexes";
+    private const string FIRST_LEVEL = "LevelScene_1";
+    private const string SHOP_SCENE = "ShopScene";
     private int _currentLevel;
     private int _lastLoadLevel;
     private int _sceneCount;
@@ -41,9 +43,8 @@ public class LevelManager : MonoBehaviour
 
         if (_lastLoadLevel <= 1)
         {
-            StartCoroutine(LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive));
-            //SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
-            _currentLevel = SceneManager.GetActiveScene().buildIndex + 2;
+            StartCoroutine(LoadSceneAsync(FIRST_LEVEL, LoadSceneMode.Additive));
+            _currentLevel = SceneManager.GetActiveScene().buildIndex + 3;
             _lastLoadLevel = _currentLevel;
             Save(_lastLoadLevel);
         }
@@ -51,9 +52,7 @@ public class LevelManager : MonoBehaviour
         {
             _currentLevel = _lastLoadLevel;
             StartCoroutine(LoadSceneAsync(_currentLevel, LoadSceneMode.Additive));
-            //SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
         }
-        
     }
     
     IEnumerator LoadSceneAsync(int currentLevel, LoadSceneMode mode)
@@ -89,7 +88,6 @@ public class LevelManager : MonoBehaviour
     { 
         SceneManager.UnloadSceneAsync(_currentLevel);
         StartCoroutine(LoadSceneAsync(_currentLevel, LoadSceneMode.Additive));
-        //SceneManager.LoadSceneAsync(_currentLevel, LoadSceneMode.Additive);
         Game.instance.SetIsVictory(false);
     }
 
@@ -98,16 +96,14 @@ public class LevelManager : MonoBehaviour
         SceneManager.UnloadSceneAsync(_currentLevel);
         if (_sceneCount == (_currentLevel + 1) || _gameIsDone)
         {
-            if (_sceneCount >= 4)
+            if (_sceneCount >= 5)
                 LoadRandomLevel();
             else
-                StartCoroutine(LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive));
-            //SceneManager.LoadSceneAsync("LevelScene_1", LoadSceneMode.Additive);
+                StartCoroutine(LoadSceneAsync(FIRST_LEVEL, LoadSceneMode.Additive));
         }
         else
         {
             StartCoroutine(LoadSceneAsync(_currentLevel + 1, LoadSceneMode.Additive));
-            //SceneManager.LoadSceneAsync(_currentLevel + 1, LoadSceneMode.Additive);
             _currentLevel++;
             _lastLoadLevel = _currentLevel;
             Save(_lastLoadLevel);
@@ -129,6 +125,19 @@ public class LevelManager : MonoBehaviour
         var lastLevelIndexes = listOfIndexes.Split(',').ToList();
 
         return lastLevelIndexes.Select(int.Parse).ToList();
+    }
+
+    public void OpenShopScene()
+    {
+        Game.instance.ClearTrailerList();
+        SceneManager.UnloadSceneAsync(_currentLevel);
+        StartCoroutine(LoadSceneAsync(SHOP_SCENE, LoadSceneMode.Additive));
+    }
+
+    public void UnloadShopScene()
+    {
+        SceneManager.UnloadSceneAsync(SHOP_SCENE);
+        StartCoroutine(LoadSceneAsync(_currentLevel, LoadSceneMode.Additive));
     }
 
     private void LeaveLastThreeElements()

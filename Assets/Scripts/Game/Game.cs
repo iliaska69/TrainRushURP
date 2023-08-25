@@ -39,7 +39,7 @@ public class Game : MonoBehaviour
     public void VictoryGame()
     {
         if (_isVictory) return;
-        finishEventChannel.RaiseEvent();
+        
         StartCoroutine(VictoryGameCoroutine());
     }
 
@@ -55,6 +55,7 @@ public class Game : MonoBehaviour
 
 
         VictoryGame();
+        finishEventChannel.RaiseEvent();
     }
 
     public void FreezeGame()
@@ -81,8 +82,6 @@ public class Game : MonoBehaviour
 
     public Trailer GetFirstTrailer()
     {
-        if (trailers is null) return null;
-
         return trailers[0];
     }
 

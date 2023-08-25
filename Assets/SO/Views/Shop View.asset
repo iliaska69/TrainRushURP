@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Shop View
   m_EditorClassIdentifier: 
   slices:
-  - {fileID: 0}
+  - {fileID: 2689820755075616451, guid: b7cd6c5a55fbf2f448e2e4dc2a19b851, type: 3}
+  - {fileID: 2689820755075616451, guid: aeef9c777ea509242b9f3738e1ddb9c8, type: 3}
