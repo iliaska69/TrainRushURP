@@ -11,7 +11,7 @@ public class BaseCameraMode : MonoBehaviour
     protected Vector3 velocity;
     protected Transform _transform;
     protected Quaternion defaultRotation;
-
+    protected bool settingInstantiated;
 
     protected void Instantiate(Trailer newTrailer = null)
     {
@@ -21,6 +21,7 @@ public class BaseCameraMode : MonoBehaviour
 
     public void SetTargetTrailer(Transform newTarget = null)
     {
+        if (Game.instance.GetFirstTrailer() == null) return;
         target = newTarget?.transform ?? Game.instance.GetFirstTrailer().transform;
     }
 

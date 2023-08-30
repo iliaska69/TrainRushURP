@@ -262,8 +262,8 @@ public class TrailerMovement : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(
                 Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startTParameter));
 
-            var trailerMovementComponent = transform.GetComponent<TrailerMovement>();
-            trailerMovementComponent.SetStartPosition(curve, startTParameter);
+            //var trailerMovementComponent = transform.GetComponent<TrailerMovement>();
+            this.SetStartPosition(curve, startTParameter);
         }
     }
 }

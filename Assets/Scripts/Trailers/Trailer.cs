@@ -28,6 +28,7 @@ public class Trailer : MonoBehaviour, IDestroyable
     void Start()
     {
         _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
+        _myTrailerMovement.SetIsMainTrailer(isMainTrailer);
         if (isMainTrailer)
         {
             incrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
@@ -74,7 +75,6 @@ public class Trailer : MonoBehaviour, IDestroyable
     public void SetMainTrailer(bool set)
     {
         isMainTrailer = set;
-        _myTrailerMovement.SetIsMainTrailer(set);
     }
 
     public void SetPreviousTrailer(Trailer prevTrailer)

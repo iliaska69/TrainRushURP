@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: fa0678f0bf3978848bb4afca46109199,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -138,7 +139,6 @@ GameObject:
   - component: {fileID: 1213994722}
   - component: {fileID: 1213994721}
   - component: {fileID: 1213994724}
-  - component: {fileID: 1213994725}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -233,6 +233,8 @@ MonoBehaviour:
   victoryEventChannel: {fileID: 11400000, guid: b3125ed192c1d13448dcd35c9db02cba,
     type: 2}
   finishEventChannel: {fileID: 11400000, guid: 7924f7bce70112b48bbeab15b7ebf0ab, type: 2}
+  defaultTrailerSkin: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca,
+    type: 3}
 --- !u!114 &1213994721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,34 +310,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1213994720}
         m_TargetAssemblyTypeName: Game, Assembly-CSharp
         m_MethodName: ClearTrailerList
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1213994725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213994714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c89d3b4cece4548a2bff1a18ed9998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 321d34b125c79554e8c5a64ecf73e80d, type: 2}
-  OnEventRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1213994720}
-        m_TargetAssemblyTypeName: Game, Assembly-CSharp
-        m_MethodName: IncrementFinishTrailer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

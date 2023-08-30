@@ -1,7 +1,4 @@
-using NaughtyAttributes;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Parking : MonoBehaviour
@@ -60,6 +57,7 @@ public class Parking : MonoBehaviour
             _readyForParkingTrailer.GetPreviousTrailer().SetMainTrailer(true);
 
         _readyForParkingTrailer.GetComponent<TrailerParking>().enabled = true;
+        
     }
 
     public void SetTrailerReadyForParking(Trailer trailer)

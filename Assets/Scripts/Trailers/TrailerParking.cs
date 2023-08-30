@@ -16,12 +16,18 @@ public class TrailerParking : MonoBehaviour
 
     private void Start()
     {
+        Game.instance.IncrementCountOfFinishedTrailer();
         _transform = transform;
         _t = 0;
         _target = GetNextPointToMove(_currentCurve, _t);
     }
 
     private void Update()
+    {
+        Parking();
+    }
+
+    private void Parking()
     {
         float step;
 

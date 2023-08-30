@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -10,9 +9,10 @@ public class Game : MonoBehaviour
     [SerializeField] private VoidEventChannelSO defeatEventChannel;
     [SerializeField] private VoidEventChannelSO victoryEventChannel;
     [SerializeField] private VoidEventChannelSO finishEventChannel;
+    [SerializeField] private Trailer defaultTrailerSkin;
 
     private List<Trailer> trailers = new List<Trailer>();
-    private int _countOfFinishTrailers;
+    private int _countOfFinishedTrailers;
     private bool _isVictory;
 
     
@@ -48,11 +48,10 @@ public class Game : MonoBehaviour
         _isVictory = value;
     }
 
-    public void IncrementFinishTrailer()
+    public void IncrementCountOfFinishedTrailer()
     {
-        _countOfFinishTrailers++;
-        if (_countOfFinishTrailers != trailers.Count) return;
-
+        _countOfFinishedTrailers++;
+        if (_countOfFinishedTrailers != trailers.Count) return;
 
         VictoryGame();
         finishEventChannel.RaiseEvent();
@@ -82,13 +81,14 @@ public class Game : MonoBehaviour
 
     public Trailer GetFirstTrailer()
     {
+        if(trailers.Count == 0) return null;
         return trailers[0];
     }
 
     public void ClearTrailerList()
     {
         trailers.Clear();
-        _countOfFinishTrailers = 0;
+        _countOfFinishedTrailers = 0;
     }
 
     public int GetCountOfTrailers()
@@ -96,4 +96,14 @@ public class Game : MonoBehaviour
 
     public List<Trailer> GetTrailerList()
         => trailers;
+
+    public Trailer GetDefaultTrailerSkin()
+    {
+        return defaultTrailerSkin;
+    }
+
+    public void SetDefaultTrailerSkin(Trailer trailerSkin)
+    {
+        defaultTrailerSkin = trailerSkin;
+    }
 }
