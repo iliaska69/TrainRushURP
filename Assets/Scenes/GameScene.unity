@@ -233,7 +233,7 @@ MonoBehaviour:
   victoryEventChannel: {fileID: 11400000, guid: b3125ed192c1d13448dcd35c9db02cba,
     type: 2}
   finishEventChannel: {fileID: 11400000, guid: 7924f7bce70112b48bbeab15b7ebf0ab, type: 2}
-  defaultTrailerSkin: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca,
+  trailerSkin: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca,
     type: 3}
 --- !u!114 &1213994721
 MonoBehaviour:

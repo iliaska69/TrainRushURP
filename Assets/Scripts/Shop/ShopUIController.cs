@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class ShopUIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject spawnPlatform;
+
+    private List<ShopItem> _shopItems = new List<ShopItem>();
+    private ShopItem _currentUIItem;
+    private Trailer _currentTrailerSkin;
+
+
+    private void Update()
     {
-        
+            Debug.Log(_shopItems.Count);
+        if(_shopItems == null)
+        {
+            _shopItems = Shop.instance.GetItems();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        _currentTrailerSkin = Game.instance.GetTrailerSkin();
+        foreach(var item in _shopItems)
+        {
+            if(_currentTrailerSkin == item.GetSkin())
+            {
+                _currentUIItem = item;
+                Debug.Log(_currentTrailerSkin);
+            }
+        }
     }
+
 }

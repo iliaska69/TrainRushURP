@@ -9,7 +9,7 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float speed = 0f;
     [SerializeField] private float maxSpeed = 3f;
     [SerializeField] private float minSpeed = 0f;
-    [SerializeField] private float speedAmplitude = 0.01f;
+    [SerializeField] private float speedAmplitude = 0.1f;
     [SerializeField] private bool isReadyToGoing;
     [SerializeField] private float rotationSmooth = 0.1f;
 
@@ -245,25 +245,5 @@ public class TrailerMovement : MonoBehaviour
     {
         if (speed > maxSpeed) return;
         speed += speedAmplitude;
-    }
-
-    [Button("Join")]
-    public virtual void JoinToCurve()
-    {
-        var hitColliders = Physics.OverlapSphere(transform.position, 0.6f);
-        foreach (var hit in hitColliders)
-        {
-            var curve = hit.gameObject.GetComponent<BezierCurve>();
-            if (curve == null) continue;
-            var points = curve.GetAllPoints();
-
-            transform.position = Bezier.GetPoint(points[0], points[1], points[2], points[3], startTParameter);
-
-            transform.rotation = Quaternion.LookRotation(
-                Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startTParameter));
-
-            //var trailerMovementComponent = transform.GetComponent<TrailerMovement>();
-            this.SetStartPosition(curve, startTParameter);
-        }
     }
 }

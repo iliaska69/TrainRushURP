@@ -9,7 +9,7 @@ public class Game : MonoBehaviour
     [SerializeField] private VoidEventChannelSO defeatEventChannel;
     [SerializeField] private VoidEventChannelSO victoryEventChannel;
     [SerializeField] private VoidEventChannelSO finishEventChannel;
-    [SerializeField] private Trailer defaultTrailerSkin;
+    [SerializeField] private Trailer trailerSkin;
 
     private List<Trailer> trailers = new List<Trailer>();
     private int _countOfFinishedTrailers;
@@ -97,13 +97,13 @@ public class Game : MonoBehaviour
     public List<Trailer> GetTrailerList()
         => trailers;
 
-    public Trailer GetDefaultTrailerSkin()
+    public Trailer GetTrailerSkin()
     {
-        return defaultTrailerSkin;
+        return trailerSkin;
     }
 
-    public void SetDefaultTrailerSkin(Trailer trailerSkin)
+    public void SetTrailerSkin(Trailer trailerSkin)
     {
-        defaultTrailerSkin = trailerSkin;
+        this.trailerSkin = trailerSkin;
     }
 }

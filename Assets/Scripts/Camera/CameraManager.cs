@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CameraManager : MonoBehaviour
 {
@@ -33,5 +34,17 @@ public class CameraManager : MonoBehaviour
         var mode = gameObject.GetComponent<BaseCameraMode>();
         if(mode != null ) 
         Destroy(mode);
+    }
+
+    public void SetTargetTrailer(Trailer newTarget = null)
+    {
+        if (Game.instance.GetFirstTrailer() == null) return;
+        var trailer = newTarget?.transform ?? Game.instance.GetFirstTrailer().transform;
+        if(trailer == null)
+        {
+            Debug.Log("Target for camera is null");
+            return;
+        }
+        gameObject.GetComponent<BaseCameraMode>().SetTargetTrailer(trailer);
     }
 }

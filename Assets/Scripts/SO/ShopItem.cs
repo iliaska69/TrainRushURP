@@ -4,6 +4,16 @@ using UnityEngine;
 public class ShopItem : ScriptableObject
 {
     [SerializeField] private int price;
-    [SerializeField] private GameObject model;
+    [SerializeField] private Trailer skin;
     [SerializeField] private float speed;
+
+    public int GetPrice()
+    {
+        return price;
+    }
+
+    public Trailer GetSkin()
+    {
+        return skin;
+    }
 }

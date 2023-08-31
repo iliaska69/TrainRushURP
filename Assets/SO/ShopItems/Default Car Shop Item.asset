@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Default Car Shop Item
   m_EditorClassIdentifier: 
   price: 1000
-  model: {fileID: 4389881075722535052, guid: 84ce7aee4f6891b48bf451b26954dbca, type: 3}
+  skin: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca, type: 3}
   speed: 3

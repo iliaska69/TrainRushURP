@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Super Burbie Car Shop Item
   m_EditorClassIdentifier: 
   price: 2000
-  model: {fileID: 4389881075722535052, guid: 6a3f8e0c4a9cea24e82aca3d351af237, type: 3}
+  skin: {fileID: 2886558175707233064, guid: 6a3f8e0c4a9cea24e82aca3d351af237, type: 3}
   speed: 5

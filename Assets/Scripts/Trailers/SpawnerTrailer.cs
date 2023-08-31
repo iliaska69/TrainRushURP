@@ -15,7 +15,7 @@ public class SpawnerTrailer : MonoBehaviour
 
     private void Start()
     {
-        var typeOfTrailer = Game.instance.GetDefaultTrailerSkin();
+        var typeOfTrailer = Game.instance.GetTrailerSkin();
         var trailer = Instantiate(typeOfTrailer, trailerPosition, trailerRotation, spawnPlace);
         var trailerMovementComponent = trailer.GetComponent<TrailerMovement>();
         trailerMovementComponent.SetStartPosition(curve, startParameter);
