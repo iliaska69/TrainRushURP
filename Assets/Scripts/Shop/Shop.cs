@@ -10,7 +10,6 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("PISKA");
         if (instance == null)
         {
             instance = this;
