@@ -33,6 +33,7 @@ public class TrailerMovement : MonoBehaviour
         _t = startTParameter;
         _currentCurve = startCurve;
         speed = minSpeed;
+        SetSpeedTakingTrailer();
         if (startCurve == null) return;
         if (_currentCurve == null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
@@ -245,5 +246,13 @@ public class TrailerMovement : MonoBehaviour
     {
         if (speed > maxSpeed) return;
         speed += speedAmplitude;
+    }
+
+    private void SetSpeedTakingTrailer()
+    {
+        var shopItem = Shop.instance.GetCurrentShopItem();
+        var itemSpeed = shopItem.GetSpeed();
+        maxSpeed = itemSpeed;
+        _notMainTrailerSpeed += itemSpeed;
     }
 }

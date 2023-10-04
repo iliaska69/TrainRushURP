@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -14,8 +15,9 @@ public class Game : MonoBehaviour
     private List<Trailer> trailers = new List<Trailer>();
     private int _countOfFinishedTrailers;
     private bool _isVictory;
+    private int moneyBonusFromTrailer;
 
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -26,6 +28,11 @@ public class Game : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        //SetMoneyBonusFromTrailer(trailerSkin)
     }
 
     IEnumerator VictoryGameCoroutine()
@@ -39,8 +46,9 @@ public class Game : MonoBehaviour
     public void VictoryGame()
     {
         if (_isVictory) return;
-        
+
         StartCoroutine(VictoryGameCoroutine());
+        CountWonMoney();
     }
 
     public void SetIsVictory(bool value)
@@ -75,13 +83,13 @@ public class Game : MonoBehaviour
     public void DecrementCountOfTrailers(Trailer trailer)
     {
         trailers.Remove(trailer);
-        if(trailers.Count == 0 )
+        if (trailers.Count == 0)
             defeatEventChannel.RaiseEvent();
     }
 
     public Trailer GetFirstTrailer()
     {
-        if(trailers.Count == 0) return null;
+        if (trailers.Count == 0) return null;
         return trailers[0];
     }
 
@@ -102,8 +110,24 @@ public class Game : MonoBehaviour
         return trailerSkin;
     }
 
-    public void SetTrailerSkin(Trailer trailerSkin)
+    public void SetTrailerSkin(ShopItem shopItem)
     {
-        this.trailerSkin = trailerSkin;
+        trailerSkin = shopItem.GetSkin();
+        SetMoneyBonusFromTrailer(shopItem.GetMoneyBonus());
+    }
+
+    private void SetMoneyBonusFromTrailer(int moneyBonys)
+    {
+        moneyBonusFromTrailer = moneyBonys;
+    }
+
+    private void CountWonMoney()
+    {
+        if(moneyBonusFromTrailer == 0)
+        {
+            moneyBonusFromTrailer = Shop.instance.GetCurrentShopItem().GetMoneyBonus();
+        }
+        var wonMoney = _countOfFinishedTrailers * moneyBonusFromTrailer;
+        Bank.instance.AddMoney(wonMoney);
     }
 }

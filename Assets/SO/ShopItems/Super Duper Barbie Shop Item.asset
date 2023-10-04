@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dcc66c874f78ce4abdaa1b0601383af, type: 3}
   m_Name: Super Duper Barbie Shop Item
   m_EditorClassIdentifier: 
-  price: 5000
+  isBuy: 1
+  price: 30
   skin: {fileID: 2886558175707233064, guid: 6a874be21d7c92d4b8a407c7e16b0dd0, type: 3}
-  speed: 6
-  isBuy: 0
+  speed: 20
+  moneyBonus: 30

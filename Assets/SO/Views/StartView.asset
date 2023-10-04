@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slices:
   - {fileID: 2689820755075616451, guid: 16206497fbc7df84fa367bfa185f5693, type: 3}
+  - {fileID: 2689820755075616451, guid: fc881cc8c142470449c35166dc9df7d9, type: 3}

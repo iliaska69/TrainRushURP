@@ -1014,7 +1014,6 @@ Transform:
   - {fileID: 1447947689}
   - {fileID: 371437641}
   - {fileID: 455353142}
-  - {fileID: 321703953}
   - {fileID: 1947089146}
   - {fileID: 472812945}
   - {fileID: 74147013}
@@ -1789,56 +1788,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc79b46caf29284890826d92cff05a5, type: 3}
---- !u!1 &321703952
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 321703953}
-  - component: {fileID: 321703954}
-  m_Layer: 0
-  m_Name: SpawnerTrailer (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &321703953
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321703952}
-  m_LocalRotation: {x: 0.019090837, y: -0.004009944, z: 0.00007656774, w: 0.99980974}
-  m_LocalPosition: {x: 0.16101982, y: -0.4713253, z: 5.862761}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 131410463}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &321703954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321703952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34bba5017b50e64fa7dfc9906daa490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startParameter: 0.46
-  curve: {fileID: 576436783}
-  spawnPlace: {fileID: 131410463}
-  isSpawnMainTrailer: 0
-  trailerPosition: {x: 0.16101982, y: -0.4713253, z: 5.862761}
-  trailerRotation: {x: 0.019090837, y: -0.004009944, z: 0.00007656774, w: 0.99980974}
 --- !u!4 &333404682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1166769894847825654, guid: 1e68412d14161bc4e8e6e7687b676fff,
@@ -5109,12 +5058,12 @@ PrefabInstance:
     - target: {fileID: 4512804755521871066, guid: 44ac99035b78cea4881c52c60e4430d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4512804755521871066, guid: 44ac99035b78cea4881c52c60e4430d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.142516
+      value: 4.1400013
       objectReference: {fileID: 0}
     - target: {fileID: 4512804755521871066, guid: 44ac99035b78cea4881c52c60e4430d0,
         type: 3}
@@ -5164,7 +5113,7 @@ PrefabInstance:
     - target: {fileID: 7272251485884884962, guid: 44ac99035b78cea4881c52c60e4430d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15514752
+      value: 0.1551475
       objectReference: {fileID: 0}
     - target: {fileID: 7272251485884884962, guid: 44ac99035b78cea4881c52c60e4430d0,
         type: 3}
@@ -6625,7 +6574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818042402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16627596, y: 0.19999999, z: 1.2023789}
+  m_LocalPosition: {x: 0.16627598, y: 0.2, z: 0.75109667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6644,11 +6593,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34bba5017b50e64fa7dfc9906daa490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startParameter: 0.1
+  startParameter: 0
   curve: {fileID: 54814354}
   spawnPlace: {fileID: 131410463}
   isSpawnMainTrailer: 1
-  trailerPosition: {x: 0.16627596, y: 0.19999999, z: 1.2023789}
+  trailerPosition: {x: 0.16627598, y: 0.2, z: 0.75109667}
   trailerRotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1001 &1840957683
 PrefabInstance:

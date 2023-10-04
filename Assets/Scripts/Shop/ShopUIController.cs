@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ShopUIController : MonoBehaviour
 {
@@ -15,21 +14,20 @@ public class ShopUIController : MonoBehaviour
     private List<ShopItem> _shopItems = new List<ShopItem>();
     private ShopItem _currentUIItem;
     private int _currentShopItemIndex;
-    private Trailer _currentTrailerSkin;
+    private ShopItem _currentTrailerSkin;
 
 
     void Start()
     {
         _shopItems = Shop.instance.GetItems();
-        _currentTrailerSkin = Game.instance.GetTrailerSkin();
+        _currentTrailerSkin = Shop.instance.GetCurrentShopItem();
         for (var i = 0; i < _shopItems.Count; i++)
         {
-            if (_currentTrailerSkin == _shopItems[i].GetSkin())
+            if (_currentTrailerSkin == _shopItems[i])
             {
                 _currentUIItem = _shopItems[i];
                 _currentShopItemIndex = i;
             }
-
         }
         if (_currentUIItem == _shopItems.First())
         {
@@ -39,8 +37,8 @@ public class ShopUIController : MonoBehaviour
         if (_currentShopItemIndex == _shopItems.Count - 1) rightButton.SetActive(false);
         if (_currentShopItemIndex == 0) leftButton.SetActive(false);
 
-        buyButton.SetActive(false);
-        setButton.SetActive(false);
+        BuySetButtonsManager();
+        shopItemChanged.RaiseEvent(_currentUIItem);
     }
 
     //Листаем машинки вправо
@@ -57,7 +55,7 @@ public class ShopUIController : MonoBehaviour
 
         if (!leftButton.activeSelf) leftButton.SetActive(true);
 
-        BuyButtonManager();
+        BuySetButtonsManager();
     }
 
     //Листаем машинки влево
@@ -74,22 +72,29 @@ public class ShopUIController : MonoBehaviour
 
         if (!rightButton.activeSelf) rightButton.SetActive(true);
 
-        BuyButtonManager();
+        BuySetButtonsManager();
     }
 
     public void BuyItem()
     {
         if (_currentUIItem.AlreadyBuy()) return;
-        Shop.instance.Buy(_currentUIItem);
+        var checkPurchase = Shop.instance.Buy(_currentUIItem);
+
+        if (!checkPurchase) return;
+        buyButton.SetActive(false);
+        SetItem();
     }
 
     public void SetItem()
     {
         if (!_currentUIItem.AlreadyBuy()) return;
-        Game.instance.SetTrailerSkin(_currentTrailerSkin);
+        Game.instance.SetTrailerSkin(_currentUIItem);
+        Shop.instance.SetCurrentShopItem(_currentUIItem);
+        _currentTrailerSkin = _currentUIItem;
+        setButton.SetActive(false);
     }
 
-    private void BuyButtonManager()
+    private void BuySetButtonsManager()
     {
         if (!_currentUIItem.AlreadyBuy())
         {
@@ -99,7 +104,14 @@ public class ShopUIController : MonoBehaviour
         else
         {
             buyButton.SetActive(false);
-            setButton.SetActive(true);
+            if (_currentUIItem != Shop.instance.GetCurrentShopItem())
+            {
+                setButton.SetActive(true);
+            }
+            else
+            {
+                setButton.SetActive(false);
+            }
         }
     }
 }

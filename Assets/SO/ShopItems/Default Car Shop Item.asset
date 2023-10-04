@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dcc66c874f78ce4abdaa1b0601383af, type: 3}
   m_Name: Default Car Shop Item
   m_EditorClassIdentifier: 
-  price: 1000
+  isBuy: 1
+  price: 0
   skin: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca, type: 3}
   speed: 3
-  isBuy: 1
+  moneyBonus: 5

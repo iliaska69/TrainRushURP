@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour
     public static Shop instance = null;
 
     [SerializeField] private List<ShopItem> shopItems = new List<ShopItem>();
+    [SerializeField] private ShopItem currentShopItem;
 
     private void Awake()
     {
@@ -18,6 +19,8 @@ public class Shop : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        LoadCurrentShopItem();
     }
 
     public bool Buy(ShopItem shopItem)
@@ -30,8 +33,9 @@ public class Shop : MonoBehaviour
             Debug.Log("Not enough money");
             return false;
         }
-
-        Game.instance.SetTrailerSkin(shopItem.GetSkin());
+        shopItem.isBuy = true;
+        //shopItem.SetItemPurchased(true);
+        Game.instance.SetTrailerSkin(shopItem);
         Bank.instance.SubstractMoney(price);
 
         return true;
@@ -40,5 +44,30 @@ public class Shop : MonoBehaviour
     public List<ShopItem> GetItems()
     {
         return shopItems;
+    }
+
+    public ShopItem GetCurrentShopItem()
+    {
+        return currentShopItem;
+    }
+
+    public void SetCurrentShopItem(ShopItem shopItem)
+    {
+        currentShopItem= shopItem;
+        PlayerPrefs.SetInt("CurrentShopItem", currentShopItem.GetInstanceID());
+    }
+
+    private void LoadCurrentShopItem()
+    {
+        var id = PlayerPrefs.GetInt("CurrentShopItem");
+        
+        foreach(var item in shopItems)
+        {
+            if(id == item.GetInstanceID())
+            {
+                currentShopItem = item;
+            }
+        }
+        Game.instance.SetTrailerSkin(currentShopItem);
     }
 }
