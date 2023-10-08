@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 2689820755075616451}
   - component: {fileID: 6340405443991951974}
   m_Layer: 5
-  m_Name: ScrollPanelSlice
+  m_Name: ScrollPanelVerticalSlice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

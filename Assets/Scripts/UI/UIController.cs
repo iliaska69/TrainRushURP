@@ -12,16 +12,17 @@ public class UIController : MonoBehaviour
     public static UIController instance = null;
 
     private List<View> _views = new List<View>();
-    private int _numberOfCurrentView;
+    private int _resolutionHeight;
+    private int _resolutionWight;
 
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
-        else if(instance == this)
+        else if (instance == this)
         {
             Destroy(gameObject);
         }
@@ -38,6 +39,7 @@ public class UIController : MonoBehaviour
     {
         _views.Add(view);
         CloseView();
+        TrackViewOrientation(view);
         var slices = view.GetAllSlices();
         foreach (var slice in slices)
         {
@@ -48,14 +50,14 @@ public class UIController : MonoBehaviour
     public void CloseView()
     {
         var childCount = sliceWraper.transform.childCount;
-        for(var i = 0; i<childCount; i++)
+        for (var i = 0; i < childCount; i++)
         {
             Destroy(sliceWraper.transform.GetChild(i).gameObject);
         }
         if (_views.Count > 3)
         {
-        _views.Remove(_views[0]);
-        _views.Remove(_views[1]);
+            _views.Remove(_views[0]);
+            _views.Remove(_views[1]);
         }
     }
 
@@ -63,7 +65,6 @@ public class UIController : MonoBehaviour
     {
         if (_views.Count < 2)
         {
-            Debug.Log(_views[_views.Count - 1]);
             OpenView(_views[_views.Count - 1]);
         }
         else
@@ -83,6 +84,25 @@ public class UIController : MonoBehaviour
         foreach (var slice in slices)
         {
             Instantiate(slice, sliceWraper.transform);
+        }
+    }
+
+    private void TrackViewOrientation(View view)
+    {
+        if (Screen.height != _resolutionHeight || Screen.width != _resolutionWight)
+        {
+            _resolutionHeight = Screen.height;
+            _resolutionWight = Screen.width;
+        }
+
+
+        if (_resolutionHeight > _resolutionWight)
+        {
+            view.isHorizontal = false;
+        }
+        else
+        {
+            view.isHorizontal = true;
         }
     }
 }

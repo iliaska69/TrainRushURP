@@ -208,8 +208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 4.912, y: 498.12048}
-  m_SizeDelta: {x: 1075.8, y: 996.2411}
+  m_AnchoredPosition: {x: 4.912, y: 145.24997}
+  m_SizeDelta: {x: 1075.8, y: 290.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6366608061702281512
 CanvasRenderer:
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -2.6796875, y: 0, z: 2.6794434, w: 0}
+  m_margin: {x: -2.6796875, y: 2.53479, z: 2.6794434, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -481,7 +481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 76, y: -174.5}
+  m_AnchoredPosition: {x: 76, y: -215}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1009334485868222388
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 1657306753092957815}
   - component: {fileID: 2689820755075616451}
   m_Layer: 5
-  m_Name: WelcomSlice
+  m_Name: WelcomHorizontalSlice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1020,7 +1020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: 0}
+  m_AnchoredPosition: {x: 75, y: -42}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3874697655040639104
@@ -1177,10 +1177,10 @@ RectTransform:
   m_Father: {fileID: 8042943801364098627}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.14244443, y: 0}
+  m_AnchorMin: {x: 0.07627084, y: 0}
   m_AnchorMax: {x: 1, y: 0.8276666}
-  m_AnchoredPosition: {x: 2.9129639, y: -4.0510254}
-  m_SizeDelta: {x: -0.17401123, y: 3.1379395}
+  m_AnchoredPosition: {x: 3.6660156, y: -4.0510254}
+  m_SizeDelta: {x: -1.6800003, y: 3.1379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8450468067870770939
 CanvasRenderer:
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gearTransform: {fileID: 661030586460831910}
-  settingCover: {fileID: 589051982775247620}
+  settingCoverTransform: {fileID: 5281146529125580746}
 --- !u!1 &8524512496057810429
 GameObject:
   m_ObjectHideFlags: 0

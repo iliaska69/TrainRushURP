@@ -1,12 +1,13 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SettingsButtonInput : MonoBehaviour
 {
     [SerializeField] private Transform gearTransform;
-    [SerializeField] private GameObject settingCover;
+    [SerializeField] private Transform settingCoverTransform;
 
     private bool _buttonUsed;
     private GameObject _settingsSlice;
@@ -35,11 +36,18 @@ public class SettingsButtonInput : MonoBehaviour
     {
         if (buttonUsed)
         {
-            settingCover.transform.DOLocalMoveY(557f, 0.5f);
+            settingCoverTransform.DOLocalMoveY(557, 0.5f);
         }
         else
         {
-            settingCover.transform.DOLocalMoveY(53f, 0.5f);
+            var sequence = DOTween.Sequence();
+            sequence.Append(
+                settingCoverTransform.DOLocalMoveY(-40f, 0.5f));
+
+            sequence.Append(
+                settingCoverTransform
+                    .DOLocalMoveY(53f, 0.5f)
+                    .SetEase(Ease.InOutBack));
         }
             
     }
