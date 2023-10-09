@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: RuntimeGameView
   m_EditorClassIdentifier: 
-  slices:
+  isHorizontal: 0
+  verticalSlices:
   - {fileID: 2689820755075616451, guid: 648e7947378dc8540a66d2412126bb97, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: 4345ac1b414a3cd419cb595390b75019, type: 3}

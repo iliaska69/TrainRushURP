@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: VictoryView
   m_EditorClassIdentifier: 
-  slices:
+  isHorizontal: 0
+  verticalSlices:
   - {fileID: 2689820755075616451, guid: f8b7a0955ca853b49bc24611989a0fd0, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: 9db6f5e90cbe9c0468d2a4be2cf2854d, type: 3}

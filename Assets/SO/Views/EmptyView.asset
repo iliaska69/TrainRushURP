@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: EmptyView
   m_EditorClassIdentifier: 
-  slices:
+  isHorizontal: 0
+  verticalSlices:
   - {fileID: 2689820755075616451, guid: 77cf4ea09f6f1a6479bf0e49c9ed32b9, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: 7b498a11ae895724eb54f5c4dc4e6db5, type: 3}

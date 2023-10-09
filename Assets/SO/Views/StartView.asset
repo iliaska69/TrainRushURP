@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: StartView
   m_EditorClassIdentifier: 
-  slices:
+  isHorizontal: 0
+  verticalSlices:
   - {fileID: 2689820755075616451, guid: 16206497fbc7df84fa367bfa185f5693, type: 3}
   - {fileID: 2689820755075616451, guid: fc881cc8c142470449c35166dc9df7d9, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: 2cfa4983f40c0144ca68dba81e37db44, type: 3}
+  - {fileID: 2689820755075616451, guid: 6dd225949f18b124c97f2477fe3fa741, type: 3}
