@@ -31,9 +31,9 @@ public class SaveManager : MonoBehaviour
                 var newTrailer = Instantiate(trailer, railway);
 
                 var newTrailerMovement = newTrailer.GetComponent<TrailerMovement>();
-                newTrailerMovement.SetStartPosition(
-                    trailerMovement.GetBezierCurve(),
-                    trailerMovement.GetTParametr());
+                //newTrailerMovement.SetStartPosition(
+                //    trailerMovement.GetBezierCurve(),
+                //    trailerMovement.GetTParametr());
 
                 savedTrailers.Add(newTrailer);
             }

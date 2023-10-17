@@ -1,10 +1,11 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TrailerMovement : MonoBehaviour
 {
-    [Range(0, 1)] [SerializeField] private float startTParameter = 0f;
+    [Range(0, 1)][SerializeField] private float startTParameter = 0f;
     [SerializeField] private BezierCurve startCurve;
     [SerializeField] private float speed = 0f;
     [SerializeField] private float maxSpeed = 3f;
@@ -14,6 +15,8 @@ public class TrailerMovement : MonoBehaviour
     [SerializeField] private float rotationSmooth = 0.1f;
 
     private BezierCurve _currentCurve;
+    private Rail _currentRail;
+    private List<BezierCurve> _railCurves;
     private List<Transform> _points;
     private float _t;
     private Vector3 _target;
@@ -25,7 +28,10 @@ public class TrailerMovement : MonoBehaviour
     private Transform _transform;
     private bool _isFinish;
     private bool _isMainTrailer;
+    private int _curveIndex;
 
+
+    private List<BezierCurve>.Enumerator _railCurvesEnumerator;
 
     private void Start()
     {
@@ -38,13 +44,14 @@ public class TrailerMovement : MonoBehaviour
         if (_currentCurve == null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
         _isMainTrailer = gameObject.GetComponent<Trailer>().IsMainTrailer();
+        GetRailCurves();
     }
 
     private void Update()
     {
         if (!isReadyToGoing) return;
         if (Time.timeScale == 0f) return;
-        
+
         if (_isMainTrailer)
         {
             MainTrailerMovement();
@@ -65,10 +72,11 @@ public class TrailerMovement : MonoBehaviour
         isReadyToGoing = set;
     }
 
-    public void SetStartPosition(BezierCurve curve, float tParam)
+    public void SetStartPosition(Rail startRail, BezierCurve curve, float tParam)
     {
         startCurve = curve;
         startTParameter = tParam;
+        _currentRail = startRail;
     }
 
     public BezierCurve GetBezierCurve()
@@ -154,8 +162,9 @@ public class TrailerMovement : MonoBehaviour
         }
 
         if (_t < 1f) return;
-
+        
         _currentCurve = GetNextCurve();
+        
         if (_currentCurve == null && !_isFinish)
         {
             var trailer = GetComponent<Trailer>();
@@ -190,7 +199,6 @@ public class TrailerMovement : MonoBehaviour
         if (_t < 1f) return;
 
         _currentCurve = GetNextCurve();
-
         if (_currentCurve == null && !_isFinish)
         {
             var trailer = GetComponent<Trailer>();
@@ -216,23 +224,42 @@ public class TrailerMovement : MonoBehaviour
         return points;
     }
 
-    private BezierCurve GetNextCurve()
+    private Rail GetNextRail()
     {
         var hitColliders = Physics.OverlapSphere(_transform.position, 0.2f);
+
         foreach (var hit in hitColliders)
         {
             var rail = hit.gameObject.GetComponent<Rail>();
-            if (rail is not null)
-            {
-                var nextCurve = rail.GetCurve();
-                if (nextCurve != null && _currentCurve != nextCurve && rail.GetLicenseToMove())
-                {
-                    return nextCurve;
-                }
-            }
+
+            if (rail == null) continue;
+            _railCurves = rail.GetCurves();
+            _curveIndex = 0;
+            
+            return rail;
         }
 
         return null;
+    }
+
+    private BezierCurve GetNextCurve()
+    {
+        _curveIndex++;
+        if(_curveIndex == _railCurves.Count)
+        {
+            _currentRail = GetNextRail();
+        }
+        return _railCurves[_curveIndex];
+    }
+
+    private void GetRailCurves()
+    {
+        _railCurves = _currentRail.GetCurves();
+        for (var i = 0; i < _railCurves.Count; i++)
+        {
+            if (_currentCurve == _railCurves[i])
+                _curveIndex = i;
+        }
     }
 
     private void SlowDown()

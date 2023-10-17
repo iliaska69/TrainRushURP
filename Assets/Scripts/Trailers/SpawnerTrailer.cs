@@ -7,6 +7,7 @@ public class SpawnerTrailer : MonoBehaviour
 {
     [Range(0,1)][SerializeField] private float startParameter;
     [SerializeField] private BezierCurve curve;
+    [SerializeField] private Rail rail;
     [SerializeField] private Transform spawnPlace;
     [SerializeField] private bool isSpawnMainTrailer;
 
@@ -18,7 +19,7 @@ public class SpawnerTrailer : MonoBehaviour
         var typeOfTrailer = Game.instance.GetTrailerSkin();
         var trailer = Instantiate(typeOfTrailer, trailerPosition, trailerRotation, spawnPlace);
         var trailerMovementComponent = trailer.GetComponent<TrailerMovement>();
-        trailerMovementComponent.SetStartPosition(curve, startParameter);
+        trailerMovementComponent.SetStartPosition(rail, curve, startParameter);
         trailer.SetMainTrailer(isSpawnMainTrailer);
         Destroy(gameObject);
     }
@@ -35,12 +36,11 @@ public class SpawnerTrailer : MonoBehaviour
             var points = curve.GetAllPoints();
 
             trailerPosition = Bezier.GetPoint(points[0], points[1], points[2], points[3], startParameter);
-            Debug.Log(trailerPosition);
             transform.position = trailerPosition;
 
-            trailerRotation = Quaternion.LookRotation(
-                Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
-            transform.rotation = trailerRotation;
+            //trailerRotation = Quaternion.LookRotation(
+            //    Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
+            //transform.rotation = trailerRotation;
         }
     }
 }

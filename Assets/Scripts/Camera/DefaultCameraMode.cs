@@ -6,8 +6,8 @@ public class DefaultCameraMode : BaseCameraMode
 
     private void Start()
     {
+        _transform = transform;
         Instantiate();
-        
     }
 
     private void LateUpdate()
@@ -28,7 +28,11 @@ public class DefaultCameraMode : BaseCameraMode
 
     private void Movement()
     {
+        Debug.Log(target.position);
         Vector3 targetPosition = target.position + offset;
+        Debug.Log(_transform.position);
+        Debug.Log(targetPosition);
+        Debug.Log(smoothTime);
         camTransform.position = Vector3.SmoothDamp(_transform.position, targetPosition, ref velocity, smoothTime);
     }
 

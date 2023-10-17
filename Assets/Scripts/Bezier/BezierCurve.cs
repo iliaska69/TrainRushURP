@@ -1,49 +1,43 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
 public class BezierCurve : MonoBehaviour, IBezierCurve
 {
-    [SerializeField] private Transform pointZero;
-    [SerializeField] private Transform pointOne;
-    [SerializeField] private Transform pointTwo;
-    [SerializeField] private Transform pointThree;
+    [SerializeField] private PointContainer firstPointContainer;
+    [SerializeField] private PointContainer secondPointContainer;
+    [Range(0, 1)]
+    [SerializeField] private float t;
 
-
-    [Range(0,1)][SerializeField] private float t;
 
     void Update()
     {
-        transform.position = Bezier.GetPoint(pointZero, pointOne, pointTwo, pointThree, t);
+        transform.position = Bezier.GetPoint(
+            firstPointContainer.centerPoint,
+            firstPointContainer.secondControlPoint,
+            secondPointContainer.firstControlPoint,
+            secondPointContainer.centerPoint, t);
 
-        transform.rotation = Quaternion.LookRotation(
-            Bezier.GetFirstDerivative(pointZero, pointOne, pointTwo, pointThree, t));
+        //transform.rotation = Quaternion.LookRotation(
+        //    Bezier.GetFirstDerivative(
+        //        firstPointContainer.centerPoint,
+        //        firstPointContainer.secondControlPoint,
+        //        secondPointContainer.firstControlPoint,
+        //        secondPointContainer.centerPoint, t));
     }
 
     public List<Transform> GetAllPoints()
     {
         var points = new List<Transform>
         {
-            pointZero,
-            pointOne,
-            pointTwo,
-            pointThree
+            firstPointContainer.centerPoint,
+            firstPointContainer.secondControlPoint,
+
+            secondPointContainer.firstControlPoint,
+            secondPointContainer.centerPoint
         };
-        
+
         return points;
-    }
-
-    private void OnDrawGizmos()
-    {
-        var segmentsNumber = 30;
-        var priveousPoint = pointOne.transform.position;
-
-        for (int i = 0; i < segmentsNumber + 1; i++)
-        {
-            var parameter = (float)i / segmentsNumber;
-            var point = Bezier.GetPoint(pointZero, pointOne, pointTwo, pointThree, parameter);
-            Gizmos.DrawLine(priveousPoint, point);
-            priveousPoint = point;
-        }
     }
 }
