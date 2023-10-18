@@ -8,9 +8,9 @@ public class TrailerMovement : MonoBehaviour
     [Range(0, 1)][SerializeField] private float startTParameter = 0f;
     [SerializeField] private BezierCurve startCurve;
     [SerializeField] private float speed = 0f;
-    [SerializeField] private float maxSpeed = 3f;
+    [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float minSpeed = 0f;
-    [SerializeField] private float speedAmplitude = 0.1f;
+    [SerializeField] private float speedAmplitude = 0.5f;
     [SerializeField] private bool isReadyToGoing;
     [SerializeField] private float rotationSmooth = 0.1f;
 
@@ -30,8 +30,6 @@ public class TrailerMovement : MonoBehaviour
     private bool _isMainTrailer;
     private int _curveIndex;
 
-
-    private List<BezierCurve>.Enumerator _railCurvesEnumerator;
 
     private void Start()
     {
@@ -141,7 +139,7 @@ public class TrailerMovement : MonoBehaviour
         float step;
         if (_isFinish)
         {
-            speed = 3f;
+            speed = 10f;
         }
 
         step = speed * Time.deltaTime;

@@ -38,9 +38,9 @@ public class SpawnerTrailer : MonoBehaviour
             trailerPosition = Bezier.GetPoint(points[0], points[1], points[2], points[3], startParameter);
             transform.position = trailerPosition;
 
-            //trailerRotation = Quaternion.LookRotation(
-            //    Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
-            //transform.rotation = trailerRotation;
+            trailerRotation = Quaternion.LookRotation(
+                Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
+            transform.rotation = trailerRotation;
         }
     }
 }

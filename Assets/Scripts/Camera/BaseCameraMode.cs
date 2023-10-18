@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseCameraMode : MonoBehaviour
 {
-    protected Transform target;
+    protected Transform _target;
     protected Transform camTransform;
     protected Vector3 offset;
     protected float smoothTime;
@@ -22,7 +22,7 @@ public class BaseCameraMode : MonoBehaviour
     public void SetTargetTrailer(Transform newTarget = null)
     {
         if (Game.instance.GetFirstTrailer() == null) return;
-        target = newTarget?.transform ?? Game.instance.GetFirstTrailer().transform;
+        _target = newTarget?.transform ?? Game.instance.GetFirstTrailer().transform;
     }
 
 
