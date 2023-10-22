@@ -163,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7852293421387565600}
   - component: {fileID: 2886558175707233064}
-  - component: {fileID: 3322356772629908940}
+  - component: {fileID: 815523037396031401}
   - component: {fileID: 6194290156895013461}
   - component: {fileID: 3252022175929197142}
   - component: {fileID: 2779430515031499346}
@@ -226,7 +226,7 @@ MonoBehaviour:
     type: 2}
   finishVoidEvenChanelSO: {fileID: 11400000, guid: 7924f7bce70112b48bbeab15b7ebf0ab,
     type: 2}
---- !u!114 &3322356772629908940
+--- !u!114 &815523037396031401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,16 +235,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4389881075722535052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc7d1d9f0acd2dc4bb7c6bbf7ae08f17, type: 3}
+  m_Script: {fileID: 11500000, guid: fe7c87cd236533d4394708397160b7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startTParameter: 0
   startCurve: {fileID: 0}
-  speed: 0
+  speed: 2
   maxSpeed: 10
-  minSpeed: 0.3
+  minSpeed: 0
   speedAmplitude: 0.1
-  isReadyToGoing: 0
+  isReadyToGoing: 1
   rotationSmooth: 0.1
 --- !u!114 &6194290156895013461
 MonoBehaviour:
@@ -276,7 +276,7 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3322356772629908940}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
         m_MethodName: AddSpeed
         m_Mode: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3322356772629908940}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
         m_MethodName: SetIsGoing
         m_Mode: 6
@@ -361,7 +361,7 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3322356772629908940}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
         m_MethodName: SetIsGoing
         m_Mode: 6
@@ -389,7 +389,7 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3322356772629908940}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
         m_MethodName: SetIsGoing
         m_Mode: 6

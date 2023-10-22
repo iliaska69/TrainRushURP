@@ -73,7 +73,6 @@ public class Rail : MonoBehaviour, IJoinable
         
         for (var i = 0; i< curves.Length; i++)
         {
-            //Debug.Log(curves[i]);
             _curves.Add(curves[i]);
         }
     }

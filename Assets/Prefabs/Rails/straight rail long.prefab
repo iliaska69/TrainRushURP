@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3597023272025711709}
   - component: {fileID: 4810502962463191479}
   m_Layer: 0
-  m_Name: straight rail Model
+  m_Name: straight rail long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c96f3ed6ea2a92b4f9b45456ddac37d6,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 15
+      value: 28.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c96f3ed6ea2a92b4f9b45456ddac37d6,
         type: 3}
@@ -375,7 +375,7 @@ PrefabInstance:
     - target: {fileID: 4883955283002103781, guid: ec01f5ee46d45b948ba94b3a05d5aaef,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.63
+      value: 12.42
       objectReference: {fileID: 0}
     - target: {fileID: 4883955283002103781, guid: ec01f5ee46d45b948ba94b3a05d5aaef,
         type: 3}

@@ -29,20 +29,23 @@ public class TrailerMovement : MonoBehaviour
     private bool _isFinish;
     private bool _isMainTrailer;
     private int _curveIndex;
-
+    private float _distancePercentage;
+    private float _currentLength;
+    //private float рук;
 
     private void Start()
     {
         _transform = transform;
         _t = startTParameter;
         _currentCurve = startCurve;
-        speed = minSpeed;
+        //speed = minSpeed;
         SetSpeedTakingTrailer();
         if (startCurve == null) return;
         if (_currentCurve == null) return;
         _target = GetNextPointToMove(_currentCurve, _t);
         _isMainTrailer = gameObject.GetComponent<Trailer>().IsMainTrailer();
         GetRailCurves();
+        _currentLength = _currentCurve.GetCurveDistance();
     }
 
     private void Update()
@@ -60,6 +63,45 @@ public class TrailerMovement : MonoBehaviour
         }
     }
 
+    void MainTrailerMovement()
+    {
+        var step = speed * Time.deltaTime;
+        _distancePercentage += step / _currentLength;
+
+        _transform.position = GetNextPointToMove(_currentCurve, _distancePercentage);
+
+        if (_distancePercentage > 1f)
+        {
+            _distancePercentage = 0;
+        }
+
+        //_target = GetNextPointToMove(_currentCurve, (_distancePercentage / 100f) + 0.05f);
+        //Rotation();
+        //if (Input.anyKey || Input.touchCount > 0) Acceleration();
+        //else SlowDown();
+
+        //if (Vector3.Distance(_transform.position, _target) < 0.1f)
+        //{
+        //    _t += 0.05f;
+        //    if (_currentCurve == null) return;
+        //    _target = GetNextPointToMove(_currentCurve, _t);
+        //}
+
+        //if (_t < 1f) return;
+
+        //_currentCurve = GetNextCurve();
+
+        //if (_currentCurve == null && !_isFinish)
+        //{
+        //    var trailer = GetComponent<Trailer>();
+        //    trailer.DestroyWithAnimation();
+        //    return;
+        //}
+
+        //_t = 0f;
+        //if (_currentCurve is null) return;
+        //_target = GetNextPointToMove(_currentCurve, _t);
+    }
     public void SetIsFinish(bool set)
     {
         _isFinish = set;
@@ -134,46 +176,49 @@ public class TrailerMovement : MonoBehaviour
         _transform.rotation = Quaternion.Lerp(_transform.rotation, Quaternion.LookRotation(_rotation), rotationSmooth);
     }
 
-    void MainTrailerMovement()
-    {
-        float step;
-        if (_isFinish)
-        {
-            speed = 10f;
-        }
+    
 
-        step = speed * Time.deltaTime;
-        step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
 
-        Rotation();
+    //void MainTrailerMovement()
+    //{
+    //    float step;
+    //    if (_isFinish)
+    //    {
+    //        speed = 10f;
+    //    }
 
-        _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
+    //    step = speed * Time.deltaTime;
+    //    step = Mathf.Clamp(step, 0f, Vector3.Distance(_transform.position, _target));
 
-        if (Input.anyKey || Input.touchCount > 0) Acceleration();
-        else SlowDown();
+    //    Rotation();
 
-        if (Vector3.Distance(_transform.position, _target) < 0.1f)
-        {
-            _t += 0.05f;
-            if (_currentCurve == null) return;
-            _target = GetNextPointToMove(_currentCurve, _t);
-        }
+    //    _transform.position = Vector3.MoveTowards(_transform.position, _target, step);
 
-        if (_t < 1f) return;
-        
-        _currentCurve = GetNextCurve();
-        
-        if (_currentCurve == null && !_isFinish)
-        {
-            var trailer = GetComponent<Trailer>();
-            trailer.DestroyWithAnimation();
-            return;
-        }
+    //    if (Input.anyKey || Input.touchCount > 0) Acceleration();
+    //    else SlowDown();
 
-        _t = 0f;
-        if (_currentCurve is null) return;
-        _target = GetNextPointToMove(_currentCurve, _t);
-    }
+    //    if (Vector3.Distance(_transform.position, _target) < 0.1f)
+    //    {
+    //        _t += 0.05f;
+    //        if (_currentCurve == null) return;
+    //        _target = GetNextPointToMove(_currentCurve, _t);
+    //    }
+
+    //    if (_t < 1f) return;
+
+    //    _currentCurve = GetNextCurve();
+
+    //    if (_currentCurve == null && !_isFinish)
+    //    {
+    //        var trailer = GetComponent<Trailer>();
+    //        trailer.DestroyWithAnimation();
+    //        return;
+    //    }
+
+    //    _t = 0f;
+    //    if (_currentCurve is null) return;
+    //    _target = GetNextPointToMove(_currentCurve, _t);
+    //}
 
     void NotMainTrailerMovement()
     {
