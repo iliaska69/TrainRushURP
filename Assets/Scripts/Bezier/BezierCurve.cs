@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -8,9 +9,13 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
     [SerializeField] private PointContainer firstPointContainer;
     [SerializeField] private PointContainer secondPointContainer;
     [Range(0, 1)]
-    [SerializeField] private float t;
+    private float t = 0;
 
     private float _curveDistance;
+    private int _countOfPoints;
+    private int _kDistance = 5;
+    private float _step;
+
 
     private void Start()
     {
@@ -24,13 +29,6 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
             firstPointContainer.secondControlPoint,
             secondPointContainer.firstControlPoint,
             secondPointContainer.centerPoint, t);
-
-        //transform.rotation = Quaternion.LookRotation(
-        //    Bezier.GetFirstDerivative(
-        //        firstPointContainer.centerPoint,
-        //        firstPointContainer.secondControlPoint,
-        //        secondPointContainer.firstControlPoint,
-        //        secondPointContainer.centerPoint, t));
     }
 
     public List<Transform> GetAllPoints()
@@ -65,10 +63,33 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
 
             _curveDistance += Vector3.Distance(a, b);
         }
+
+        _countOfPoints = (int)_curveDistance * _kDistance;
+        _step = 1f / _countOfPoints;
     }
 
     public float GetCurveDistance()
     {
         return _curveDistance;
+    }
+
+    public Vector3 GetPositionByPoint(int pointId)
+    {
+        if (pointId >= _countOfPoints)
+            return Vector3.zero;
+
+        t = _step* pointId;
+        var pos = Bezier.GetPoint(
+            firstPointContainer.centerPoint,
+            firstPointContainer.secondControlPoint,
+            secondPointContainer.firstControlPoint,
+            secondPointContainer.centerPoint, t);
+       
+        return pos;
+    }
+
+    public bool EstLiTakayaPoint(int pointId)
+    {
+        return pointId < _countOfPoints && pointId >= 0;
     }
 }
