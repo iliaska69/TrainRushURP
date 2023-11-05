@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [ExecuteAlways]
 public class BezierCurve : MonoBehaviour, IBezierCurve
@@ -17,7 +19,7 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
     private float _step;
 
 
-    private void Start()
+    private void Awake()
     {
         CalculateCurveLength();
     }
@@ -78,7 +80,7 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
         if (pointId >= _countOfPoints)
             return Vector3.zero;
 
-        t = _step* pointId;
+        t = _step * pointId;
         var pos = Bezier.GetPoint(
             firstPointContainer.centerPoint,
             firstPointContainer.secondControlPoint,
@@ -88,8 +90,31 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
         return pos;
     }
 
-    public bool EstLiTakayaPoint(int pointId)
+    public int GetPointIdByTParametr(float t)
+    {
+        var pointId = t / _step;
+
+        return Convert.ToInt32(pointId);
+    }
+
+    public Vector3 GetRotationByPoint(int pointId)
+    {
+        if (pointId > _countOfPoints)
+            return Vector3.zero;
+
+        t = _step * pointId;
+        var rotation = Bezier.GetFirstDerivative(
+            firstPointContainer.centerPoint,
+            firstPointContainer.secondControlPoint,
+            secondPointContainer.firstControlPoint,
+            secondPointContainer.centerPoint, t);
+
+        return rotation;
+    }
+
+    public bool CheckPoint(int pointId)
     {
         return pointId < _countOfPoints && pointId >= 0;
     }
+
 }

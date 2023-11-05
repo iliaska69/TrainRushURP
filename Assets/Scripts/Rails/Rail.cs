@@ -8,7 +8,6 @@ public class Rail : MonoBehaviour, IJoinable
     [SerializeField] protected Transform firstPointForDirection;
     [SerializeField] protected Transform secondPointForDirection;
     [SerializeField] protected Transform frontPoint;
-    //[SerializeField] protected Transform curve;
     [SerializeField] protected bool openedToMovement;
 
     public GameObject GameObject => gameObject;

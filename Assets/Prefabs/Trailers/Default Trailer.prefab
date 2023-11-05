@@ -33,7 +33,6 @@ Transform:
   - {fileID: 5074924665056123438}
   - {fileID: 1270882557477780003}
   - {fileID: 4064480255817694716}
-  - {fileID: 4715469741336438509}
   m_Father: {fileID: 7852293421387565600}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,6 +171,7 @@ GameObject:
   - component: {fileID: 5082230499639850096}
   - component: {fileID: 6486491794917632435}
   - component: {fileID: 5903968333211132398}
+  - component: {fileID: 3931106153094918473}
   m_Layer: 0
   m_Name: Default Trailer
   m_TagString: Untagged
@@ -215,7 +215,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   isMainTrailer: 0
-  finishLayer: 10
+  finishLayer: 20
   catchingBonusLayer: 9
   changedMainTrailerEventChanelSO: {fileID: 11400000, guid: 3c3f40d8471da074e8b763eefc96db8f,
     type: 2}
@@ -239,15 +239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7c87cd236533d4394708397160b7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTParameter: 0
-  startCurve: {fileID: 0}
-  speed: 5
-  maxSpeed: 5
-  minSpeed: 0
+  speed: 0
+  maxSpeed: 7
+  minSpeed: 1
   speedAmplitude: 0.1
-  isReadyToGoing: 1
+  isReadyToGoing: 0
   rotationSmooth: 0.1
-  kakPer: {fileID: 4715469741336438509}
 --- !u!114 &6194290156895013461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,103 +400,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &7479423763097916690
-GameObject:
+--- !u!114 &3931106153094918473
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4715469741336438509}
-  - component: {fileID: 341684832065082507}
-  - component: {fileID: 2657497023880648777}
-  - component: {fileID: 9151881722527237143}
-  m_Layer: 0
-  m_Name: Kak
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4715469741336438509
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7479423763097916690}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 2819909981396016213}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &341684832065082507
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7479423763097916690}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2657497023880648777
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7479423763097916690}
+  m_GameObject: {fileID: 4389881075722535052}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9151881722527237143
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7479423763097916690}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509f8e28d271f0a498d2548f1fd75972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 4435f7efad52f0a49a164a79957b4bb8, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 815523037396031401}
+        m_TargetAssemblyTypeName: TrailerMovement, Assembly-CSharp
+        m_MethodName: AddSpeed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8790324240897472339
 GameObject:
   m_ObjectHideFlags: 0

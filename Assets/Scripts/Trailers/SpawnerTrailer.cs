@@ -18,9 +18,10 @@ public class SpawnerTrailer : MonoBehaviour
     {
         var typeOfTrailer = Game.instance.GetTrailerSkin();
         var trailer = Instantiate(typeOfTrailer, trailerPosition, trailerRotation, spawnPlace);
-        var trailerMovementComponent = trailer.GetComponent<TrailerMovement>();
-        trailerMovementComponent.SetStartPosition(rail, curve, startParameter);
         trailer.SetMainTrailer(isSpawnMainTrailer);
+
+        var railway = GetComponentInParent<Railway>();
+        railway.ImplementObjectToRailway(trailer.gameObject.GetInstanceID(), curve, startParameter);
         Destroy(gameObject);
     }
 

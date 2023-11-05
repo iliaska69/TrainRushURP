@@ -29,7 +29,11 @@ public class DefaultCameraMode : BaseCameraMode
     private void Movement()
     {
         Vector3 targetPosition = _target.position + offset;
-        camTransform.position = Vector3.SmoothDamp(_transform.position, targetPosition, ref velocity, smoothTime);
+        camTransform.position = Vector3.SmoothDamp(
+            _transform.position,
+            targetPosition, 
+            ref velocity,
+            smoothTime);
     }
 
     private void Rotation()
