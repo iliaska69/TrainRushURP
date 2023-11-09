@@ -75,7 +75,7 @@ public class Trailer : MonoBehaviour, IDestroyable
         if (_myTrailerMovement != null)
             _myTrailerMovement.SetNextTrailer(trialer);
         else
-            Debug.Log("null");
+            Debug.Log("Next trailer is null");
     }
 
     public TrailerMovement GetTrailerMovementComponent()
@@ -138,12 +138,12 @@ public class Trailer : MonoBehaviour, IDestroyable
         }
 
         Destroy(gameObject);
-        //_myTrailerMovement.enabled = false;
-        //boxCollider.enabled = false;
-        //animator.SetTrigger("Death");
-        //decrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
+        _myTrailerMovement.enabled = false;
+        boxCollider.enabled = false;
+        animator.SetTrigger("Death");
+        decrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
 
-        //Destroy(gameObject, 3);
+        Destroy(gameObject, 3);
     }
 
     private void OnTriggerEnter(Collider other)

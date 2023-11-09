@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TrailerMovement : MonoBehaviour
 {
@@ -72,7 +73,7 @@ public class TrailerMovement : MonoBehaviour
         var step = speed * Time.deltaTime;
 
         _distanceBetweenTrailers = Vector3.Distance(_transform.position, _nextTrailerTransform.position);
-        var distanceToStopPoint = _distanceBetweenTrailers - 2.8f;
+        var distanceToStopPoint = _distanceBetweenTrailers - 2.5f;
         if (_nextTrailer == null ||
             _distanceBetweenTrailers < 2.8f)
         {
@@ -106,7 +107,12 @@ public class TrailerMovement : MonoBehaviour
 
     void SpeedControl()
     {
-        if (Input.anyKey || Input.touchCount > 0) Acceleration();
+        if (Input.anyKey || Input.touchCount > 0)
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            Acceleration();
+        }
         else SlowDown();
     }
 

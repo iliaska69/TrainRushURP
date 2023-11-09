@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6715612757210440979}
-  - component: {fileID: 8769594725265026145}
+  - component: {fileID: 3327822187512202195}
   - component: {fileID: 2729284930650293727}
   m_Layer: 0
-  m_Name: Curve
+  m_Name: BezierStraightCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,9 +31,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8769594725265026145
+--- !u!114 &3327822187512202195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4071874244619521882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 425c9af8d7df6d041b0c0969e57bb78d, type: 3}
+  m_Script: {fileID: 11500000, guid: eb79abf55a7118642a6e2997a0958b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firstPointContainer: {fileID: 0}
   secondPointContainer: {fileID: 0}
-  t: 0
 --- !u!65 &2729284930650293727
 BoxCollider:
   m_ObjectHideFlags: 0

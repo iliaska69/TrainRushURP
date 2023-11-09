@@ -13,7 +13,7 @@ public class SaveRail : Rail
         if (!other.TryGetComponent<Trailer>(out var trailer)) return;
 
         if (!trailer.IsMainTrailer()) return;
-        
+
         saveEventSO.RaiseEvent();
     }
 }

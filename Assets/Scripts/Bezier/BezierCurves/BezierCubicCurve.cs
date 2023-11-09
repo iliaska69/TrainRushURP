@@ -1,39 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-[ExecuteAlways]
-public class BezierCurve : MonoBehaviour, IBezierCurve
+public class BezierCubicCurve : BezierCurve
 {
-    [SerializeField] private PointContainer firstPointContainer;
-    [SerializeField] private PointContainer secondPointContainer;
-    [Range(0, 1)]
-    private float t = 0;
-
-    private float _curveDistance;
-    private int _countOfPoints;
-    private int _kDistance = 5;
-    private float _step;
-
-
-    private void Awake()
+    void Awake()
     {
         CalculateCurveLength();
     }
 
     void Update()
     {
-        transform.position = Bezier.GetPoint(
+        transform.position = BezierCubic.GetPoint(
             firstPointContainer.centerPoint,
             firstPointContainer.secondControlPoint,
             secondPointContainer.firstControlPoint,
-            secondPointContainer.centerPoint, t);
+            secondPointContainer.centerPoint,
+            t);
     }
 
-    public List<Transform> GetAllPoints()
+    public override List<Transform> GetAllPoints()
     {
         var points = new List<Transform>
         {
@@ -47,21 +34,23 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
         return points;
     }
 
-    public void CalculateCurveLength()
+    public override void CalculateCurveLength()
     {
-        for (float i = 0; i<= 1;  i+=0.05f)
+        for (float i = 0; i <= 1; i += 0.05f)
         {
-            var a = Bezier.GetPoint(
+            var a = BezierCubic.GetPoint(
             firstPointContainer.centerPoint,
             firstPointContainer.secondControlPoint,
             secondPointContainer.firstControlPoint,
-            secondPointContainer.centerPoint, i);
+            secondPointContainer.centerPoint,
+            i);
 
-            var b = Bezier.GetPoint(
+            var b = BezierCubic.GetPoint(
             firstPointContainer.centerPoint,
             firstPointContainer.secondControlPoint,
             secondPointContainer.firstControlPoint,
-            secondPointContainer.centerPoint, i + 0.05f);
+            secondPointContainer.centerPoint,
+            i + 0.05f);
 
             _curveDistance += Vector3.Distance(a, b);
         }
@@ -70,51 +59,52 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
         _step = 1f / _countOfPoints;
     }
 
-    public float GetCurveDistance()
+    public override float GetCurveDistance()
     {
         return _curveDistance;
     }
 
-    public Vector3 GetPositionByPoint(int pointId)
+    public override Vector3 GetPositionByPoint(int pointId)
     {
         if (pointId >= _countOfPoints)
             return Vector3.zero;
 
         t = _step * pointId;
-        var pos = Bezier.GetPoint(
+        var pos = BezierCubic.GetPoint(
             firstPointContainer.centerPoint,
             firstPointContainer.secondControlPoint,
             secondPointContainer.firstControlPoint,
-            secondPointContainer.centerPoint, t);
-       
+            secondPointContainer.centerPoint,
+            t);
+
         return pos;
     }
 
-    public int GetPointIdByTParametr(float t)
+    public override int GetPointIdByTParametr(float t)
     {
         var pointId = t / _step;
 
         return Convert.ToInt32(pointId);
     }
 
-    public Vector3 GetRotationByPoint(int pointId)
+    public override Vector3 GetRotationByPoint(int pointId)
     {
         if (pointId > _countOfPoints)
             return Vector3.zero;
 
         t = _step * pointId;
-        var rotation = Bezier.GetFirstDerivative(
+        var rotation = BezierCubic.GetFirstDerivative(
             firstPointContainer.centerPoint,
             firstPointContainer.secondControlPoint,
             secondPointContainer.firstControlPoint,
-            secondPointContainer.centerPoint, t);
+            secondPointContainer.centerPoint,
+            t);
 
         return rotation;
     }
 
-    public bool CheckPoint(int pointId)
+    public override bool CheckPoint(int pointId)
     {
         return pointId < _countOfPoints && pointId >= 0;
     }
-
 }

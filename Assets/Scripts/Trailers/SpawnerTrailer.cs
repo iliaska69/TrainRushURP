@@ -7,10 +7,9 @@ public class SpawnerTrailer : MonoBehaviour
 {
     [Range(0,1)][SerializeField] private float startParameter;
     [SerializeField] private BezierCurve curve;
-    [SerializeField] private Rail rail;
-    [SerializeField] private Transform spawnPlace;
+    //[SerializeField] private Rail rail;
     [SerializeField] private bool isSpawnMainTrailer;
-
+    [SerializeField] private Transform spawnPlace;
     [SerializeField] private Vector3 trailerPosition;
     [SerializeField] private Quaternion trailerRotation;
 
@@ -36,11 +35,11 @@ public class SpawnerTrailer : MonoBehaviour
             curve = newCurve;
             var points = curve.GetAllPoints();
 
-            trailerPosition = Bezier.GetPoint(points[0], points[1], points[2], points[3], startParameter);
+            trailerPosition = BezierCubic.GetPoint(points[0], points[1], points[2], points[3], startParameter);
             transform.position = trailerPosition;
 
             trailerRotation = Quaternion.LookRotation(
-                Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
+                BezierCubic.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
             transform.rotation = trailerRotation;
         }
     }

@@ -5,8 +5,12 @@ public class SaveManager : MonoBehaviour
 {
     [SerializeField] private Transform railway;
     [SerializeField] private TrailerEventChanelSO changedMainTrailerEventSO;
-    private List<Trailer> savedTrailers = new List<Trailer>();
 
+    private List<Trailer> savedTrailers = new List<Trailer>();
+    private List<int> savedCurveIds  = new List<int>();
+    private List<int> savedPointIds = new List<int>();
+
+    
 
     public void Save()
     {
@@ -27,7 +31,6 @@ public class SaveManager : MonoBehaviour
         {
             foreach (var trailer in trailers)
             {
-                var trailerMovement = trailer.GetComponent<TrailerMovement>();
                 var newTrailer = Instantiate(trailer, railway);
 
                 var newTrailerMovement = newTrailer.GetComponent<TrailerMovement>();

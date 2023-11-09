@@ -32,11 +32,11 @@ public class Railway : MonoBehaviour
             _dictionaryOfObjectsOnPoints[objectId] = currentPointId;
         }
 
-        var pos = bezierCurves[currentCurveId].GetPositionByPoint(currentPointId);
+        var position = bezierCurves[currentCurveId].GetPositionByPoint(currentPointId);
         currentPointId++;
         _dictionaryOfObjectsOnPoints[objectId] = currentPointId;
 
-        return pos;
+        return position;
     }
 
     public Vector3 GetRotation(int objectId)
@@ -63,6 +63,7 @@ public class Railway : MonoBehaviour
         }
     }
 
+
     void ImplementCurvesAndRails()
     {
         var railarray = GetComponentsInChildren<Rail>();
@@ -81,5 +82,6 @@ public class Railway : MonoBehaviour
     {
         _dictionaryOfObjectsOnCurves.Add(objectId, curveId);
     }
+
 
 }

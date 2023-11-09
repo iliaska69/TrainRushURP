@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4883955283002103781}
   - component: {fileID: 8251781841370040353}
   m_Layer: 0
-  m_Name: BezierPoint
+  m_Name: PointContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ Transform:
   - {fileID: 1471055837329882014}
   - {fileID: 3273812746980510473}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8251781841370040353
 MonoBehaviour:

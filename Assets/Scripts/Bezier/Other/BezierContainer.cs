@@ -17,7 +17,7 @@ public class BezierContainer : MonoBehaviour
             {
                 var parameter = (float)j / segmentsNumber;
 
-                var point = Bezier.GetPoint(
+                var point = BezierCubic.GetPoint(
                     pointContainers[i].centerPoint,
                     pointContainers[i].secondControlPoint,
                     pointContainers[i + 1].firstControlPoint,

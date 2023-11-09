@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 4810502962463191479}
   - component: {fileID: 7588108367393424066}
   m_Layer: 0
-  m_Name: Save Rail
+  m_Name: Obstacle Rail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

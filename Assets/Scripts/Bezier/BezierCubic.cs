@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class Bezier
+public static class BezierCubic
 {
     public static Vector3 GetPoint(Transform p0, Transform p1, Transform p2, Transform p3, float t)
     {

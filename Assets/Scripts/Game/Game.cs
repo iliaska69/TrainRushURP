@@ -15,7 +15,7 @@ public class Game : MonoBehaviour
     private List<Trailer> trailers = new List<Trailer>();
     private int _countOfFinishedTrailers;
     private bool _isVictory;
-    private int moneyBonusFromTrailer;
+    private int _moneyBonusFromTrailer;
 
 
     private void Awake()
@@ -118,16 +118,16 @@ public class Game : MonoBehaviour
 
     private void SetMoneyBonusFromTrailer(int moneyBonys)
     {
-        moneyBonusFromTrailer = moneyBonys;
+        _moneyBonusFromTrailer = moneyBonys;
     }
 
     private void CountWonMoney()
     {
-        if(moneyBonusFromTrailer == 0)
+        if(_moneyBonusFromTrailer == 0)
         {
-            moneyBonusFromTrailer = Shop.instance.GetCurrentShopItem().GetMoneyBonus();
+            _moneyBonusFromTrailer = Shop.instance.GetCurrentShopItem().GetMoneyBonus();
         }
-        var wonMoney = _countOfFinishedTrailers * moneyBonusFromTrailer;
+        var wonMoney = _countOfFinishedTrailers * _moneyBonusFromTrailer;
         Bank.instance.AddMoney(wonMoney);
     }
 }
