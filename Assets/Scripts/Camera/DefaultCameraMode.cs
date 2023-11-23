@@ -8,6 +8,7 @@ public class DefaultCameraMode : BaseCameraMode
     {
         _transform = transform;
         Instantiate();
+        InstantiateSettings();
     }
 
     private void LateUpdate()
@@ -29,6 +30,8 @@ public class DefaultCameraMode : BaseCameraMode
     private void Movement()
     {
         Vector3 targetPosition = _target.position + offset;
+        //Debug.Log("Current position: " + _target.position);
+        //Debug.Log("Target position: " + targetPosition);
         camTransform.position = Vector3.SmoothDamp(
             _transform.position,
             targetPosition, 
@@ -46,9 +49,8 @@ public class DefaultCameraMode : BaseCameraMode
 
     private void InstantiateSettings()
     {
-        camTransform.position = defaultPosition;
-        defaultRotation = Quaternion.Euler(39f, -15.94f, 0);
         if (_target == null) return;
+        defaultRotation = Quaternion.Euler(39f, -15.94f, 0);
         offset = camTransform.position - _target.position;
         smoothTime = 1f;
         settingInstantiated = true;

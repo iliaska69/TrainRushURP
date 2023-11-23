@@ -604,6 +604,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 5657597574554188623}
     m_Modifications:
+    - target: {fileID: 2729284930650293727, guid: 17d52c013209a58478ae8bbe1b4fc402,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3327822187512202195, guid: 17d52c013209a58478ae8bbe1b4fc402,
         type: 3}
       propertyPath: firstPointContainer

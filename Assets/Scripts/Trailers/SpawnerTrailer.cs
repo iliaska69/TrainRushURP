@@ -12,6 +12,8 @@ public class SpawnerTrailer : MonoBehaviour
     [SerializeField] private Transform spawnPlace;
     [SerializeField] private Vector3 trailerPosition;
     [SerializeField] private Quaternion trailerRotation;
+    [SerializeField] private Railway railway;
+
 
     private void Start()
     {
@@ -19,7 +21,6 @@ public class SpawnerTrailer : MonoBehaviour
         var trailer = Instantiate(typeOfTrailer, trailerPosition, trailerRotation, spawnPlace);
         trailer.SetMainTrailer(isSpawnMainTrailer);
 
-        var railway = GetComponentInParent<Railway>();
         railway.ImplementObjectToRailway(trailer.gameObject.GetInstanceID(), curve, startParameter);
         Destroy(gameObject);
     }
@@ -28,14 +29,16 @@ public class SpawnerTrailer : MonoBehaviour
     public virtual void JoinToCurve()
     {
         var hitColliders = Physics.OverlapSphere(transform.position, 0.6f);
+        railway = GetComponentInParent<Railway>();
         foreach (var hit in hitColliders)
         {
             var newCurve = hit.gameObject.GetComponent<BezierCurve>();
             if (newCurve == null) continue;
             curve = newCurve;
             var points = curve.GetAllPoints();
-
-            trailerPosition = BezierCubic.GetPoint(points[0], points[1], points[2], points[3], startParameter);
+            trailerPosition = railway.GetPositionByT(curve, startParameter);
+            Debug.Log(trailerPosition);
+            //trailerPosition = BezierCubic.GetPoint(points[0], points[1], points[2], points[3], startParameter);
             transform.position = trailerPosition;
 
             trailerRotation = Quaternion.LookRotation(

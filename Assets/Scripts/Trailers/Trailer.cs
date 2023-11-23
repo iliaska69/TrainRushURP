@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using TMPro;
 using UnityEngine;
@@ -42,6 +43,14 @@ public class Trailer : MonoBehaviour, IDestroyable
         CollideWithTrailer();
     }
 
+    public TrailerMovement GetTrailerMovementComponent()
+    {
+        if(_myTrailerMovement == null)
+            return null;
+
+        return _myTrailerMovement;
+    }
+
     public void SetActiveJoinablePoint(bool set)
     {
         joinablePoint.SetActive(set);
@@ -73,20 +82,20 @@ public class Trailer : MonoBehaviour, IDestroyable
     {
         _nextTrailer = trialer;
         if (_myTrailerMovement != null)
+        {
             _myTrailerMovement.SetNextTrailer(trialer);
+        }
         else
-            Debug.Log("Next trailer is null");
-    }
-
-    public TrailerMovement GetTrailerMovementComponent()
-    {
-        return _myTrailerMovement;
+        {
+            _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
+            _myTrailerMovement.SetNextTrailer(trialer);
+        }
     }
 
     //«аставл€ет двигатьс€ следующий поезд
     void CollideWithTrailer()
     {
-        var hits = Physics.OverlapSphere(catchGameObject.transform.position, 1.1f, joinableMask);
+        var hits = Physics.OverlapSphere(catchGameObject.transform.position, 1.5f, joinableMask);
         if (hits is null || hits.Length != 1) return;
         foreach (var hit in hits)
         {
@@ -137,13 +146,13 @@ public class Trailer : MonoBehaviour, IDestroyable
             _previousTrailer.SetNextTrailer(_nextTrailer);
         }
 
-        Destroy(gameObject);
-        _myTrailerMovement.enabled = false;
-        boxCollider.enabled = false;
-        animator.SetTrigger("Death");
+        //_myTrailerMovement.enabled = false;
         decrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
+        gameObject.SetActive(false);
 
-        Destroy(gameObject, 3);
+        //boxCollider.enabled = false;
+        //animator.SetTrigger("Death");
+        //Game.instance.DeleteTrailerFromList(this);
     }
 
     private void OnTriggerEnter(Collider other)

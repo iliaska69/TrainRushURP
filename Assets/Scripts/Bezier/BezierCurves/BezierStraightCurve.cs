@@ -59,15 +59,16 @@ public class BezierStraightCurve : BezierCurve
 
     public override Vector3 GetPositionByPoint(int pointId)
     {
+        Debug.Log("KRISA");
         if (pointId >= _countOfPoints)
             return Vector3.zero;
 
         t = _step * pointId;
         var pos = BezierStraight.GetPoint(
-            firstPointContainer.centerPoint
-            , secondPointContainer.centerPoint,
+            firstPointContainer.centerPoint,
+            secondPointContainer.centerPoint,
             t);
-
+        
         return pos;
     }
 

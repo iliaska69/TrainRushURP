@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -6,8 +7,7 @@ using UnityEngine;
 public class Railway : MonoBehaviour
 {
     private List<Rail> rails = new List<Rail>();
-    private List<BezierCurve> bezierCurves= new List<BezierCurve>();
-    private BezierCurve _currentCurve;
+    private List<BezierCurve> bezierCurves = new List<BezierCurve>();
 
     //Key: id trailer, value: Id curve
     private Dictionary<int, int> _dictionaryOfObjectsOnCurves = new Dictionary<int, int>();
@@ -15,9 +15,19 @@ public class Railway : MonoBehaviour
     private Dictionary<int, int> _dictionaryOfObjectsOnPoints = new Dictionary<int, int>();
 
 
+    private void Update()
+    {
+        //Debug.Log(_dictionaryOfObjectsOnPoints.Count);
+    }
+
     void Awake()
     {
         ImplementCurvesAndRails();
+    }
+
+    void Start()
+    {
+        Game.instance.SetRailway(this);
     }
 
     public Vector3 GetNextPointToMove(int objectId)
@@ -36,6 +46,9 @@ public class Railway : MonoBehaviour
         currentPointId++;
         _dictionaryOfObjectsOnPoints[objectId] = currentPointId;
 
+        //Debug.Log("Curve ID " + currentCurveId);
+        //Debug.Log("Point ID " + currentPointId);
+
         return position;
     }
 
@@ -45,22 +58,71 @@ public class Railway : MonoBehaviour
         _dictionaryOfObjectsOnPoints.TryGetValue(objectId, out var currentPointId);
 
         var rotation = bezierCurves[currentCurveId].GetRotationByPoint(currentPointId);
-        
+
         return rotation;
     }
 
     public void ImplementObjectToRailway(int objectId, BezierCurve newCurve, float t)
     {
-        _currentCurve = newCurve;
         for (var i = 0; i < bezierCurves.Count; i++)
         {
             if (newCurve == bezierCurves[i])
             {
                 _dictionaryOfObjectsOnCurves.Add(objectId, i);
-                var pointId =  _currentCurve.GetPointIdByTParametr(t);
+                var pointId = newCurve.GetPointIdByTParametr(t);
                 _dictionaryOfObjectsOnPoints.Add(objectId, pointId);
             }
         }
+    }
+
+    public Vector3 GetPositionByT(BezierCurve newCurve, float t)
+    {
+        var pointId = newCurve.GetPointIdByTParametr(t);
+        //return newCurve.GetPositionByPoint(pointId);
+        return Vector3.one;
+    }
+
+    public Dictionary<int, int> GetDictionaryOfObjectOnCurves()
+    {
+        return _dictionaryOfObjectsOnCurves;
+    }
+
+    public void SetDictionaryOfObjectOnCurves(int key, int value)
+    {
+        if (_dictionaryOfObjectsOnCurves.ContainsKey(key))
+            _dictionaryOfObjectsOnCurves[key] = value;
+        else
+            _dictionaryOfObjectsOnCurves.Add(key, value);
+    }
+
+    public Dictionary<int, int> GetDictionaryOfObjectOnPoints()
+    {
+        return _dictionaryOfObjectsOnPoints;
+    }
+
+    public void SetDictionaryOfObjectOnPoints(int key, int value)
+    {
+        if (_dictionaryOfObjectsOnPoints.ContainsKey(key))
+            _dictionaryOfObjectsOnPoints[key] = value;
+        else
+            _dictionaryOfObjectsOnPoints.Add(key, value);
+    }
+
+    public void ClearRailwayObjects()
+    {
+        _dictionaryOfObjectsOnCurves.Clear();
+        _dictionaryOfObjectsOnPoints.Clear();
+    }
+
+    public void DeleteKeyFromDictionaries(int key)
+    {
+        if (_dictionaryOfObjectsOnCurves.ContainsKey(key) && _dictionaryOfObjectsOnPoints.ContainsKey(key))
+        {
+            _dictionaryOfObjectsOnCurves.Remove(key);
+            _dictionaryOfObjectsOnPoints.Remove(key);
+        }
+        else
+            Debug.Log("This key not contains in dictionaries");
     }
 
 
@@ -77,11 +139,4 @@ public class Railway : MonoBehaviour
             }
         }
     }
-
-    void SetDictionaryOfObjects(int objectId, int curveId)
-    {
-        _dictionaryOfObjectsOnCurves.Add(objectId, curveId);
-    }
-
-
 }

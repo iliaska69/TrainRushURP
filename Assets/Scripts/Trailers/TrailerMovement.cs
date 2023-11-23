@@ -26,6 +26,7 @@ public class TrailerMovement : MonoBehaviour
         if(_isMainTrailer)
             _isReadyToGoing = true;
 
+        speed = 0f;
         _transform = transform;
         _railway = GetComponentInParent<Railway>();
         _gameObjectId = gameObject.GetInstanceID();
@@ -53,6 +54,11 @@ public class TrailerMovement : MonoBehaviour
     {
         _nextTrailer = trailer;
         _nextTrailerTransform = _nextTrailer.transform;
+    }
+
+    public void GetNewNextPointToMove()
+    {
+        _target = _railway.GetNextPointToMove(_gameObjectId);
     }
 
     void MainTrailerMovement()
@@ -155,5 +161,10 @@ public class TrailerMovement : MonoBehaviour
             _isReadyToGoing = value;
 
         _isMainTrailer = value;
+    }
+
+    public void SetIsReadyToGoing(bool value)
+    {
+        _isReadyToGoing = value;
     }
 }
