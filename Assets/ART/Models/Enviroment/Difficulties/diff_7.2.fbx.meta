@@ -4,38 +4,11 @@ ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
-      74: -4998259562691655525
-    second: Circle.007|Circle.003Action
-  - first:
-      74: 3358097546709636436
-    second: Circle.007|Circle.007Action
-  - first:
-      74: 4754741461687018057
-    second: Circle.007|Cube.005Action
-  - first:
-      74: -6933479188619163023
-    second: Circle.007|Cylinder.001Action
-  - first:
       74: 8897831162140266032
     second: Circle.007|Cylinder.001Action.001
-  - first:
-      74: -5892539939802518944
-    second: Circle.007|Cylinder.002Action
-  - first:
-      74: -4939939715074535830
-    second: Circle.007|Cylinder.004Action.001
-  - first:
-      74: 5736956853880995129
-    second: Circle.007|Sphere.002Action
-  - first:
-      74: 5140812496847864211
-    second: Circle.007|Sphere.003Action
-  - first:
-      74: -2405925029145854096
-    second: Circle.007|Sphere.004Action
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1

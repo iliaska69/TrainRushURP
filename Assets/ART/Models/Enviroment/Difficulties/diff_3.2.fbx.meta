@@ -35,7 +35,7 @@ ModelImporter:
     second: Sphere.004|Sphere.004Action
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
