@@ -37,7 +37,6 @@ public class SpawnerTrailer : MonoBehaviour
             curve = newCurve;
             var points = curve.GetAllPoints();
             trailerPosition = railway.GetPositionByT(curve, startParameter);
-            Debug.Log(trailerPosition);
             //trailerPosition = BezierCubic.GetPoint(points[0], points[1], points[2], points[3], startParameter);
             transform.position = trailerPosition;
 

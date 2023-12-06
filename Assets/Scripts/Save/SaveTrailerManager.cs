@@ -33,18 +33,18 @@ public class SaveTrailerManager : MonoBehaviour
     {
         ClearPrivateCollections();
         CopyFromRailwayToPrivateCollections();
-        
-        ImplementNextAndPreviousTrailer();
     }
 
     public void ActivateSavedTrailers()
     {
         SetRailwayDictionaries();
-        foreach(var trailer in _savedTrailers)
+        ImplementNextAndPreviousTrailer();
+        foreach (var trailer in _savedTrailers)
         {
             trailer.gameObject.SetActive(true);
             trailer.GetTrailerMovementComponent().GetNewNextPointToMove();
             trailer.GetTrailerMovementComponent().SetSpeed(0.1f);
+            trailer.GetTrailerMovementComponent().enabled = true;
             _dictionaryOfObjectsWithPositions.TryGetValue(trailer.gameObject.GetInstanceID(), out var trailerPosition);
             trailer.transform.position = trailerPosition;
             _dictionaryOfObjectsWithRotations.TryGetValue(trailer.gameObject.GetInstanceID(), out var trailerRotation);
@@ -55,22 +55,23 @@ public class SaveTrailerManager : MonoBehaviour
 
     public void ImplementNextAndPreviousTrailer()
     {
-        //for (var i = 0; i < savedTrailers.Count; i++)
-        //{
-        //    if (i == 0)
-        //    {
-        //        savedTrailers[i].SetNextTrailer(savedTrailers[i + 1]);
-        //    }
-        //    else if (i == savedTrailers.Count - 1)
-        //    {
-        //        savedTrailers[i].SetPreviousTrailer(savedTrailers[i - 1]);
-        //    }
-        //    else
-        //    {
-        //        savedTrailers[i].SetNextTrailer(savedTrailers[i + 1]);
-        //        savedTrailers[i].SetPreviousTrailer(savedTrailers[i - 1]);
-        //    }
-        //}
+        for (var i = 0; i < _savedTrailers.Count; i++)
+        {
+            if (i == 0)
+            {
+                _savedTrailers[i].SetNextTrailer(_savedTrailers[i + 1]);
+            }
+            else if (i == _savedTrailers.Count - 1)
+            {
+                _savedTrailers[i].SetPreviousTrailer(_savedTrailers[i - 1]);
+                _savedTrailers[i].SetMainTrailer(true);
+            }
+            else
+            {
+                _savedTrailers[i].SetNextTrailer(_savedTrailers[i + 1]);
+                _savedTrailers[i].SetPreviousTrailer(_savedTrailers[i - 1]);
+            }
+        }
     }
 
     private void SetRailwayDictionaries()
@@ -105,6 +106,8 @@ public class SaveTrailerManager : MonoBehaviour
         {
             _savedTrailers.Add(trailer);
         }
+
+        ImplementNextAndPreviousTrailer();
 
         SaveTrailersPosition();
         SaveTrailersRotation();

@@ -5,9 +5,9 @@ public class TrailerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 0f;
     [SerializeField] private float maxSpeed = 7f;
-    [SerializeField] private float minSpeed = 1f;
-    [SerializeField] private float speedAmplitude = 0.5f;
-    [SerializeField] private float rotationSmooth = 0.1f;
+    [SerializeField] private float minSpeed = 0f;
+    [SerializeField] private float speedAmplitude = 1f;
+    [SerializeField] private float rotationSmooth = 0.05f;
 
     private bool _isReadyToGoing = false;
     private Vector3 _target;
@@ -20,6 +20,7 @@ public class TrailerMovement : MonoBehaviour
     private int _gameObjectId;
 
     private float _distanceBetweenTrailers;
+
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class TrailerMovement : MonoBehaviour
         if (!_isReadyToGoing) return;
         if (Time.timeScale == 0f) return;
 
+        SpeedControl();
         if (_isMainTrailer)
         {
             MainTrailerMovement();
@@ -47,8 +49,8 @@ public class TrailerMovement : MonoBehaviour
             NotMainTrailerMovement();
         }
         TrailerRotation();
-        SpeedControl();
     }
+
 
     public void SetNextTrailer(Trailer trailer)
     {
@@ -59,6 +61,45 @@ public class TrailerMovement : MonoBehaviour
     public void GetNewNextPointToMove()
     {
         _target = _railway.GetNextPointToMove(_gameObjectId);
+    }
+
+    public void SetIsFinish(bool set)
+    {
+        _isFinish = set;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void AddSpeed(float newSpeed)
+    {
+        speed += newSpeed;
+    }
+
+    public void SetIsMainTrailer(bool value)
+    {
+        if(value)
+            _isReadyToGoing = value;
+
+        _isMainTrailer = value;
+    }
+
+    public void SetIsReadyToGoing(bool value)
+    {
+        _isReadyToGoing = value;
+    }
+
+    public void ClearNextTrailer()
+    {
+        _nextTrailer = null;
+        _nextTrailerTransform = null;
     }
 
     void MainTrailerMovement()
@@ -83,6 +124,7 @@ public class TrailerMovement : MonoBehaviour
         if (_nextTrailer == null ||
             _distanceBetweenTrailers < 2.8f)
         {
+            //Debug.Log("Дистанция уменьшилась" + _distanceBetweenTrailers);
             return;
         }
         else
@@ -133,38 +175,5 @@ public class TrailerMovement : MonoBehaviour
     {
         if (speed > maxSpeed) return;
         speed += speedAmplitude;
-    }
-
-    public void SetIsFinish(bool set)
-    {
-        _isFinish = set;
-    }
-
-    public float GetSpeed()
-    {
-        return speed;
-    }
-
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
-
-    public void AddSpeed(float newSpeed)
-    {
-        speed += newSpeed;
-    }
-
-    public void SetIsMainTrailer(bool value)
-    {
-        if(value)
-            _isReadyToGoing = value;
-
-        _isMainTrailer = value;
-    }
-
-    public void SetIsReadyToGoing(bool value)
-    {
-        _isReadyToGoing = value;
     }
 }

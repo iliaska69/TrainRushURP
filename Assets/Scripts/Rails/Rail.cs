@@ -56,7 +56,6 @@ public class Rail : MonoBehaviour, IJoinable
 
             var joinablePoint = point.GetJoinablePoint();
             transform.position = joinablePoint;
-            frontPoint.position = joinablePoint;
             transform.rotation = Quaternion.LookRotation(rail.GetDirection());
         }
     }

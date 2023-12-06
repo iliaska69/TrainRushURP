@@ -121,4 +121,6 @@ public class BezierCurve : MonoBehaviour, IBezierCurve
         //return pointId < _countOfPoints && pointId >= 0;
     }
 
+    public int GetPointCount() { return _countOfPoints; }
+
 }

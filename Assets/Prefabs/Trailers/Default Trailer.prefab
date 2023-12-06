@@ -241,9 +241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   maxSpeed: 7
-  minSpeed: 1
-  speedAmplitude: 0.1
-  isReadyToGoing: 0
+  minSpeed: 0
+  speedAmplitude: 1
   rotationSmooth: 0.1
 --- !u!114 &6194290156895013461
 MonoBehaviour:

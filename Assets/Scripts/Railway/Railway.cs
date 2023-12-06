@@ -41,7 +41,14 @@ public class Railway : MonoBehaviour
             currentPointId = 0;
             _dictionaryOfObjectsOnPoints[objectId] = currentPointId;
         }
-
+        var curvePointCount = bezierCurves[currentCurveId].GetPointCount();
+        if (currentPointId >= curvePointCount - 5)
+        {
+            currentCurveId++;
+            _dictionaryOfObjectsOnCurves[objectId] = currentCurveId;
+            currentPointId = 0;
+            _dictionaryOfObjectsOnPoints[objectId] = currentPointId;
+        }
         var position = bezierCurves[currentCurveId].GetPositionByPoint(currentPointId);
         currentPointId++;
         _dictionaryOfObjectsOnPoints[objectId] = currentPointId;
@@ -78,8 +85,8 @@ public class Railway : MonoBehaviour
     public Vector3 GetPositionByT(BezierCurve newCurve, float t)
     {
         var pointId = newCurve.GetPointIdByTParametr(t);
-        //return newCurve.GetPositionByPoint(pointId);
-        return Vector3.one;
+        Debug.Log(pointId);
+        return newCurve.GetPositionByPoint(pointId);
     }
 
     public Dictionary<int, int> GetDictionaryOfObjectOnCurves()
