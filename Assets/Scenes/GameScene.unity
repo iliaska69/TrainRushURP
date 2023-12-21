@@ -458,8 +458,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopItems:
   - {fileID: 11400000, guid: cace70b911b0fd64981093d60365d587, type: 2}
-  - {fileID: 11400000, guid: 042b3e94148db744cb23bedf7f688c84, type: 2}
-  - {fileID: 11400000, guid: 461c068718108c84795313453984ec27, type: 2}
+  - {fileID: 11400000, guid: 0385297d97b7cb643964bb194e901291, type: 2}
+  - {fileID: 11400000, guid: 22689d461a7defc468e2ff83d312ef41, type: 2}
+  - {fileID: 11400000, guid: e1a9f12fabd2fad41b0854f02e634824, type: 2}
+  - {fileID: 11400000, guid: 126b1f2c6b0246f47a5bffa592b9bdf5, type: 2}
+  - {fileID: 11400000, guid: 157460268e7bb6c4c85b2708e848a17d, type: 2}
+  - {fileID: 11400000, guid: d91cbc56488797a4b927d5ee8ca58a74, type: 2}
+  - {fileID: 11400000, guid: ff8b908e9b8d87440b38bd9674342162, type: 2}
+  - {fileID: 11400000, guid: 7649a78251b0f3241b0311ca2c2797c1, type: 2}
+  - {fileID: 11400000, guid: 3ff0f4b8b05fa334fab127650b5d80c1, type: 2}
+  - {fileID: 11400000, guid: 6c335ba5e805bc8428675c169cc409e8, type: 2}
   currentShopItem: {fileID: 11400000, guid: cace70b911b0fd64981093d60365d587, type: 2}
 --- !u!4 &1892503181
 Transform:

@@ -34,7 +34,7 @@ public class Shop : MonoBehaviour
             return false;
         }
         shopItem.isBuy = true;
-        //shopItem.SetItemPurchased(true);
+        shopItem.SetItemPurchased(true);
         Game.instance.SetTrailerSkin(shopItem);
         Bank.instance.SubstractMoney(price);
 

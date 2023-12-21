@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 1657306753092957815}
   - component: {fileID: 2689820755075616451}
   - component: {fileID: 6340405443991951974}
+  - component: {fileID: 2211226732952275026}
   m_Layer: 5
   m_Name: ScrollPanelHorizontaSlice
   m_TagString: Untagged
@@ -613,6 +614,35 @@ MonoBehaviour:
   buyButton: {fileID: 3782811467037214111}
   setButton: {fileID: 3821767013368300372}
   shopItemChanged: {fileID: 11400000, guid: e4d13d3e761f26e459360503c8473700, type: 2}
+  shopArrowOnClicked: {fileID: 11400000, guid: 9229f76c246e4424f9f0bdbe5c3d7e6c, type: 2}
+--- !u!114 &2211226732952275026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314466948478379614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25eb0251ae838314ea33f4aee41bbccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 37a6c8e6084c637448860cd91b7d7827, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6340405443991951974}
+        m_TargetAssemblyTypeName: ShopUIController, Assembly-CSharp
+        m_MethodName: CanGetSkin
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2926059972768634700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.21100001}
-  m_AnchoredPosition: {x: 0, y: 7.6183}
+  m_AnchoredPosition: {x: 0, y: 7.618286}
   m_SizeDelta: {x: -1520, y: -94.049}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6202972331534638762
@@ -1488,7 +1518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.21100001}
   m_AnchorMax: {x: 1, y: 0.42800003}
-  m_AnchoredPosition: {x: 46.3209, y: 0.060028076}
+  m_AnchoredPosition: {x: 46.320923, y: 0.060058594}
   m_SizeDelta: {x: -960.2535, y: -0.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7140992928455427701

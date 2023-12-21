@@ -15,4 +15,5 @@ MonoBehaviour:
   isHorizontal: 0
   verticalSlices:
   - {fileID: 2689820755075616451, guid: 7eb33e79fa057e44ca355d51ec9a1580, type: 3}
+  - {fileID: 2689820755075616451, guid: fc881cc8c142470449c35166dc9df7d9, type: 3}
   horizontalSlices: []

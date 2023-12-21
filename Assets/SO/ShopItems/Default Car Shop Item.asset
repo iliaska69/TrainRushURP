@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Default Car Shop Item
   m_EditorClassIdentifier: 
   isBuy: 1
-  price: 0
-  skin: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca, type: 3}
+  price: 100
+  skin: {fileID: 2886558175707233064, guid: 2f7e62f566b4557499c56e0cc595e2aa, type: 3}
   speed: 3
   moneyBonus: 5

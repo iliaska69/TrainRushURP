@@ -1,8 +1,6 @@
-using System;
-using System.Net;
-using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TrailerMovement))]
 public class Trailer : MonoBehaviour, IDestroyable
 {
     [SerializeField] private GameObject catchGameObject;
@@ -45,8 +43,8 @@ public class Trailer : MonoBehaviour, IDestroyable
 
     public TrailerMovement GetTrailerMovementComponent()
     {
-        if(_myTrailerMovement == null)
-            return null;
+        if (_myTrailerMovement == null)
+            _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
 
         return _myTrailerMovement;
     }
