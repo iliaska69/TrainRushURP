@@ -1,38 +1,8 @@
 fileFormatVersion: 2
-guid: 9962792e2b3f64c0ab3f10c4a335dce7
+guid: 6efb5374e7a9d45719b92587677b65d4
 ModelImporter:
   serializedVersion: 22103
-  internalIDToNameTable:
-  - first:
-      74: -6734735614429863303
-    second: Sphere.005|Circle.003Action
-  - first:
-      74: -5765089407230137672
-    second: Sphere.005|Circle.007Action
-  - first:
-      74: -4248815337125857417
-    second: Sphere.005|Cube.005Action
-  - first:
-      74: 1498345028837225445
-    second: Sphere.005|Cylinder.001Action
-  - first:
-      74: -4370748160657961554
-    second: Sphere.005|Cylinder.001Action.001
-  - first:
-      74: 2197659979228188272
-    second: Sphere.005|Cylinder.002Action
-  - first:
-      74: -4484936717154956886
-    second: Sphere.005|Cylinder.004Action.001
-  - first:
-      74: -1022090997900398003
-    second: Sphere.005|Sphere.002Action
-  - first:
-      74: 6221637294675091920
-    second: Sphere.005|Sphere.003Action
-  - first:
-      74: -6142004698980406043
-    second: Sphere.005|Sphere.004Action
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 0
