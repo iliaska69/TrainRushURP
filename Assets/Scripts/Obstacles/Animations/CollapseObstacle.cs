@@ -14,9 +14,13 @@ public class CollapseObstacle : MonoBehaviour
 
     private bool _isMovingFirst;
     private bool _isMovingSecond;
+    private float _startPositionXFirstHemisphere;
+    private float _startPositionYSecondHemisphere;
 
     void Start()
     {
+        _startPositionXFirstHemisphere = firstHemisphere.position.x;
+        _startPositionYSecondHemisphere = secondHemisphere.position.x;
         CollapseFirstSphereAnimation();
         CollapseSecondSphereAnimation();
     }
@@ -56,7 +60,7 @@ public class CollapseObstacle : MonoBehaviour
 
     void ReturnFirstAnimation()
     {
-        firstHemisphere.DOLocalMoveX(0f, moveDuration)
+        firstHemisphere.DOLocalMoveX(_startPositionXFirstHemisphere, moveDuration)
         .SetEase(Ease.InOutQuad)
         .OnComplete(() => OnCompleteReturnFirstAnimation());
     }
@@ -68,7 +72,7 @@ public class CollapseObstacle : MonoBehaviour
 
     void ReturnSecondAnimation()
     {
-        secondHemisphere.DOLocalMoveX(0f, moveDuration)
+        secondHemisphere.DOLocalMoveX(_startPositionYSecondHemisphere, moveDuration)
         .SetEase(Ease.InOutQuad)
         .OnComplete(() => OnCompleteReturnSecondAnimation());
 

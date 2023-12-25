@@ -9,11 +9,11 @@ public class ObstacleRotationY : MonoBehaviour
     [SerializeField] private float _delayBetweenAnimations;
 
     private bool isRotating;
-    private float initialRotationY;
 
 
     void Start()
     {
+        Debug.Log(transform.rotation.y);
         StartRotation();
     }
 
@@ -24,7 +24,7 @@ public class ObstacleRotationY : MonoBehaviour
             isRotating = true;
 
             // Ќачать вращение с учетом начального угла
-            transform.DOLocalRotate(new Vector3(0f, 360f, 0f), rotationDuration, RotateMode.WorldAxisAdd)
+            transform.DORotate(new Vector3(0f, 360f, 0f), rotationDuration, RotateMode.WorldAxisAdd)
                 .SetEase(Ease.Linear)
                 .OnKill(() => OnRotationComplete());
         }
