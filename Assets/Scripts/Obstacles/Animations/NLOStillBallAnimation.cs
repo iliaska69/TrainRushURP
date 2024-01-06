@@ -1,18 +1,16 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NLOStillBallAnimation : MonoBehaviour
 {
-    [SerializeField] private Transform coreTransform;
+    [SerializeField] private Transform ballTransform;
     [SerializeField] private Transform target;
     [SerializeField] private float duration;
     [SerializeField] private float power;
     [SerializeField] private Transform nloTargetTransform;
     [SerializeField] private GameObject nloAnimatedObject;
-    
-    
+
+
     private Quaternion _startRotation;
     private Vector3 _endPos;
 
@@ -23,20 +21,36 @@ public class NLOStillBallAnimation : MonoBehaviour
     {
         _endPos = transform.position;
         _startRotation = nloAnimatedObject.transform.rotation;
-        Jump();
+        TakeOff();
         LevitationNlo();
     }
 
-    void Jump()
+    void TakeOff()
     {
-        coreTransform
+        ballTransform
             .DOMoveY(nloTargetTransform.transform.position.y, 1.8f)
             .SetEase(Ease.InOutCubic)
-            .OnComplete(()
-                => coreTransform.DOJump(_endPos, power, 1, duration)
-                                .SetEase(Ease.OutBounce)
-                                .OnComplete(() => Invoke("Jump", 2f)));
+            .OnComplete(() => BallBalancing());
     }
+
+    void BallBalancing()
+    {
+        Sequence mySequence = DOTween.Sequence();
+        ballTransform
+            .DOMoveY(ballTransform.position.y - 1f, 1f)
+            .SetEase(Ease.InOutSine)
+            .SetLoops(5, LoopType.Yoyo)
+            .OnComplete(() => ThrowBall());
+    }
+
+    void ThrowBall()
+    {
+        ballTransform
+            .DOJump(_endPos, power, 1, duration)
+            .SetEase(Ease.OutBounce)
+            .OnComplete(() => Invoke("TakeOff", 0.5f));
+    }
+
 
     void LevitationNlo()
     {

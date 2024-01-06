@@ -78,6 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679320aa5b9a7a04d8a798dadb4fed2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trampolines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   jumpDuration: 2
   jumpHeight: 2.5
   startPosition: {x: -6.32, y: 1.127, z: 0}

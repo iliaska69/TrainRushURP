@@ -13,8 +13,7 @@ public class ObstacleRotationY : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(transform.rotation.y);
-        StartRotation();
+        Invoke("StartRotation", 2f);
     }
 
     void StartRotation()

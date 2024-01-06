@@ -1,8 +1,10 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleNineAnimation : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> trampolines = new List<GameObject>();
     [SerializeField] private float jumpDuration;
     [SerializeField] private float jumpHeight;
     [SerializeField] private Vector3 startPosition;
@@ -22,6 +24,14 @@ public class ObstacleNineAnimation : MonoBehaviour
 
         transform.DOLocalRotate(new Vector3(0f, 0f, -90f), jumpDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear);
+
+        trampolines[0].transform
+            .DOMoveY(trampolines[0].transform.position.y + 0.5f, 0.3f)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(
+                () => trampolines[0].transform
+                .DOMoveY(trampolines[0].transform.position.y - 0.5f, 1f)
+                .SetEase(Ease.Linear));
     }
 
     private void SecondJump()
@@ -32,6 +42,14 @@ public class ObstacleNineAnimation : MonoBehaviour
 
         transform.DOLocalRotate(new Vector3(0f, 0f, 180f), jumpDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear);
+
+        trampolines[1].transform
+            .DOMoveY(trampolines[1].transform.position.y + 0.5f, 0.3f)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(
+                () => trampolines[1].transform
+                .DOMoveY(trampolines[1].transform.position.y - 0.5f, 1f)
+                .SetEase(Ease.Linear));
     }
 
     private void ThreeJump()

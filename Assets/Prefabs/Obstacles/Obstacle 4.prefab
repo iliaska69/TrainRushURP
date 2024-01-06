@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2958228452492865510}
   m_Layer: 0
-  m_Name: AnimatedCore
+  m_Name: AnimatedBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d992b99eba6d0438fc7321baac4df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coreTransform: {fileID: 2958228452492865510}
+  ballTransform: {fileID: 2958228452492865510}
   target: {fileID: 236990942475795967}
   duration: 3.5
   power: 8
