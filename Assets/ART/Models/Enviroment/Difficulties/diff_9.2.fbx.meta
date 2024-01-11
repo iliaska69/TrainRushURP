@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: 4531f69beabaa43caae963e70137a2db
+guid: ba8a175b214514ad7a894d7e06361c8d
 ModelImporter:
   serializedVersion: 22103
-  internalIDToNameTable:
-  - first:
-      74: -274044062031436977
-    second: Sphere.006|Cylinder.001Action.001
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
