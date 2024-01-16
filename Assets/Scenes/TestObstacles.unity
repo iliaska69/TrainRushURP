@@ -938,7 +938,7 @@ PrefabInstance:
     - target: {fileID: 6066538833248617525, guid: 1c73c1686235fae4fa029f8a5aabc663,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6447840760592235365, guid: 1c73c1686235fae4fa029f8a5aabc663,
         type: 3}
@@ -948,7 +948,7 @@ PrefabInstance:
     - target: {fileID: 6447840760592235365, guid: 1c73c1686235fae4fa029f8a5aabc663,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.27
       objectReference: {fileID: 0}
     - target: {fileID: 6447840760592235365, guid: 1c73c1686235fae4fa029f8a5aabc663,
         type: 3}
@@ -958,7 +958,7 @@ PrefabInstance:
     - target: {fileID: 6447840760592235365, guid: 1c73c1686235fae4fa029f8a5aabc663,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 12.48
       objectReference: {fileID: 0}
     - target: {fileID: 6447840760592235365, guid: 1c73c1686235fae4fa029f8a5aabc663,
         type: 3}
@@ -1009,6 +1009,7 @@ GameObject:
   - component: {fileID: 1886158498}
   - component: {fileID: 1886158497}
   - component: {fileID: 1886158496}
+  - component: {fileID: 1886158499}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1082,6 +1083,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1886158499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886158495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &1891480077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1153,7 +1187,7 @@ PrefabInstance:
     - target: {fileID: 4109377536197341932, guid: 61706843493497a4d809b4ac9ea0b10d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

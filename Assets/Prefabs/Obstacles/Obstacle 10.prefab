@@ -474,7 +474,7 @@ MonoBehaviour:
   - {fileID: 2668290127123092580}
   - {fileID: 8256899353541752155}
   - {fileID: 1154322530786139470}
-  pathDuration: 3
+  pathDuration: 5
   firstPathRotationZ: -179
   secondPathRotationZ: 0
   rotateMode: 0

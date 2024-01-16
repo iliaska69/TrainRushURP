@@ -15,7 +15,7 @@ public class ObstacleNineAnimation : MonoBehaviour
     {
         Invoke("FirstJump", 1f);
     }
-
+    //не доделан, дождаться батутов
     private void FirstJump()
     {
         transform.DOLocalJump(secondPosition, jumpHeight, 1, jumpDuration)

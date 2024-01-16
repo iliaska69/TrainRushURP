@@ -43,7 +43,5 @@ public class WheelOfFortuneUIController : MonoBehaviour
 
         if (winneRewardIndex >= 0)
             animationRollWheelOfFortune.Roll(winneRewardIndex, _rewards.Count);
-
-        Debug.Log("Log");
     }
 }

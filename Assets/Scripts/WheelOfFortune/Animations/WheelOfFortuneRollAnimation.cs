@@ -10,7 +10,6 @@ public class WheelOfFortuneRollAnimation : MonoBehaviour
 
     int _angleOfReward;
     bool _isRolling;
-
     float _rotationZ;
 
     public void Roll(int winnerElementIndex, int countOfRewards)
@@ -24,31 +23,13 @@ public class WheelOfFortuneRollAnimation : MonoBehaviour
         var lastRoll = _angleOfReward * winnerElementIndex - Random.Range(0 + fivePercentOfAngle, _angleOfReward - fivePercentOfAngle);
         _rotationZ = 360f * countOfRolls + lastRoll;
 
-        FirstRoll();
-    }
-
-
-    private void FirstRoll()
-    {
         transform.DORotate(new Vector3(0f, 0f, _rotationZ), countOfRolls * 2, RotateMode.FastBeyond360)
                 .SetEase(Ease.OutCirc).OnComplete(() => OnCompleteRollAnimation());
     }
-
 
     private void OnCompleteRollAnimation()
     {
         _isRolling = false;
         finishRollAnimationEvenSO.RaiseEvent();
-    }
-
-    [Button("Roll")]
-    public void Roll1()
-    {
-        if (!_isRolling)
-        {
-            _isRolling = true;
-            transform.DORotate(new Vector3(0f, 0f, 360), 1, RotateMode.FastBeyond360)
-                .SetEase(Ease.Linear);
-        }
     }
 }
