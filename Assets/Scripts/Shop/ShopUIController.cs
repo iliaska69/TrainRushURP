@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,11 +11,14 @@ public class ShopUIController : MonoBehaviour
     [SerializeField] private GameObject setButton;
 
     [SerializeField] private ShopItemEventChanelSO shopItemChanged;
+    [SerializeField] private IntEventChannelSO shopArrowOnClicked;
+    
 
     private List<ShopItem> _shopItems = new List<ShopItem>();
     private ShopItem _currentUIItem;
     private int _currentShopItemIndex;
     private ShopItem _currentTrailerSkin;
+    private bool _isCanGetNewSkin = true;
 
 
     void Start()
@@ -44,6 +48,9 @@ public class ShopUIController : MonoBehaviour
     //Листаем машинки вправо
     public void GetNextSkin()
     {
+        if (!_isCanGetNewSkin) return;
+        _isCanGetNewSkin = false;
+
         if (_currentShopItemIndex == _shopItems.Count - 1) return;
 
         _currentShopItemIndex++;
@@ -52,6 +59,7 @@ public class ShopUIController : MonoBehaviour
         _currentUIItem = _shopItems[_currentShopItemIndex];
 
         shopItemChanged.RaiseEvent(_currentUIItem);
+        shopArrowOnClicked.RaiseEvent(-1);
 
         if (!leftButton.activeSelf) leftButton.SetActive(true);
 
@@ -61,6 +69,9 @@ public class ShopUIController : MonoBehaviour
     //Листаем машинки влево
     public void GetPreviousSkin()
     {
+        if (!_isCanGetNewSkin) return;
+        _isCanGetNewSkin = false;
+
         if (_currentShopItemIndex <= 0) return;
         
         _currentShopItemIndex--;
@@ -69,6 +80,7 @@ public class ShopUIController : MonoBehaviour
         _currentUIItem = _shopItems[_currentShopItemIndex];
 
         shopItemChanged.RaiseEvent(_currentUIItem);
+        shopArrowOnClicked.RaiseEvent(1);
 
         if (!rightButton.activeSelf) rightButton.SetActive(true);
 
@@ -92,6 +104,11 @@ public class ShopUIController : MonoBehaviour
         Shop.instance.SetCurrentShopItem(_currentUIItem);
         _currentTrailerSkin = _currentUIItem;
         setButton.SetActive(false);
+    }
+
+    public void CanGetSkin(int value)
+    {
+        _isCanGetNewSkin = value != 0;
     }
 
     private void BuySetButtonsManager()

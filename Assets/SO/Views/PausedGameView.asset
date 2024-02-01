@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: PausedGameView
   m_EditorClassIdentifier: 
-  slices:
+  isHorizontal: 0
+  verticalSlices:
   - {fileID: 2689820755075616451, guid: f57aedc93223e194b8c21499f3d5189e, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: c47703bba0eca434fa8da83fefad953a, type: 3}

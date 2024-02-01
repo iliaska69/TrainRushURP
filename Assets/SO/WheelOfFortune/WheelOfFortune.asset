@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd566704adca3d742874d756b5a12414, type: 3}
+  m_Name: WheelOfFortune
+  m_EditorClassIdentifier: 
+  viewOfWheelOfFortune: {fileID: 11400000, guid: e5439ffe29cde954f9c0f4ba088cb511,
+    type: 2}
+  rewards:
+  - rid: 8800480361900146695
+  - rid: 8800480361900146696
+  - rid: 8800480361900146697
+  - rid: 8800480361900146698
+  typeOfReward: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8800480361900146695
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 12ee36ee9e14c8642a09d735c3f2a891, type: 3}
+        Count: 100
+    - rid: 8800480361900146696
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 12ee36ee9e14c8642a09d735c3f2a891, type: 3}
+        Count: 200
+    - rid: 8800480361900146697
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 12ee36ee9e14c8642a09d735c3f2a891, type: 3}
+        Count: 300
+    - rid: 8800480361900146698
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 12ee36ee9e14c8642a09d735c3f2a891, type: 3}
+        Count: 400

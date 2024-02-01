@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -7,10 +8,11 @@ public class Rail : MonoBehaviour, IJoinable
     [SerializeField] protected Transform firstPointForDirection;
     [SerializeField] protected Transform secondPointForDirection;
     [SerializeField] protected Transform frontPoint;
-    [SerializeField] protected Transform curve;
     [SerializeField] protected bool openedToMovement;
 
     public GameObject GameObject => gameObject;
+
+    [SerializeField] protected List<BezierCurve> _curves;
 
 
     public virtual Vector3 GetDirection()
@@ -35,9 +37,9 @@ public class Rail : MonoBehaviour, IJoinable
         openedToMovement = license;
     }
 
-    public virtual BezierCurve GetCurve()
+    public virtual List<BezierCurve> GetCurves()
     {
-        return curve.GetComponent<BezierCurve>();
+        return _curves;
     }
 
     [Button("Join")]
@@ -54,8 +56,22 @@ public class Rail : MonoBehaviour, IJoinable
 
             var joinablePoint = point.GetJoinablePoint();
             transform.position = joinablePoint;
-            frontPoint.position = joinablePoint;
             transform.rotation = Quaternion.LookRotation(rail.GetDirection());
+        }
+    }
+
+    [Button("Fill Curves List")]
+    public virtual void FillCurvesList()
+    {
+        if (_curves != null)
+            _curves.Clear();
+
+        var curves = gameObject.GetComponentsInChildren<BezierCurve>();
+
+        
+        for (var i = 0; i< curves.Length; i++)
+        {
+            _curves.Add(curves[i]);
         }
     }
 

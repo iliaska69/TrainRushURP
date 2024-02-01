@@ -2,23 +2,24 @@ using UnityEngine;
 
 public class DefaultCameraMode : BaseCameraMode
 {
-    private Vector3 defaultPosition = new Vector3(2.1f, 6.86f, -5f);
+    private Vector3 defaultPosition = new Vector3(4.7f, 15.2f, -10.4f);
 
     private void Start()
     {
+        _transform = transform;
         Instantiate();
-        
+        InstantiateSettings();
     }
 
     private void LateUpdate()
     {
-        if (target == null) return;
+        if (_target == null) return;
         Movement();
     }
 
     private void Update()
     {
-        if(target == null && !settingInstantiated)
+        if (!settingInstantiated || _target == null)
         {
             SetTargetTrailer();
             InstantiateSettings();
@@ -28,8 +29,14 @@ public class DefaultCameraMode : BaseCameraMode
 
     private void Movement()
     {
-        Vector3 targetPosition = target.position + offset;
-        camTransform.position = Vector3.SmoothDamp(_transform.position, targetPosition, ref velocity, smoothTime);
+        Vector3 targetPosition = _target.position + offset;
+        //Debug.Log("Current position: " + _target.position);
+        //Debug.Log("Target position: " + targetPosition);
+        camTransform.position = Vector3.SmoothDamp(
+            _transform.position,
+            targetPosition, 
+            ref velocity,
+            smoothTime);
     }
 
     private void Rotation()
@@ -42,12 +49,10 @@ public class DefaultCameraMode : BaseCameraMode
 
     private void InstantiateSettings()
     {
-        _transform = transform;
-        camTransform.position = defaultPosition;
-        defaultRotation = Quaternion.Euler(39f, -14f, 0);
-        if (target == null) return;
-        offset = camTransform.position - target.position;
-        smoothTime = 0.2f;
+        if (_target == null) return;
+        defaultRotation = Quaternion.Euler(33.41f, -7.4f, 0);
+        offset = camTransform.position - _target.position;
+        smoothTime = 1f;
         settingInstantiated = true;
     }
 }

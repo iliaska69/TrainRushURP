@@ -7,19 +7,21 @@ public class SpawnerTrailer : MonoBehaviour
 {
     [Range(0,1)][SerializeField] private float startParameter;
     [SerializeField] private BezierCurve curve;
-    [SerializeField] private Transform spawnPlace;
+    //[SerializeField] private Rail rail;
     [SerializeField] private bool isSpawnMainTrailer;
-
+    [SerializeField] private Transform spawnPlace;
     [SerializeField] private Vector3 trailerPosition;
     [SerializeField] private Quaternion trailerRotation;
+    [SerializeField] private Railway railway;
+
 
     private void Start()
     {
         var typeOfTrailer = Game.instance.GetTrailerSkin();
         var trailer = Instantiate(typeOfTrailer, trailerPosition, trailerRotation, spawnPlace);
-        var trailerMovementComponent = trailer.GetComponent<TrailerMovement>();
-        trailerMovementComponent.SetStartPosition(curve, startParameter);
         trailer.SetMainTrailer(isSpawnMainTrailer);
+
+        railway.ImplementObjectToRailway(trailer.gameObject.GetInstanceID(), curve, startParameter);
         Destroy(gameObject);
     }
 
@@ -27,19 +29,19 @@ public class SpawnerTrailer : MonoBehaviour
     public virtual void JoinToCurve()
     {
         var hitColliders = Physics.OverlapSphere(transform.position, 0.6f);
+        railway = GetComponentInParent<Railway>();
         foreach (var hit in hitColliders)
         {
             var newCurve = hit.gameObject.GetComponent<BezierCurve>();
             if (newCurve == null) continue;
             curve = newCurve;
             var points = curve.GetAllPoints();
-
-            trailerPosition = Bezier.GetPoint(points[0], points[1], points[2], points[3], startParameter);
-            Debug.Log(trailerPosition);
+            trailerPosition = railway.GetPositionByT(curve, startParameter);
+            //trailerPosition = BezierCubic.GetPoint(points[0], points[1], points[2], points[3], startParameter);
             transform.position = trailerPosition;
 
             trailerRotation = Quaternion.LookRotation(
-                Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
+                BezierCubic.GetFirstDerivative(points[0], points[1], points[2], points[3], startParameter));
             transform.rotation = trailerRotation;
         }
     }

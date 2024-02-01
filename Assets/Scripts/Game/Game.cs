@@ -15,7 +15,8 @@ public class Game : MonoBehaviour
     private List<Trailer> trailers = new List<Trailer>();
     private int _countOfFinishedTrailers;
     private bool _isVictory;
-    private int moneyBonusFromTrailer;
+    private int _moneyBonusFromTrailer;
+    private Railway _railway;
 
 
     private void Awake()
@@ -30,7 +31,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         //SetMoneyBonusFromTrailer(trailerSkin)
     }
@@ -83,6 +84,7 @@ public class Game : MonoBehaviour
     public void DecrementCountOfTrailers(Trailer trailer)
     {
         trailers.Remove(trailer);
+        _railway.DeleteKeyFromDictionaries(trailer.gameObject.GetInstanceID());
         if (trailers.Count == 0)
             defeatEventChannel.RaiseEvent();
     }
@@ -116,18 +118,34 @@ public class Game : MonoBehaviour
         SetMoneyBonusFromTrailer(shopItem.GetMoneyBonus());
     }
 
+    //добавил метод сета рейлвея, срабатывает в рейл вее при в методе старта
+    public void SetRailway(Railway railway)
+    {
+        _railway = railway;
+    }
+
+    public Railway GetRailway()
+    {
+        return _railway;
+    }
+
+    public void DeleteTrailerFromList(Trailer trailer)
+    {
+        trailers.Remove(trailer);
+    }
+
     private void SetMoneyBonusFromTrailer(int moneyBonys)
     {
-        moneyBonusFromTrailer = moneyBonys;
+        _moneyBonusFromTrailer = moneyBonys;
     }
 
     private void CountWonMoney()
     {
-        if(moneyBonusFromTrailer == 0)
+        if (_moneyBonusFromTrailer == 0)
         {
-            moneyBonusFromTrailer = Shop.instance.GetCurrentShopItem().GetMoneyBonus();
+            _moneyBonusFromTrailer = Shop.instance.GetCurrentShopItem().GetMoneyBonus();
         }
-        var wonMoney = _countOfFinishedTrailers * moneyBonusFromTrailer;
+        var wonMoney = _countOfFinishedTrailers * _moneyBonusFromTrailer;
         Bank.instance.AddMoney(wonMoney);
     }
 }

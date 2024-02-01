@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
   m_Name: Shop View
   m_EditorClassIdentifier: 
-  slices:
+  isHorizontal: 0
+  verticalSlices:
   - {fileID: 2689820755075616451, guid: b7cd6c5a55fbf2f448e2e4dc2a19b851, type: 3}
   - {fileID: 2689820755075616451, guid: aeef9c777ea509242b9f3738e1ddb9c8, type: 3}
   - {fileID: 2689820755075616451, guid: fc881cc8c142470449c35166dc9df7d9, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: b0226ccaa363f8649bf4cdb724b37cae, type: 3}
+  - {fileID: 2689820755075616451, guid: a14bb2f4d39d1ec47ab5cbfce6841e7d, type: 3}
+  - {fileID: 2689820755075616451, guid: a14bb2f4d39d1ec47ab5cbfce6841e7d, type: 3}

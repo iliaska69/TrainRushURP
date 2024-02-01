@@ -16,10 +16,10 @@ public class BonusBoxEditor : MonoBehaviour
             if (curve == null) continue;
             var points = curve.GetAllPoints();
 
-            transform.position = Bezier.GetPoint(points[0], points[1], points[2], points[3], tParameter);
+            transform.position = BezierCubic.GetPoint(points[0], points[1], points[2], points[3], tParameter);
 
             transform.rotation = Quaternion.LookRotation(
-                Bezier.GetFirstDerivative(points[0], points[1], points[2], points[3], tParameter));
+                BezierCubic.GetFirstDerivative(points[0], points[1], points[2], points[3], tParameter));
         }
     }
 }

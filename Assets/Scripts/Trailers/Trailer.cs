@@ -1,7 +1,6 @@
-using System.Net;
-using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TrailerMovement))]
 public class Trailer : MonoBehaviour, IDestroyable
 {
     [SerializeField] private GameObject catchGameObject;
@@ -39,22 +38,15 @@ public class Trailer : MonoBehaviour, IDestroyable
     {
         if (Time.timeScale == 0f) return;
 
-        if (_myTrailerMovement != null && _nextTrailer != null)
-        {
-            _myTrailerMovement.SetDistancesPoints(
-                transform.position, _nextTrailer.transform.position);
-        }
+        CollideWithTrailer();
+    }
 
-        var hits = Physics.OverlapSphere(catchGameObject.transform.position, 0.1f, joinableMask);
-        if (hits is null || hits.Length != 1) return;
-        foreach (var hit in hits)
-        {
-            var trailer = hit.gameObject.GetComponentInParent<Trailer>();
-            trailer.SetActiveJoinablePoint(false);
-            _nextTrailer = trailer;
+    public TrailerMovement GetTrailerMovementComponent()
+    {
+        if (_myTrailerMovement == null)
+            _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
 
-            CollideWithTrailer(_nextTrailer);
-        }
+        return _myTrailerMovement;
     }
 
     public void SetActiveJoinablePoint(bool set)
@@ -62,19 +54,19 @@ public class Trailer : MonoBehaviour, IDestroyable
         joinablePoint.SetActive(set);
     }
 
-    public GameObject GetJoinablePoint()
-    {
-        return joinablePoint;
-    }
-
     public bool IsMainTrailer()
     {
         return isMainTrailer;
     }
 
-    public void SetMainTrailer(bool set)
+    public void SetMainTrailer(bool value)
     {
-        isMainTrailer = set;
+        isMainTrailer = value;
+        if(_myTrailerMovement != null)
+            _myTrailerMovement.SetIsMainTrailer(value);
+        if (value)
+            _nextTrailer = null;
+        changedMainTrailerEventChanelSO.RaiseEvent(this);
     }
 
     public void SetPreviousTrailer(Trailer prevTrailer)
@@ -90,20 +82,98 @@ public class Trailer : MonoBehaviour, IDestroyable
     public void SetNextTrailer(Trailer trialer)
     {
         _nextTrailer = trialer;
+        _nextTrailerMovement = _nextTrailer.GetTrailerMovementComponent();
+        if (_myTrailerMovement != null)
+        {
+            _myTrailerMovement.SetNextTrailer(trialer);
+        }
+        else
+        {
+            _myTrailerMovement = gameObject.GetComponent<TrailerMovement>();
+            _myTrailerMovement.SetNextTrailer(trialer);
+        }
     }
 
-    public Trailer GetNextTrailer()
+    public void DestroyWithAnimation()
     {
-        return _nextTrailer;
+        if (isMainTrailer)
+        {
+            SetMainTrailer(false);
+            if (_previousTrailer != null)
+            {
+                _previousTrailer.SetMainTrailer(true);
+                _previousTrailer.ClearNextTrailer();
+                changedMainTrailerEventChanelSO.RaiseEvent(_previousTrailer);
+            }
+        }
+        else if (_nextTrailer != null && _previousTrailer != null)
+        {
+            _nextTrailer.SetPreviousTrailer(_previousTrailer);
+            _previousTrailer.SetNextTrailer(_nextTrailer);
+        }
+        else if(_previousTrailer == null)
+        {
+            _nextTrailer.ClearPreviousTrailer();
+        }
+
+        ClearTrailerConnection();
+        _myTrailerMovement.enabled = false;
+        decrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
+        gameObject.SetActive(false);
+
+        //boxCollider.enabled = false;
+        //animator.SetTrigger("Death");
     }
 
-    public TrailerMovement GetTrailerMovementComponent()
+    public void ClearNextTrailer()
     {
-        return _myTrailerMovement;
+        _nextTrailer = null;
+        _myTrailerMovement.ClearNextTrailer();
+        _nextTrailerMovement = null;
+    }
+
+    public void ClearPreviousTrailer()
+    {
+        _previousTrailer = null;
+    }
+
+    private void ClearTrailerConnection()
+    {
+        _previousTrailer = null;
+        _nextTrailer = null;
+        _nextTrailerMovement = null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == catchingBonusLayer)
+        {
+            other.GetComponent<IActivatable>()?.ActivateBonus();
+        }
+        if (other.gameObject.layer == finishLayer)
+        {
+            _myTrailerMovement.SetIsFinish(true);
+            if (!isMainTrailer) return;
+            finishVoidEvenChanelSO.RaiseEvent();
+        }
     }
 
     //«аставл€ет двигатьс€ следующий поезд
-    private void CollideWithTrailer(Trailer trailer)
+    void CollideWithTrailer()
+    {
+        var hits = Physics.OverlapSphere(catchGameObject.transform.position, 1.5f, joinableMask);
+        if (hits is null || hits.Length != 1) return;
+        foreach (var hit in hits)
+        {
+            var trailer = hit.gameObject.GetComponentInParent<Trailer>();
+            trailer.SetActiveJoinablePoint(false);
+            _nextTrailer = trailer;
+
+            TrailerConnect(_nextTrailer);
+        }
+    }
+
+    private void TrailerConnect(Trailer trailer)
     {
         if (trailer == this) return;
         if (isMainTrailer)
@@ -120,49 +190,9 @@ public class Trailer : MonoBehaviour, IDestroyable
 
         _myTrailerMovement.SetIsMainTrailer(false);
         _nextTrailerMovement.SetIsMainTrailer(true);
+        _myTrailerMovement.SetNextTrailer(trailer);
 
         changedMainTrailerEventChanelSO.RaiseEvent(trailer);
         incrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(trailer);
-    }
-
-    public void DestroyWithAnimation()
-    {
-        if (isMainTrailer)
-        {
-            if (_previousTrailer != null)
-            {
-                _previousTrailer.SetMainTrailer(true);
-                changedMainTrailerEventChanelSO.RaiseEvent(_previousTrailer);
-            }
-        }
-        if (_nextTrailer != null)
-        {
-            _nextTrailer.SetPreviousTrailer(_previousTrailer);
-        }
-        if (_previousTrailer != null)
-        {
-            _previousTrailer.SetNextTrailer(_nextTrailer);
-        }
-
-        _myTrailerMovement.enabled = false;
-        boxCollider.enabled = false;
-        animator.SetTrigger("Death");
-        decrementCountOfTrailersTrailerEvenChanelSO.RaiseEvent(this);
-
-        Destroy(gameObject, 3);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == catchingBonusLayer)
-        {
-            other.GetComponent<IActivatable>()?.ActivateBonus();
-        }
-        if (other.gameObject.layer == finishLayer)
-        {
-            _myTrailerMovement.SetIsFinish(true);
-            if (!isMainTrailer) return;
-            finishVoidEvenChanelSO.RaiseEvent();
-        }
     }
 }
