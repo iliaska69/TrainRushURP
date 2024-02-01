@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2979050304863504131}
   - component: {fileID: 18951052256355230}
+  - component: {fileID: 5962346442967327275}
+  - component: {fileID: 6281808578262729917}
   m_Layer: 0
   m_Name: Animated Model
   m_TagString: Untagged
@@ -52,6 +54,31 @@ MonoBehaviour:
   secondJumpTargetPointTransform: {fileID: 3080841929409692140}
   spawnPointTransform: {fileID: 4568754677234668330}
   jumpType: 1
+--- !u!114 &5962346442967327275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329934324553380260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c78c537673294c42852394a2f40cd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &6281808578262729917
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329934324553380260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.77
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2495414370452919921
 GameObject:
   m_ObjectHideFlags: 0

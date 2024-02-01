@@ -11,36 +11,38 @@ public class ObstacleThreeAnimation : MonoBehaviour
     [SerializeField] private Transform spawnPointTransform;
     [SerializeField] private Ease jumpType;
 
+    private Transform _transform;
 
     private void Start()
     {
+        _transform = transform;
         Invoke("FirstJump", 1f);
     }
 
     private void FirstJump()
     {
-        transform.DOLocalJump(firstJumpTargetPointTransform.localPosition, firstJumpHeight, 1, jumpDuration)
+        _transform.DOLocalJump(firstJumpTargetPointTransform.localPosition, firstJumpHeight, 1, jumpDuration)
             .SetEase(jumpType)
             .OnComplete(() => SecondJump());
 
-        transform.DOLocalRotate(new Vector3(0f, 0f, -90f), jumpDuration, RotateMode.FastBeyond360)
+        _transform.DOLocalRotate(new Vector3(0f, 0f, -90f), jumpDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear);
     }
 
     private void SecondJump()
     {
-        transform.DOLocalJump(secondJumpTargetPointTransform.localPosition, secondJumpHeight, 1, jumpDuration)
+        _transform.DOLocalJump(secondJumpTargetPointTransform.localPosition, secondJumpHeight, 1, jumpDuration)
             .SetEase(Ease.OutQuad)
             .OnComplete(() => OnCompliteJump());
 
-        transform.DOLocalRotate(new Vector3(0f, 0f, 180f), jumpDuration, RotateMode.FastBeyond360)
+        _transform.DOLocalRotate(new Vector3(0f, 0f, 180f), jumpDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear);
     }
 
     private void OnCompliteJump()
     {
-        transform.localPosition = spawnPointTransform.localPosition;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        _transform.localPosition = spawnPointTransform.localPosition;
+        _transform.rotation = Quaternion.Euler(0, 0, 0);
 
         Invoke("FirstJump", 1f);
     }

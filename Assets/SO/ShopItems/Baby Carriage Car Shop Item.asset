@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBuy: 0
   price: 100
-  skin: {fileID: 2886558175707233064, guid: a9b4c07da00dde64cb5df5d3900350f4, type: 3}
+  skin: {fileID: 2886558175707233064, guid: e2cf2a085728a754396e944364afc85e, type: 3}
   speed: 3
   moneyBonus: 5

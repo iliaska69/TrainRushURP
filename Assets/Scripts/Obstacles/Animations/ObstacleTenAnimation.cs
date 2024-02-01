@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ObstacleTenAnimation : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class ObstacleTenAnimation : MonoBehaviour
 
     private Vector3[] firstPathVectors;
     private Vector3[] secondPathVectors;
+    private Transform _transform;
 
     private void Start()
     {
+        _transform = transform;
         firstPathVectors = new Vector3[pathPoints.Length];
         firstPathVectors = GetFirstPathVector3Array();
         secondPathVectors = new Vector3[pathPoints.Length];
@@ -25,23 +28,23 @@ public class ObstacleTenAnimation : MonoBehaviour
 
     private void FirstMoveOnPath()
     {
-        transform.DOPath(firstPathVectors, pathDuration, PathType.CatmullRom)
+        _transform.DOPath(firstPathVectors, pathDuration, PathType.CatmullRom)
             .SetOptions(false)
             .SetEase(Ease.InOutCubic)
             .OnComplete(() => SecondMoveOnPath());
 
-        transform.DORotate(new Vector3(0, 0, firstPathRotationZ), pathDuration, rotateMode)
+        _transform.DORotate(new Vector3(0, 0, firstPathRotationZ), pathDuration, rotateMode)
             .SetEase(Ease.InOutQuart);
     }
 
     private void SecondMoveOnPath()
     {
-        transform.DOPath(secondPathVectors, pathDuration, PathType.CatmullRom)
+        _transform.DOPath(secondPathVectors, pathDuration, PathType.CatmullRom)
             .SetOptions(false)
             .SetEase(Ease.InOutCubic)
             .OnComplete(() => Invoke("FirstMoveOnPath", 2f));
 
-        transform.DORotate(new Vector3(0, 0, secondPathRotationZ), pathDuration, rotateMode)
+        _transform.DORotate(new Vector3(0, 0, secondPathRotationZ), pathDuration, rotateMode)
             .SetEase(Ease.InOutQuart);
     }
 

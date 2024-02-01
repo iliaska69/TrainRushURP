@@ -85,7 +85,6 @@ public class Railway : MonoBehaviour
     public Vector3 GetPositionByT(BezierCurve newCurve, float t)
     {
         var pointId = newCurve.GetPointIdByTParametr(t);
-        Debug.Log(pointId);
         return newCurve.GetPositionByPoint(pointId);
     }
 

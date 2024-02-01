@@ -21,9 +21,11 @@ public class CartWheelOfFortuneController : MonoBehaviour
         else if (instance == this)
         {
             Destroy(gameObject);
+    
         }
     }
 
+    public List<Reward> Rewards => wheelOfFortuneSO.rewards;
 
     public Reward GetNewWinningReward()
     {
@@ -32,15 +34,9 @@ public class CartWheelOfFortuneController : MonoBehaviour
         return _winningReward;
     }
 
-    [Button("GO")]
     public void OpenViewWheelOfFortune()
     {
         UIController.instance.OpenView(wheelOfFortuneSO.viewOfWheelOfFortune);
-    }
-
-    public List<Reward> GetListOfRewards()
-    {
-        return wheelOfFortuneSO.rewards;
     }
 
     public void ActivateReward()

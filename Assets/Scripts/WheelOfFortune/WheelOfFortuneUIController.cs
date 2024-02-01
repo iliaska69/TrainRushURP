@@ -19,7 +19,7 @@ public class WheelOfFortuneUIController : MonoBehaviour
     public void Initialization()
     {
         _winingReward = CartWheelOfFortuneController.instance.GetNewWinningReward();
-        var rewards = CartWheelOfFortuneController.instance.GetListOfRewards();
+        var rewards = CartWheelOfFortuneController.instance.Rewards;
         
         for (var i = 0; i < rewards.Count; i++)
         {

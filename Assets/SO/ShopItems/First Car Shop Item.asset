@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8dcc66c874f78ce4abdaa1b0601383af, type: 3}
-  m_Name: Second Default Car Shop Item
+  m_Name: First Car Shop Item
   m_EditorClassIdentifier: 
   isBuy: 0
   price: 100
-  skin: {fileID: 2886558175707233064, guid: 84ce7aee4f6891b48bf451b26954dbca, type: 3}
+  skin: {fileID: 2886558175707233064, guid: 2f7e62f566b4557499c56e0cc595e2aa, type: 3}
   speed: 3
   moneyBonus: 5

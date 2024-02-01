@@ -9,13 +9,12 @@ public class NLOStillBallAnimation : MonoBehaviour
     [SerializeField] private float power;
     [SerializeField] private Transform nloTargetTransform;
     [SerializeField] private GameObject nloAnimatedObject;
-
+    [SerializeField] private float levitationAngle;
+    [SerializeField] private float levitationDuration = 2.0f;
 
     private Quaternion _startRotation;
     private Vector3 _endPos;
 
-    public float levitationAngle;
-    public float levitationDuration = 2.0f;
 
     void Start()
     {

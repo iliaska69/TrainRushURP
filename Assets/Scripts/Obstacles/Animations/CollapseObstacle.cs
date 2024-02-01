@@ -1,7 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class CollapseObstacle : MonoBehaviour
@@ -15,12 +12,17 @@ public class CollapseObstacle : MonoBehaviour
     private bool _isMovingFirst;
     private bool _isMovingSecond;
     private float _startPositionXFirstHemisphere;
-    private float _startPositionYSecondHemisphere;
+    private float _startPositionXSecondHemisphere;
+
+    private Transform _firstHemisphere;
+    private Transform _secondHemisphere;
 
     void Start()
     {
+        _firstHemisphere = firstHemisphere;
+        _secondHemisphere = secondHemisphere;
         _startPositionXFirstHemisphere = firstHemisphere.position.x;
-        _startPositionYSecondHemisphere = secondHemisphere.position.x;
+        _startPositionXSecondHemisphere = secondHemisphere.position.x;
         CollapseFirstSphereAnimation();
         CollapseSecondSphereAnimation();
     }
@@ -31,7 +33,7 @@ public class CollapseObstacle : MonoBehaviour
         {
             _isMovingFirst = true;
 
-            firstHemisphere.DOLocalMoveX(firstTargetPosition, moveDuration)
+            _firstHemisphere.DOLocalMoveX(firstTargetPosition, moveDuration)
             .SetEase(Ease.OutBounce)
             .OnComplete(() => OnCollapseComplete());
         }
@@ -43,7 +45,7 @@ public class CollapseObstacle : MonoBehaviour
         {
             _isMovingSecond = true;
 
-            secondHemisphere.DOLocalMoveX(secondTargetPosition, moveDuration)
+            _secondHemisphere.DOLocalMoveX(secondTargetPosition, moveDuration)
             .SetEase(Ease.OutBounce)
             .OnComplete(() => OnCollapseComplete());
         }
@@ -60,7 +62,7 @@ public class CollapseObstacle : MonoBehaviour
 
     void ReturnFirstAnimation()
     {
-        firstHemisphere.DOLocalMoveX(_startPositionXFirstHemisphere, moveDuration)
+        _firstHemisphere.DOMoveX(_startPositionXFirstHemisphere, moveDuration)
         .SetEase(Ease.InOutQuad)
         .OnComplete(() => OnCompleteReturnFirstAnimation());
     }
@@ -72,7 +74,7 @@ public class CollapseObstacle : MonoBehaviour
 
     void ReturnSecondAnimation()
     {
-        secondHemisphere.DOLocalMoveX(_startPositionYSecondHemisphere, moveDuration)
+        _secondHemisphere.DOMoveX(_startPositionXSecondHemisphere, moveDuration)
         .SetEase(Ease.InOutQuad)
         .OnComplete(() => OnCompleteReturnSecondAnimation());
 

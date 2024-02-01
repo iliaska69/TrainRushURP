@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 public abstract class Reward
 {
-    public Sprite Sprite;
-    public int Count;
-
+    [SerializeField] private Sprite rewardSprite;
+    [SerializeField] private int count;
 
     public abstract void Activate();
+
+    public Sprite Sprite => rewardSprite;
+
+    public int Count => count;
 }
