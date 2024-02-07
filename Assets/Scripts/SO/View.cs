@@ -6,10 +6,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "View", menuName = "ScriptableObjects/View", order = 1)]
 public class View : ScriptableObject
 {
-    [SerializeField] private List<Slice> slices;
+    public bool isHorizontal;
+    [SerializeField] private List<Slice> verticalSlices;
+    [SerializeField] private List<Slice> horizontalSlices;
     
     public List<Slice> GetAllSlices()
     {
-        return slices;
+        if (isHorizontal)
+            return horizontalSlices;
+        else
+            return verticalSlices;
     }
 }

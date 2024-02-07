@@ -53,7 +53,7 @@ public class TrailerParking : MonoBehaviour
 
     void Rotation()
     {
-        _rotation = Bezier.GetFirstDerivative(_points[0], _points[1], _points[2], _points[3], _t);
+        _rotation = BezierCubic.GetFirstDerivative(_points[0], _points[1], _points[2], _points[3], _t);
         _transform.rotation = Quaternion.Lerp(_transform.rotation, Quaternion.LookRotation(_rotation), rotationSmooth);
     }
 
@@ -61,7 +61,7 @@ public class TrailerParking : MonoBehaviour
     {
         _points = GetCurvePoints(curve);
 
-        return Bezier.GetPoint(_points[0], _points[1], _points[2], _points[3], t);
+        return BezierCubic.GetPoint(_points[0], _points[1], _points[2], _points[3], t);
     }
 
     private List<Transform> GetCurvePoints(BezierCurve curve)

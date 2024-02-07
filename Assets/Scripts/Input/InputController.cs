@@ -25,7 +25,6 @@ public class InputController : MonoBehaviour
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100))
-
             {
                 var button = hit.transform.gameObject.GetComponent<IClickable>();
                 button?.Click();
