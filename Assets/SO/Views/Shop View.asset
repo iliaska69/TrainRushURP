@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
+  m_Name: Shop View
+  m_EditorClassIdentifier: 
+  isHorizontal: 1
+  verticalSlices:
+  - {fileID: 2689820755075616451, guid: 87081c25a3040a0458c4c467d1b07050, type: 3}
+  - {fileID: 2689820755075616451, guid: aeef9c777ea509242b9f3738e1ddb9c8, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: 0c7f4881466e4634ab9db9d120367bb8, type: 3}
+  - {fileID: 2689820755075616451, guid: 677a511cb60f5f240a54894d4a8956e3, type: 3}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c940c5375255e44cba8f89667e7d0ba, type: 3}
+  m_Name: NewTrailerView
+  m_EditorClassIdentifier: 
+  isHorizontal: 0
+  verticalSlices:
+  - {fileID: 2689820755075616451, guid: f2477fe5794c6974c8011d3d82dddb2e, type: 3}
+  horizontalSlices:
+  - {fileID: 2689820755075616451, guid: 3ec6da5758c64ba43b245eeb2293ede6, type: 3}

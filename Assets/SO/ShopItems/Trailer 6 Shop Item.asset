@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcc66c874f78ce4abdaa1b0601383af, type: 3}
+  m_Name: Trailer 6 Shop Item
+  m_EditorClassIdentifier: 
+  isBuy: 1
+  trailerUiImage: {fileID: 21300000, guid: 6ce620d1d0e7e3b48bf441d408a47bbe, type: 3}
+  price: 1560
+  skin: {fileID: 2886558175707233064, guid: 97fe89a94f75edb4189d9e3cb68c25c1, type: 3}
+  speed: 2
+  moneyBonus: 3

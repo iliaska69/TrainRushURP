@@ -1,0 +1,7 @@
+# Google Play Billing – запрещаем вырезать нужные классы
+-keep class com.android.billingclient.** { *; }
+-keep class com.google.android.gms.internal.play_billing.** { *; }
+-keep class com.android.vending.billing.** { *; }
+
+# Сохраняем аннотации (BillingClient использует их внутри)
+-keepattributes *Annotation*

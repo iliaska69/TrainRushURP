@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd566704adca3d742874d756b5a12414, type: 3}
+  m_Name: WheelOfFortune
+  m_EditorClassIdentifier: 
+  viewOfWheelOfFortune: {fileID: 11400000, guid: e5439ffe29cde954f9c0f4ba088cb511,
+    type: 2}
+  rewards:
+  - rid: 127078431193038859
+  - rid: 127078431193038855
+  - rid: 127078431193038856
+  - rid: 127078431193038857
+  - rid: 127078431193038860
+  - rid: 127078431193038861
+  - rid: 127078431193038862
+  - rid: 127078431193038863
+  typeOfReward: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 127078431193038855
+      type: {class: TrailerReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 045de1bc41224e94587cf7abe9f4765f, type: 3}
+        Count: 1
+        openNewTrailerEventSO: {fileID: 11400000, guid: cde53e12863fe5445a6be7c9cb239cfd,
+          type: 2}
+    - rid: 127078431193038856
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 8cf25c22ff5eedc41828becd22837256, type: 3}
+        Count: 100
+        openWelcomeViewEventSO: {fileID: 11400000, guid: 110b2cce92553be4a81e557f5890c79c,
+          type: 2}
+    - rid: 127078431193038857
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 491483426da896c41946f96b5de998ce, type: 3}
+        Count: 300
+        openWelcomeViewEventSO: {fileID: 11400000, guid: 110b2cce92553be4a81e557f5890c79c,
+          type: 2}
+    - rid: 127078431193038859
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 8cf25c22ff5eedc41828becd22837256, type: 3}
+        Count: 100
+        openWelcomeViewEventSO: {fileID: 11400000, guid: 110b2cce92553be4a81e557f5890c79c,
+          type: 2}
+    - rid: 127078431193038860
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 8cf25c22ff5eedc41828becd22837256, type: 3}
+        Count: 100
+        openWelcomeViewEventSO: {fileID: 11400000, guid: 110b2cce92553be4a81e557f5890c79c,
+          type: 2}
+    - rid: 127078431193038861
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 491483426da896c41946f96b5de998ce, type: 3}
+        Count: 300
+        openWelcomeViewEventSO: {fileID: 11400000, guid: 110b2cce92553be4a81e557f5890c79c,
+          type: 2}
+    - rid: 127078431193038862
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 8cf25c22ff5eedc41828becd22837256, type: 3}
+        Count: 100
+        openWelcomeViewEventSO: {fileID: 11400000, guid: 110b2cce92553be4a81e557f5890c79c,
+          type: 2}
+    - rid: 127078431193038863
+      type: {class: TicketReward, ns: , asm: Assembly-CSharp}
+      data:
+        Sprite: {fileID: 21300000, guid: 809f5c5adbbf7bb43baf8683e2bfe9dc, type: 3}
+        Count: 1
+        activateGettingTicketAnim: {fileID: 11400000, guid: 6caf1eb847a4e33438fdc78b57cb9f79,
+          type: 2}

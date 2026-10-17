@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StringLocalizationTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 102a83e2165a9e34ca7811318dfd7111, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 43317288960
+    m_Localized: TAP TO PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251328096460800
+    m_Localized: CLAIM!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251563543715840
+    m_Localized: DAY 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256838065545216
+    m_Localized: DAY 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256911369396224
+    m_Localized: DAY 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256945657831424
+    m_Localized: DAY 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256988666224640
+    m_Localized: DAY 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 257002234798080
+    m_Localized: DAY 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258970458087424
+    m_Localized: NO THANKS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 259206928752640
+    m_Localized: CONTINUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 260100206452736
+    m_Localized: SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 260858133962752
+    m_Localized: BONUS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 265836214968320
+    m_Localized: SET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 266467080232960
+    m_Localized: SPIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268509106495488
+    m_Localized: PRESS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 270138669096960
+    m_Localized: 'NEW CART! '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293054483881984
+    m_Localized: GET IT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293600246718464
+    m_Localized: LOS IT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 319778537955328
+    m_Localized: LEVEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363895892566016
+    m_Localized: GET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364348067897344
+    m_Localized: VICTORY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364756383391744
+    m_Localized: NEW CART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54256308277739520
+    m_Localized: SPEED UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54731688713388032
+    m_Localized: COINS
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: StringLocalizationTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: StringLocalizationTable
+  m_TableCollectionNameGuidString: 102a83e2165a9e34ca7811318dfd7111
+  m_Entries:
+  - m_Id: 43317288960
+    m_Key: tapToPlay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251328096460800
+    m_Key: ClaimDailyReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251563543715840
+    m_Key: DailyReward1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256838065545216
+    m_Key: DailyReward2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256911369396224
+    m_Key: DailyReward3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256945657831424
+    m_Key: DailyReward4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256988666224640
+    m_Key: DailyReward5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 257002234798080
+    m_Key: DailyReward6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 258970458087424
+    m_Key: NoThanks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 259206928752640
+    m_Key: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 260100206452736
+    m_Key: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 260858133962752
+    m_Key: Bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 265836214968320
+    m_Key: Set
+    m_Metadata:
+      m_Items: []
+  - m_Id: 266467080232960
+    m_Key: Spin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268509106495488
+    m_Key: Press
+    m_Metadata:
+      m_Items: []
+  - m_Id: 270138669096960
+    m_Key: NewCart!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293054483881984
+    m_Key: GetIt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293600246718464
+    m_Key: LosIt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 319778537955328
+    m_Key: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363895892566016
+    m_Key: Get     x
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364348067897344
+    m_Key: Victory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364756383391744
+    m_Key: New cart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54256308277739520
+    m_Key: Acceleration spin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54731688713388032
+    m_Key: Coins Donat
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 6325042448654925824
+  references:
+    version: 2
+    RefIds:
+    - rid: 6325042448654925824
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1740779478227
